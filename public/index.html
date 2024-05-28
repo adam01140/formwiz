@@ -118,6 +118,9 @@
         height: 100%;
         border: none;
     }
+    .lawyer-info {
+        display: none;
+    }
 </style>
 </head>
 <body>
@@ -146,11 +149,28 @@
         <p><strong>What's your phone number?</strong></p>
         <input type="text" id="PetitionerTel[0]" placeholder="Phone Number"><br>
         <p><strong>Do you have a lawyer?</strong></p>
-        <select id="LawyerStatus" required>
+        <select id="LawyerStatus" required onchange="toggleLawyerFields()">
             <option value="" disabled selected>Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+        <div class="lawyer-info" id="lawyerInfoFields">
+            <p><strong>Lawyer's Full Name:</strong></p>
+            <input type="text" id="LawyerName" placeholder="Lawyer's Full Name">
+            <br>
+            <p><strong>Law Firm:</strong></p>
+            <input type="text" id="LawFirm" placeholder="Law Firm">
+            <br>
+            <p><strong>Address:</strong></p>
+            <input type="text" id="LawyerAddress" placeholder="Address">
+            <br>
+            <p><strong>Phone Number:</strong></p>
+            <input type="text" id="LawyerPhone" placeholder="Phone Number">
+            <br>
+            <p><strong>State Bar Number:</strong></p>
+            <input type="text" id="LawyerBarNumber" placeholder="State Bar Number">
+            <br>
+        </div>
         <br>
         <button class="next-button" onclick="editPDF()">Complete Form</button>
     </div>
@@ -158,6 +178,16 @@
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 <script>
 let uploadedPdfFile = null;
+
+function toggleLawyerFields() {
+    const lawyerStatus = document.getElementById('LawyerStatus').value;
+    const lawyerInfoFields = document.getElementById('lawyerInfoFields');
+    if (lawyerStatus === 'yes') {
+        lawyerInfoFields.style.display = 'block';
+    } else {
+        lawyerInfoFields.style.display = 'none';
+    }
+}
 
 function downloadPDF() {
     var iframe = document.getElementById('pdfFrame');
@@ -227,6 +257,13 @@ async function editPDF() {
     // Append the lawyer status to the form data
     if (lawyerStatus === 'yes') {
         formData.append('lawyercheckyes', 'Yes');
+        const lawyerName = document.getElementById('LawyerName').value;
+        const lawFirm = document.getElementById('LawFirm').value;
+        const lawyerAddress = document.getElementById('LawyerAddress').value;
+        const lawyerPhone = document.getElementById('LawyerPhone').value;
+        const lawyerBarNumber = document.getElementById('LawyerBarNumber').value;
+        const lawyerInfo = `My lawyer's name is ${lawyerName}. Their law firm is ${lawFirm}, located at ${lawyerAddress}. Their phone number is ${lawyerPhone} and their state bar number is ${lawyerBarNumber}`;
+        formData.append('lawyer_info', lawyerInfo);
     } else if (lawyerStatus === 'no') {
         formData.append('lawyercheckno', 'Yes');
     }
