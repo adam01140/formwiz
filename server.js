@@ -61,9 +61,15 @@ app.post('/edit_pdf', async (req, res) => {
   const form = pdfDoc.getForm();
 
   Object.keys(req.body).forEach(key => {
-    const field = form.getTextField(key);
-    if (field) {
-      field.setText(req.body[key]);
+    if (key !== 'email') { // Skip the email field
+      try {
+        const field = form.getTextField(key);
+        if (field) {
+          field.setText(req.body[key]);
+        }
+      } catch (e) {
+        console.error(`No such field in the PDF: ${key}`);
+      }
     }
   });
 

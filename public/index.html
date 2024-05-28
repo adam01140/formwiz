@@ -122,20 +122,18 @@
 <body>
 <center>
 
-<h1>Upload Your Username and Email</h1>
-<form id="userForm">
-    <input type="text" id="name" placeholder="Enter your name" required>
-    <input type="email" id="email" placeholder="Enter your email" required>
-    <button type="submit">Submit</button>
-</form>
-
 <div id="whole">
 <h1>Waive Court Fees Form</h1>
 <div id="questions">
     <div id="questions1">
-        <h1>Waive Court Fees Form</h1>
-        <p><strong>What's your full name?</strong></p>
-        <input type="text" id="PetitionerName1[0]" placeholder="Full Name"><br>
+        <h1>Upload Your Username and Email</h1>
+        <form id="userForm">
+            <p><strong>What's your full name?</strong></p>
+            <input type="text" id="PetitionerName1[0]" placeholder="Enter your full name" required>
+            <br>
+            <p><strong>What's your email?</strong></p>
+            <input type="email" id="email" placeholder="Enter your email" required>
+        </form>
         <p><strong>What's your street address?</strong></p>
         <input type="text" id="PetitionerStrAddress[0]" placeholder="Street">
         <br>
@@ -151,26 +149,6 @@
 </div>
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 <script>
-document.getElementById('userForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    try {
-        const response = await fetch('/addUser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email }),
-        });
-        const result = await response.text();
-        alert(result);
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to add user');
-    }
-});
-
 let uploadedPdfFile = null;
 
 function downloadPDF() {
@@ -185,7 +163,7 @@ function downloadPDF() {
 }
 
 function loadDefaultPDF() {
-    const defaultUrl = 'http://127.0.0.1:3000/form.pdf';
+    const defaultUrl = 'http://localhost:3000/form.pdf';
     fetch(defaultUrl)
         .then(response => response.blob())
         .then(blob => {
@@ -204,16 +182,35 @@ function displayPDF(pdfBlob) {
     document.getElementById('pdfPreview').style.display = 'block';
 }
 
-function editPDF() {
+async function editPDF() {
     if (!uploadedPdfFile) {
         alert('No PDF file is loaded for editing.');
         return;
     }
+
+    // Collect name and email from the form
+    const name = document.getElementById('PetitionerName1[0]').value;
+    const email = document.getElementById('email').value;
+    try {
+        const response = await fetch('/addUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email }),
+        });
+        const result = await response.text();
+        alert(result);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to add user');
+    }
+
     var formData = new FormData();
     formData.append('pdf', uploadedPdfFile);
     var inputs = document.querySelectorAll('#questions input');
     inputs.forEach(input => {
-        if (input.value) {
+        if (input.id !== 'email' && input.value) { // Skip the email field
             formData.append(input.id, input.value);
         }
     });
