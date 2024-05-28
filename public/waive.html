@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Profile</title>
+<style>
+
+select {
+	text-align: center;
+    width: 300px;  /* Adjust width as needed */
+    height: 40px;  /* Adjust height as needed */
+    background-color: #64adc4;  /* Light blue background */
+    color: white;  /* Text color */
+    font-size: 16px;  /* Adjust font size as needed */
+    border-radius: 5px;  /* Rounded corners */
+    padding-left: 10px;  /* Padding inside the dropdown */
+    border: 1px solid #4CAF50;  /* Green border to match your button styles, adjust if needed */
+    cursor: pointer;  /* Cursor changes to pointer to indicate it's a clickable element */
+}
+
+/* Styles for option elements to ensure readability */
+option {
+    background-color: white;  /* White background makes the text easier to read */
+    color: black;  /* Dark text for high contrast on light background */
+}
+
+
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        padding: 0px;
+        text-align: center;
+    }
+
+    button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    #userProfile {
+        border: 4px solid lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px auto;
+        background-color: #ffffff;
+        width: 50%;
+       
+    }
+</style>
+
+
+<style>
+
+
+
+
+
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        margin-top: 20px;
+    }
+
+    #questions {
+    border: 4px solid lightblue; /* Set the border color */
+    border-radius: 10px;        /* Rounded corners */
+    padding: 20px;              /* Some padding inside the border */
+    margin: 10px;               /* Margin outside the border */
+    background-color: #ffffff;  /* Light blue background */
+    width: 600px;               /* Fixed width */
+    height: 100%;              /* Fixed height */
+    overflow-y: auto;           /* Enable vertical scrolling for overflow */
+    overflow-x: hidden;         /* Hide horizontal overflow */
+}
+
+
+
+#userForms {
+    border: 4px solid lightblue; /* Set the border color */
+    border-radius: 10px;        /* Rounded corners */
+    padding: 20px;              /* Some padding inside the border */
+    margin: 10px;               /* Margin outside the border */
+    background-color: #ffffff;  /* Light blue background */
+    width: 600px;               /* Fixed width */
+    height: 100%              /* Fixed height */
+    overflow-y: auto;           /* Enable vertical scrolling for overflow */
+    overflow-x: hidden;         /* Hide horizontal overflow */
+}
+
+
+#userProfile {
+    border: 4px solid lightblue; /* Set the border color */
+    border-radius: 10px;        /* Rounded corners */
+    padding: 20px;              /* Some padding inside the border */
+    margin: 0px;               /* Margin outside the border */
+    background-color: #ffffff;  /* Light blue background */
+    width: 100%;               /* Fixed width */
+    height: 100%              /* Fixed height */
+    overflow-y: auto;           /* Enable vertical scrolling for overflow */
+    overflow-x: hidden;         /* Hide horizontal overflow */
+}
+
+	
+	
+	.pdf-container {
+    display: flex;
+    justify-content: space-around; /* Distributes space between and around content items */
+    align-items: start; /* Aligns items to be flex-start aligned */
+    margin-top: 20px;
+	height: 100%;
+	width: 100%;
+}
+
+#whole {
+    border: 4px solid lightblue; /* Set the border color */
+    border-radius: 10px;        /* Rounded corners */
+    padding: 0px;              /* Some padding inside the border */
+    margin: 20px;               /* Margin outside the border */
+    background-color: #ffffff;  /* Light blue background */
+    width: 1000px;               /* Fixed width */
+    height: 90%              /* Fixed height */
+    
+}
+
+
+#pdfPreview, #pdfPreview2 {
+    flex: 1;  /* Each takes up equal space */
+    border: 2px solid lightblue;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0px;
+    background-color: #ffffff;
+    width: 100%;  /* Adjust width to make sure they do not squash together */
+    height: 750px;  /* Optional: Adjust height as necessary */
+    overflow-y: auto;
+    box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
+}
+
+#pdfFrame, #pdfFrame2 {
+    width: 100%;  /* Ensure it takes the full width of its parent */
+    height: 100%;  /* Ensure it takes the full height of its parent */
+    border: none;  /* Remove any default border */
+}
+
+	
+    .next-button {
+        background-color: #64adc4;  /* Match theme color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+	
+	.back-button {
+        background-color: #64adc4;  /* Match theme color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+</style>
+
+
+</head>
+<body>
+
+<center>
+<div id="whole">
+
+
+<h1>Waive Court Fees Form</h1>
+
+		<div id="userProfile" style="display:none;">
+    <h2>User Profile</h2>
+    <p><strong>State:</strong> <span id="userState"></span></p>
+    <p><strong>City:</strong> <span id="userCity"></span></p>
+	<br>
+	</div>
+
+
+
+
+
+<center>
+
+
+	<div id="develepor" style="display:none;">
+	
+	
+    <h1>Upload a PDF to extract editable fields</h1>
+    <input type="file" id="pdfFile" accept="application/pdf">
+    <button onclick="uploadPDF()">Upload PDF</button>
+	<button onclick="loadDefaultPDF()">Load Default PDF</button>
+	
+	<div id="edit" >
+    <button id="editPDF" style="display:none;" onclick="editPDF()">Edit PDF</button>
+	</div>
+	
+	<button onclick="back()">Back</button>
+	
+	
+    
+<ul id="fieldList" ></ul>
+
+	</div>
+	
+	 
+	
+    <div id="questions">
+        <div id="questions1" style="display:none">
+            <h1>Waive Court Fees Form</h1>
+			
+			<br>
+			<h2>
+            <p><strong>What's your full name?</strong></p>
+            <input type="text" id="PetitionerName1[0]" placeholder="Full Name"><br>
+
+			<br>
+			<br>
+			<p><strong>What's your street address?</strong></p>
+            <input type="text" id="PetitionerStrAddress[0]" placeholder="Street"> 
+			<br>
+			<input type="text" id="PetitionerCity[0]" class="PetitionerCity" placeholder="City">
+			<br>
+			<input type="text" id="PetitionerState[0]" class="PetitionerState" placeholder="State">
+			<br>
+			<input type="text" id="PetitionerZip[0]" placeholder="Zip"><br>
+            <br>
+			<p><strong>What's your phone number?</strong></p>
+            <input type="text" id="PetitionerTel[0]" placeholder="Phone Number"><br>
+            <br>
+        
+			
+			<button class="next-button" onclick="saveData(); goToNext('questions1', 'questions2')">Next</button>
+
+			
+        </div>
+	
+	
+        <div id="questions2">
+		
+		
+		
+            <h1>Employment Information</h1>
+            <p><strong>Are you currently employed?</strong></p>
+            <select id="employmentStatus" onchange="toggleEmploymentFields()">
+                <option value="">Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <div id="employmentQuestions" style="display:none">
+                <p><strong>What's your job title?</strong></p>
+                <input type="text" id="PetitionerJobTitle[0]" placeholder="Job Title">
+                <p><strong>Name of your employer?</strong></p>
+                <input type="text" id="PetitionerEmployerName[0]" placeholder="Employer Name">
+                <p><strong>What's your job address?</strong></p>
+                <input type="text" id="PetitionerEmployerAdd[0]" placeholder="Job Address">
+            </div>
+            <br><br>
+			
+			
+            <button class="next-button" onclick="goToNext('questions2', 'questions3')">Next</button>
+			
+			<br><br>
+			
+        </div>
+
+        <div id="questions3" style="display:none">
+            <h1>Lawyer Information</h1>
+            <p><strong>Do you have a lawyer?</strong></p>
+            <select id="LawyerStatus" onchange="toggleLawyerFields()">
+			
+                <option value="">Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <div id="LawyerQuestions" style="display:none">
+                <p><strong>What's your lawyer's full name?</strong></p>
+                <input type="text" id="LawyerName" placeholder="Lawyer's Full Name">
+                <p><strong>What law firm does your lawyer work for?</strong></p>
+                <input type="text" id="FirmName" placeholder="Law Firm">
+                <p><strong>What's your lawyer's state bar number?</strong></p>
+                <input type="text" id="StateBarNumber" placeholder="State Bar Number">
+            </div>
+            <br>
+			
+			<p><strong>What's your case number?</strong></p>
+            <input type="text" id="CaseNumber[0]" placeholder="Case Number"><br>
+            
+			<br>
+            
+			<button class="next-button" onclick="handleLawyerNext()">Next</button>
+			<br>
+			<button class="back-button" onclick="goToPrevious('questions3', 'questions2')">Back</button>
+			
+		</div>
+
+        <div id="questions4" style="display:none">
+            <h1>Form Complete!</h1>
+			
+			<button class="next-button" onclick="downloadPDF()">Download Form</button>
+			
+			<!--
+			<button class="back-button" onclick="revealForm()">View Form</button>
+			<br>
+			
+			-->
+			
+			<div class="pdf-container" id="pdf-container" style="display:none">
+    <div id="pdfPreview" style="display:none">
+        <iframe id="pdfFrame" style="width:100%; height:100%;"></iframe>
+    </div>
+			
+
+			<br>
+			<button class="next-button"  onclick="exit()">Exit</button>
+			
+    
+    <div id="pdfPreview2" style="display:none">
+        <iframe id="pdfFrame2" style="width:100%; height:100%;"></iframe>
+    </div>
+</div>
+
+
+
+        </div>
+   
+	 </div>
+	
+	
+<br><br>
+
+
+
+<br><br>
+</div>
+
+
+
+
+
+
+	<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+<script>
+
+function exit() {
+
+    window.location.href = 'profile.html';
+}
+
+
+
+function downloadPDF() {
+    var iframe = document.getElementById('pdfFrame'); // Assuming 'pdfFrame' is your iframe ID
+    var url = iframe.src; // Get the current src of the iframe which points to the PDF blob
+
+    // Create a temporary anchor element and trigger a download
+    var downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "ModifiedDocument.pdf"; // Optional: You can specify a default filename here
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+
+
+function back() {
+
+	window.location.href = 'profile.html';
+}
+
+
+function revealForm() {
+
+	document.getElementById('pdf-container').style.display = 'block';
+}
+
+function displayUserProfile(state, city) {
+
+	//alert(state);
+    document.getElementById('userState').textContent = state;
+    document.getElementById('userCity').textContent = city;
+    //document.getElementById('userProfile').style.display = 'block';
+}
+
+
+		
+function propagateInput(className) {
+    var inputs = document.getElementsByClassName(className);
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = event.target.value;
+    }
+}
+
+// Attach this function to the input event of each class
+document.querySelectorAll('.PetitionerCity').forEach(input => {
+    input.addEventListener('input', () => propagateInput('PetitionerCity'));
+});
+document.querySelectorAll('.PetitionerState').forEach(input => {
+    input.addEventListener('input', () => propagateInput('PetitionerState'));
+});
+
+
+function displayUserProfile(state, city) {
+    document.getElementById('userState').textContent = state;
+    document.getElementById('userCity').textContent = city;
+    //document.getElementById('userProfile').style.display = 'block';
+}
+
+// In the saveData() function
+function saveData() {
+    // Using class to get value; it doesn't matter which one since all are synced
+    const state = document.querySelector('.PetitionerState').value;
+    const city = document.querySelector('.PetitionerCity').value;
+
+    console.log('Sending data to server:', { state, city });
+
+    fetch('/save_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to save data');
+        }
+        return response.json();
+    }).then(data => {
+        console.log('Data saved successfully:', data);
+        fetchData(); // Fetch updated profile data after save
+    }).catch(error => {
+        console.error('Error saving data:', error);
+    });
+}
+
+
+
+
+function fetchData() {
+    console.log('Fetching data from server');
+    fetch('/get_data')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch');
+        }
+        return response.json();
+    }).then(data => {
+        console.log('Data received from server:', data);
+        if (data.state && data.city) {
+            displayUserProfile(data.state, data.city);
+        }
+    }).catch(error => console.error('Failed to fetch or parse data:', error));
+}
+
+
+
+
+
+
+
+
+
+
+
+	
+// Hide questions div initially
+//document.getElementById('questions').style.display = 'none';
+
+function signUp() {
+    var username = document.getElementById('signupUsername').value;
+    var password = document.getElementById('signupPassword').value;
+    fetch('/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+    }).then(response => {
+        if (response.ok) {
+            alert('Signup successful!');
+            //window.location.href = '/'; // Redirect to home page
+        } else {
+            response.text().then(text => alert(text));
+        }
+    });
+}
+
+function logIn() {
+    var username = document.getElementById('loginUsername').value;
+    var password = document.getElementById('loginPassword').value;
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+    }).then(response => {
+        if (response.ok) {
+            fetchData();  // Fetch user profile data right after login
+            document.getElementById('questions').style.display = 'block';
+			//document.getElementById('userProfile').style.display = 'block';
+            document.getElementById('userForms').style.display = 'none';
+            alert('Welcome back');
+        } else {
+            response.text().then(text => alert(text));
+        }
+    }).catch(error => {
+        console.error('Login failed:', error);
+    });
+}
+
+	
+	
+	
+	
+	
+	
+function goToPrevious(currentDivId, prevDivId) {
+    var currentDiv = document.getElementById(currentDivId);
+    var prevDiv = document.getElementById(prevDivId);
+    if (!currentDiv || !prevDiv) {
+        console.error('One of the divs was not found.');
+        return;
+    }
+    currentDiv.style.display = 'none';
+    prevDiv.style.display = 'block';
+}
+
+		
+		
+		
+		
+    function toggleLawyerFields() {
+        var lawyerStatus = document.getElementById('LawyerStatus').value;
+        var lawyerQuestions = document.getElementById('LawyerQuestions');
+        lawyerQuestions.style.display = (lawyerStatus === 'yes') ? 'block' : 'none';
+    }
+
+    function handleLawyerNext() {
+        var lawyerStatus = document.getElementById('LawyerStatus').value;
+        var lawyerInfo = '';
+        if (lawyerStatus === 'yes') {
+            var lawyerName = document.getElementById('LawyerName').value;
+            var firmName = document.getElementById('FirmName').value;
+            var stateBarNumber = document.getElementById('StateBarNumber').value;
+            if (!lawyerName || !firmName || !stateBarNumber) {
+                alert('Please fill all lawyer information fields.');
+                return;
+            }
+            lawyerInfo = `My lawyer's name is ${lawyerName}, their law firm is ${firmName}, and their state bar number is ${stateBarNumber}.`;
+        }
+        // Set the compiled lawyer info into a hidden field or directly manipulate the PDF here if possible
+        var lawyerInfoField = document.getElementById('PetitionerLawyerInfo[0]');
+        if (lawyerInfoField) {
+            lawyerInfoField.value = lawyerInfo;
+        }
+		
+		//alert("hello")
+        goToNext('questions3', 'questions4');
+		revealForm();
+    }
+
+    function toggleEmploymentFields() {
+        var employmentStatus = document.getElementById('employmentStatus').value;
+        var employmentQuestions = document.getElementById('employmentQuestions');
+        employmentQuestions.style.display = (employmentStatus === 'yes') ? 'block' : 'none';
+    }
+
+    function handleEmploymentNext() {
+        var employmentStatus = document.getElementById('employmentStatus').value;
+        var nextDivId = (employmentStatus === 'no') ? 'questions3' : 'questions2';
+        goToNext('questions2', nextDivId);
+    }
+
+    function goToNext(currentDivId, nextDivId) {
+	
+    editPDF();  // Assuming this sends updates to the server.
+    var currentDiv = document.getElementById(currentDivId);
+    var nextDiv = document.getElementById(nextDivId);
+    if (!currentDiv || !nextDiv) {
+        console.error('One of the divs was not found.');
+        return;
+    }
+    currentDiv.style.display = 'none';
+    nextDiv.style.display = 'block';
+    fetchData();  // Fetch the latest user profile data after moving to the next section.
+}
+
+
+    function uploadPDF() {
+        var fileInput = document.getElementById('pdfFile');
+        var file = fileInput.files[0];
+        if (file) {
+            uploadedPdfFile = file; // Save the uploaded file globally
+            displayPDF(file);
+        } else {
+            alert('Please select a PDF file to upload.');
+        }
+    }
+
+    function loadDefaultPDF() {
+	
+	
+		const defaultUrl = 'http://127.0.0.1:5000/form.pdf';
+            fetch(defaultUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                uploadedPdfFile = blob; // Save the default PDF blob globally
+				editPDF(blob);
+                displayPDF(blob);
+				
+            })
+            .catch(error => {
+                console.error('Error loading default PDF:', error);
+                alert('Error loading default PDF: ' + error.message);
+            });
+			
+		
+    }
+
+    function displayPDF(pdfBlob) {
+        var formData = new FormData();
+        formData.append('pdf', pdfBlob);
+        fetch('/upload', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('editPDF').style.display = 'block'; // Show the edit button
+            var fieldList = document.getElementById('fieldList');
+            fieldList.innerHTML = '';
+			
+			
+            // Correct this part of the displayPDF function in index.html
+data.fields.forEach(field => {
+    var li = document.createElement('li');
+    var input = document.createElement('input');  // Always an input
+    input.type = field.is_checkbox ? 'checkbox' : 'text';  // Set type based on property
+    input.id = field.name;
+    input.placeholder = 'Enter value for ' + field.name;
+    li.textContent = field.name + ': ';
+    li.appendChild(input);
+    fieldList.appendChild(li);
+});
+
+        })
+        .catch(error => {
+            console.error('Error processing PDF:', error);
+            alert('Error processing PDF: ' + error.message);
+        });
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+    function editPDF() {
+        if (!uploadedPdfFile) {
+            alert('No PDF file is loaded for editing.');
+            return;
+        }
+        var formData = new FormData();
+        formData.append('pdf', uploadedPdfFile);
+        var inputs = document.querySelectorAll('#questions input, #fieldList input');
+        inputs.forEach(input => {
+		
+		if (input.type === 'checkbox') {
+        formData.append(input.id, input.checked ? 'Yes' : 'No');
+		}
+            if (input.value) {
+                formData.append(input.id, input.value);
+            }
+        });
+        fetch('/edit_pdf', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            var url = window.URL.createObjectURL(blob);
+            document.getElementById('pdfFrame').src = url;
+            document.getElementById('pdfPreview').style.display = 'block';
+			
+			document.getElementById('pdfFrame2').src = url;
+            //document.getElementById('pdfPreview2').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error updating PDF:', error);
+            alert('Error updating PDF: ' + error.message);
+        });
+    }
+
+    // Automatically load the default PDF when the page loads
+    window.onload = function() {
+        loadDefaultPDF();
+    };
+	
+	
+	
+	
+	function loadSecondaryPDF() {
+    const secondaryUrl = 'http://127.0.0.1:5000/form2.pdf';
+    fetch(secondaryUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            var url = window.URL.createObjectURL(blob);
+            document.getElementById('pdfFrame2').src = url;
+            //document.getElementById('pdfPreview2').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error loading second PDF:', error);
+            alert('Error loading second PDF: ' + error.message);
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function fetchUserInfo() {
+    fetch('/get_data')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch');
+        }
+        return response.json();
+    }).then(data => {
+        console.log('Data received from server:', data);
+        if (data.state && data.city) {
+            displayUserProfile(data.state, data.city);
+            fillFormFields(data.state, data.city);
+        }
+    }).catch(error => console.error('Failed to fetch or parse data:', error));
+}
+
+function fillFormFields(state, city) {
+
+    document.getElementById('PetitionerCity[0]').value = city;
+	
+    document.getElementById('PetitionerState[0]').value = state;
+}
+
+
+
+
+	
+	
+    function clearCookiesAndReturn() {
+        document.cookie = "completedQuestions=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //window.location.href = 'index.html';
+    }
+
+    window.onload = function() {
+        fetchUserInfo();
+ // Fetch and display user information on load
+    };
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+window.onload = function() {
+    loadDefaultPDF();
+    loadSecondaryPDF();
+	fetchUserInfo();
+	// This will also load the second PDF on page load.
+};
+</script>
+
+</body>
+</html>
