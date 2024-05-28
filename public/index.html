@@ -111,6 +111,7 @@
         height: 750px;
         overflow-y: auto;
         box-sizing: border-box;
+        display: none; /* Initially hidden */
     }
     #pdfFrame {
         width: 100%;
@@ -126,7 +127,7 @@
 <h1>Waive Court Fees Form</h1>
 <div id="questions">
     <div id="questions1">
-        <h1>Upload Your Username and Email</h1>
+        <h1></h1>
         <form id="userForm">
             <p><strong>What's your full name?</strong></p>
             <input type="text" id="PetitionerName1[0]" placeholder="Enter your full name" required>
@@ -144,6 +145,13 @@
         <input type="text" id="PetitionerZip[0]" placeholder="Zip"><br>
         <p><strong>What's your phone number?</strong></p>
         <input type="text" id="PetitionerTel[0]" placeholder="Phone Number"><br>
+        <p><strong>Do you have a lawyer?</strong></p>
+        <select id="LawyerStatus" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br>
         <button class="next-button" onclick="editPDF()">Complete Form</button>
     </div>
 </div>
@@ -191,6 +199,7 @@ async function editPDF() {
     // Collect name and email from the form
     const name = document.getElementById('PetitionerName1[0]').value;
     const email = document.getElementById('email').value;
+    const lawyerStatus = document.getElementById('LawyerStatus').value;
     try {
         const response = await fetch('/addUser', {
             method: 'POST',
@@ -214,6 +223,19 @@ async function editPDF() {
             formData.append(input.id, input.value);
         }
     });
+
+    // Append the lawyer status to the form data
+    if (lawyerStatus === 'yes') {
+        formData.append('lawyercheckyes', 'Yes');
+    } else if (lawyerStatus === 'no') {
+        formData.append('lawyercheckno', 'Yes');
+    }
+
+    // Debugging: Log the form data
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ': ' + pair[1]); 
+    }
+
     fetch('/edit_pdf', {
         method: 'POST',
         body: formData,
@@ -240,7 +262,7 @@ window.onload = function() {
     loadDefaultPDF();
 };
 </script>
-<div id="pdfPreview" style="display:none">
+<div id="pdfPreview" style="display:none;">
     <iframe id="pdfFrame"></iframe>
 </div>
 </div>

@@ -61,17 +61,25 @@ app.post('/edit_pdf', async (req, res) => {
   const form = pdfDoc.getForm();
 
   Object.keys(req.body).forEach(key => {
-    if (key !== 'email') { // Skip the email field
-      try {
+  if (key !== 'email') { // Skip the email field
+    try {
+      if (key === 'lawyercheckyes' || key === 'lawyercheckno') {
+        const checkbox = form.getCheckBox(key);
+        console.log(`Checking checkbox: ${key}`);
+        checkbox.check();
+      } else {
         const field = form.getTextField(key);
         if (field) {
+          console.log(`Setting text field: ${key}`);
           field.setText(req.body[key]);
         }
-      } catch (e) {
-        console.error(`No such field in the PDF: ${key}`);
       }
+    } catch (e) {
+      console.error(`No such field in the PDF: ${key}`);
     }
-  });
+  }
+});
+
 
   const updatedPdfBytes = await pdfDoc.save();
   res.set({
