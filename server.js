@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
-const { PDFDocument } = require('pdf-lib');
+const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
 const cors = require('cors');
 
 dotenv.config();
@@ -59,27 +59,34 @@ app.post('/edit_pdf', async (req, res) => {
 
   const pdfDoc = await PDFDocument.load(pdfBytes);
   const form = pdfDoc.getForm();
+  const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
   Object.keys(req.body).forEach(key => {
-  if (key !== 'email') { // Skip the email field
-    try {
-      if (key === 'lawyercheckyes' || key === 'lawyercheckno') {
-        const checkbox = form.getCheckBox(key);
-        console.log(`Checking checkbox: ${key}`);
-        checkbox.check();
-      } else {
-        const field = form.getTextField(key);
-        if (field) {
-          console.log(`Setting text field: ${key}`);
+    if (key !== 'email') { // Skip the email field
+      try {
+        if (key === 'lawyer_info') {
+          const field = form.getTextField(key);
           field.setText(req.body[key]);
+          field.updateAppearances(helveticaFont);
+          field.setFontSize(10); // Set the font size to a smaller value
+        } else if (key === 'lawyercheckyes' || key === 'lawyercheckno') {
+          const field = form.getCheckBox(key);
+          if (req.body[key] === 'Yes') {
+            field.check();
+          } else {
+            field.uncheck();
+          }
+        } else {
+          const field = form.getTextField(key);
+          if (field) {
+            field.setText(req.body[key]);
+          }
         }
+      } catch (e) {
+        console.error(`No such field in the PDF: ${key}`);
       }
-    } catch (e) {
-      console.error(`No such field in the PDF: ${key}`);
     }
-  }
-});
-
+  });
 
   const updatedPdfBytes = await pdfDoc.save();
   res.set({
