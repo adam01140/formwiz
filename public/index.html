@@ -167,7 +167,7 @@
         border: none;
     }
 
-    .lawyer-info, .job-info {
+    .lawyer-info, .job-info, .income-info {
         display: none;
     }
 
@@ -296,6 +296,26 @@
         </select>
 		</div>
 		
+		<br><br>
+		
+		<div id="box">
+        <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
+        <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <div class="income-info" id="incomeInfoFields">
+            <br>
+            <p><strong>What would you like the court to do?</strong></p>
+            <select id="CourtAction" name="CourtAction" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="waive_all">Waive all court fees and costs</option>
+                <option value="waive_some">Waive some of the court fees</option>
+                <option value="pay_later">Let me make payments over time</option>
+            </select>
+        </div>
+		</div>
 		
 		<br>
 		<center>
@@ -346,6 +366,16 @@ function toggleJobFields() {
     }
 }
 
+function toggleIncomeFields() {
+    const incomePayStatus = document.getElementById('IncomePayStatus').value;
+    const incomeInfoFields = document.getElementById('incomeInfoFields');
+    if (incomePayStatus === 'no') {
+        incomeInfoFields.style.display = 'block';
+    } else {
+        incomeInfoFields.style.display = 'none';
+    }
+}
+
 function downloadPDF() {
     var iframe = document.getElementById('pdfFrame');
     var url = iframe.src;
@@ -391,6 +421,9 @@ async function editPDF() {
     const lawyerAdvance = lawyerStatus === 'yes' ? document.getElementById('LawyerAdvance').value : null;
     const courtType = document.getElementById('CourtType').value;
     const lowIncomeStatus = document.getElementById('LowIncomeStatus').value;
+    const incomePayStatus = document.getElementById('IncomePayStatus').value;
+    const courtAction = document.getElementById('CourtAction').value;
+
     try {
         const response = await fetch('/addUser', {
             method: 'POST',
@@ -421,6 +454,14 @@ async function editPDF() {
         formData.append('low_gross_income', 'Yes');
     } else {
         formData.append('low_gross_income', 'No');
+    }
+
+    if (courtAction === 'waive_all') {
+        formData.append('waive_all', 'Yes');
+    } else if (courtAction === 'waive_some') {
+        formData.append('waive_some', 'Yes');
+    } else if (courtAction === 'pay_later') {
+        formData.append('pay_later', 'Yes');
     }
 
     // Append the lawyer status to the form data
