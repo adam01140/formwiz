@@ -16,22 +16,17 @@
         border: 1px solid #6B86E7;
         cursor: pointer;
     }
-	
-	input[type="text"], input[type="email"] {
-	
-		text-align: center;
+    
+    input[type="text"], input[type="email"] {
+        text-align: center;
         width: 200px;
         height: 20px;
-        
         font-size: 16px;
         border-radius: 5px;
         padding-left: 10px;
         border: 1px solid #3F59B8;
-		
-		
-	}
-	
-	
+    }
+    
     option {
         background-color: white;
         color: black;
@@ -188,6 +183,12 @@
             <p><strong>State Bar Number:</strong></p>
             <input type="text" id="LawyerBarNumber" placeholder="State Bar Number">
             <br>
+            <p><strong>Has your lawyer agreed to advance all or a portion of your fees or costs?</strong></p>
+            <select id="LawyerAdvance" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
         </div>
         <p><strong>Do you have a job?</strong></p>
         <select id="JobStatus" required onchange="toggleJobFields()">
@@ -276,6 +277,7 @@ async function editPDF() {
     const email = document.getElementById('email').value;
     const lawyerStatus = document.getElementById('LawyerStatus').value;
     const jobStatus = document.getElementById('JobStatus').value;
+    const lawyerAdvance = lawyerStatus === 'yes' ? document.getElementById('LawyerAdvance').value : null;
     try {
         const response = await fetch('/addUser', {
             method: 'POST',
@@ -302,7 +304,6 @@ async function editPDF() {
 
     // Append the lawyer status to the form data
     if (lawyerStatus === 'yes') {
-        formData.append('lawyercheckyes', 'Yes');
         const lawyerName = document.getElementById('LawyerName').value;
         const lawFirm = document.getElementById('LawFirm').value;
         const lawyerAddress = document.getElementById('LawyerAddress').value;
@@ -310,8 +311,12 @@ async function editPDF() {
         const lawyerBarNumber = document.getElementById('LawyerBarNumber').value;
         const lawyerInfo = `My lawyer's name is ${lawyerName}. Their law firm is ${lawFirm}, located at ${lawyerAddress}. Their phone number is ${lawyerPhone} and their state bar number is ${lawyerBarNumber}`;
         formData.append('lawyer_info', lawyerInfo);
-    } else if (lawyerStatus === 'no') {
-        formData.append('lawyercheckno', 'Yes');
+
+        if (lawyerAdvance === 'yes') {
+            formData.append('lawyercheckyes', 'Yes');
+        } else if (lawyerAdvance === 'no') {
+            formData.append('lawyercheckno', 'Yes');
+        }
     }
 
     // Append the job status to the form data

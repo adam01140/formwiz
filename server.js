@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
-const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
+const { PDFDocument, StandardFonts } = require('pdf-lib');
 const cors = require('cors');
 
 dotenv.config();
