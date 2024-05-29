@@ -82,7 +82,7 @@ app.post('/edit_pdf', async (req, res) => {
           } else {
             field.uncheck();
           }
-        } else if (['food_stamps', 'supp_sec_inc', 'ssp', 'medical', 'county_relief', 'calworks', 'capi', 'wic', 'unemployment'].includes(key)) {
+        } else if (['food_stamps', 'supp_sec_inc', 'ssp', 'medical', 'county_relief', 'calworks', 'capi', 'ihss', 'wic', 'unemployment'].includes(key)) {
           const field = form.getCheckBox(key);
           console.log(req.body[key]);  // Add this debug statement
           if (req.body[key] === 'Yes') {
