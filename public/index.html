@@ -207,6 +207,14 @@
             <input type="text" id="EmployerAddress" placeholder="Employer's Address">
             <br>
         </div>
+        <p><strong>What court’s fees or costs are you asking to be waived?</strong></p>
+        <select id="CourtType" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="superior">Superior Court</option>
+            <option value="supreme">Supreme Court</option>
+            <option value="appeal">Court of Appeal</option>
+            <option value="appellate_division">Appellate Division of Superior Court</option>
+        </select>
         <br>
         <button class="next-button" onclick="editPDF()">Complete Form</button>
     </div>
@@ -278,6 +286,7 @@ async function editPDF() {
     const lawyerStatus = document.getElementById('LawyerStatus').value;
     const jobStatus = document.getElementById('JobStatus').value;
     const lawyerAdvance = lawyerStatus === 'yes' ? document.getElementById('LawyerAdvance').value : null;
+    const courtType = document.getElementById('CourtType').value;
     try {
         const response = await fetch('/addUser', {
             method: 'POST',
@@ -327,6 +336,13 @@ async function editPDF() {
         formData.append('job_title', jobTitle);
         formData.append('employeer_name', employerName);
         formData.append('employeer_address', employerAddress);
+    }
+
+    // Append the court type to the form data
+    if (courtType === 'superior') {
+        formData.append('superior_court_checkbox', 'Yes');
+    } else if (['supreme', 'appeal', 'appellate_division'].includes(courtType)) {
+        formData.append('supreme_court_checkbox', 'Yes');
     }
 
     // Debugging: Log the form data

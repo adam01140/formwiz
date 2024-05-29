@@ -61,6 +61,12 @@ app.post('/edit_pdf', async (req, res) => {
   const form = pdfDoc.getForm();
   const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
+  // Log all field names in the PDF
+  const fields = form.getFields();
+  fields.forEach(field => {
+    console.log(`Field name: ${field.getName()}`);
+  });
+
   Object.keys(req.body).forEach(key => {
     if (key !== 'email') { // Skip the email field
       try {
@@ -69,7 +75,7 @@ app.post('/edit_pdf', async (req, res) => {
           field.setText(req.body[key]);
           field.updateAppearances(helveticaFont);
           field.setFontSize(10); // Set the font size to a smaller value
-        } else if (key === 'lawyercheckyes' || key === 'lawyercheckno') {
+        } else if (key === 'lawyercheckyes' || key === 'lawyercheckno' || key === 'superior_court_checkbox' || key === 'supreme_court_checkbox') {
           const field = form.getCheckBox(key);
           if (req.body[key] === 'Yes') {
             field.check();
