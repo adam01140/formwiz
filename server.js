@@ -68,7 +68,7 @@ app.post('/edit_pdf', async (req, res) => {
   });
 
   Object.keys(req.body).forEach(key => {
-    if (key !== 'email') { // Skip the email field
+    if (key !== 'email' ) { // Skip the email field
       try {
         if (key === 'lawyer_info') {
           const field = form.getTextField(key);
