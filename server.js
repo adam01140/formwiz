@@ -49,6 +49,14 @@ app.post('/upload', async (req, res) => {
   res.json({ message: 'PDF uploaded successfully.', fields: [] });
 });
 
+// List of field names that exist in the PDF
+const pdfFieldNames = [
+  'PetitionerName1[0]', 'PetitionerStrAddress[0]', 'PetitionerCity[0]', 'PetitionerState[0]',
+  'PetitionerZip[0]', 'PetitionerTel[0]', 'lawyer_info', 'lawyercheckyes', 'lawyercheckno',
+  'job_title', 'employer_name', 'employer_address', 'superior_court_checkbox', 'supreme_court_checkbox',
+  'food_stamps', 'supp_sec_inc', 'ssp', 'medical', 'county_relief', 'calworks', 'capi', 'ihss', 'wic', 'unemployment', 'low_gross_income'
+];
+
 // Endpoint to edit PDF
 app.post('/edit_pdf', async (req, res) => {
   if (!req.files || !req.files.pdf) {
@@ -67,14 +75,15 @@ app.post('/edit_pdf', async (req, res) => {
     console.log(`Field name: ${field.getName()}`);
   });
 
-  Object.keys(req.body).forEach(key => {
-    if (key !== 'email') { // Skip the email field
+  // Process only the fields that exist in the PDF
+  pdfFieldNames.forEach(key => {
+    if (req.body[key] !== undefined) {
       try {
         if (key === 'lawyer_info') {
           const field = form.getTextField(key);
           field.setText(req.body[key]);
           field.updateAppearances(helveticaFont);
-        } else if (key === 'lawyercheckyes' || key === 'lawyercheckno' || key === 'superior_court_checkbox' || key === 'supreme_court_checkbox' || key === 'low_gross_income') {
+        } else if (['lawyercheckyes', 'lawyercheckno', 'superior_court_checkbox', 'supreme_court_checkbox', 'low_gross_income'].includes(key)) {
           const field = form.getCheckBox(key);
           if (req.body[key] === 'Yes') {
             field.check();
