@@ -145,69 +145,69 @@
         <h1></h1>
         <form id="userForm">
             <p><strong>What's your full name?</strong></p>
-            <input type="text" id="PetitionerName1[0]" placeholder="Enter your full name" required>
+            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
             <br>
             <p><strong>What's your email?</strong></p>
-            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
         </form>
         <p><strong>What's your street address?</strong></p>
-        <input type="text" id="PetitionerStrAddress[0]" placeholder="Street">
+        <input type="text" id="PetitionerStrAddress[0]" name="PetitionerStrAddress[0]" placeholder="Street">
         <br>
-        <input type="text" id="PetitionerCity[0]" placeholder="City">
+        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City">
         <br>
-        <input type="text" id="PetitionerState[0]" placeholder="State">
+        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State">
         <br>
-        <input type="text" id="PetitionerZip[0]" placeholder="Zip"><br>
+        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip"><br>
         <p><strong>What's your phone number?</strong></p>
-        <input type="text" id="PetitionerTel[0]" placeholder="Phone Number"><br>
+        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
         <p><strong>Do you have a lawyer?</strong></p>
-        <select id="LawyerStatus" required onchange="toggleLawyerFields()">
+        <select id="LawyerStatus" name="LawyerStatus" required onchange="toggleLawyerFields()">
             <option value="" disabled selected>Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
         <div class="lawyer-info" id="lawyerInfoFields">
             <p><strong>Lawyer's Full Name:</strong></p>
-            <input type="text" id="LawyerName" placeholder="Lawyer's Full Name">
+            <input type="text" id="LawyerName" name="LawyerName" placeholder="Lawyer's Full Name">
             <br>
             <p><strong>Law Firm:</strong></p>
-            <input type="text" id="LawFirm" placeholder="Law Firm">
+            <input type="text" id="LawFirm" name="LawFirm" placeholder="Law Firm">
             <br>
             <p><strong>Address:</strong></p>
-            <input type="text" id="LawyerAddress" placeholder="Address">
+            <input type="text" id="LawyerAddress" name="LawyerAddress" placeholder="Address">
             <br>
             <p><strong>Phone Number:</strong></p>
-            <input type="text" id="LawyerPhone" placeholder="Phone Number">
+            <input type="text" id="LawyerPhone" name="LawyerPhone" placeholder="Phone Number">
             <br>
             <p><strong>State Bar Number:</strong></p>
-            <input type="text" id="LawyerBarNumber" placeholder="State Bar Number">
+            <input type="text" id="LawyerBarNumber" name="LawyerBarNumber" placeholder="State Bar Number">
             <br>
             <p><strong>Has your lawyer agreed to advance all or a portion of your fees or costs?</strong></p>
-            <select id="LawyerAdvance" required>
+            <select id="LawyerAdvance" name="LawyerAdvance" required>
                 <option value="" disabled selected>Select an option</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
         </div>
         <p><strong>Do you have a job?</strong></p>
-        <select id="JobStatus" required onchange="toggleJobFields()">
+        <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
             <option value="" disabled selected>Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
         <div class="job-info" id="jobInfoFields">
             <p><strong>Job Title:</strong></p>
-            <input type="text" id="JobTitle" placeholder="Job Title">
+            <input type="text" id="JobTitle" name="JobTitle" placeholder="Job Title">
             <br>
             <p><strong>Name of Employer:</strong></p>
-            <input type="text" id="EmployerName" placeholder="Name of Employer">
+            <input type="text" id="EmployerName" name="EmployerName" placeholder="Name of Employer">
             <br>
             <p><strong>Employer's Address:</strong></p>
-            <input type="text" id="EmployerAddress" placeholder="Employer's Address">
+            <input type="text" id="EmployerAddress" name="EmployerAddress" placeholder="Employer's Address">
             <br>
         </div>
         <p><strong>What court’s fees or costs are you asking to be waived?</strong></p>
-        <select id="CourtType" required>
+        <select id="CourtType" name="CourtType" required>
             <option value="" disabled selected>Select an option</option>
             <option value="superior">Superior Court</option>
             <option value="supreme">Supreme Court</option>
@@ -216,7 +216,7 @@
         </select>
         <br>
         <p><strong>Are you poor?</strong></p>
-        <select id="LowIncomeStatus" required>
+        <select id="LowIncomeStatus" name="LowIncomeStatus" required>
             <option value="" disabled selected>Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -232,7 +232,7 @@
         <label><input type="checkbox" name="capi" value="Yes"> CAPI</label><br>
         <label><input type="checkbox" name="wic" value="Yes"> WIC</label><br>
         <label><input type="checkbox" name="unemployment" value="Yes"> Unemployment</label><br>
-        <button class="next-button" onclick="editPDF()">Complete Form</button>
+        <button class="next-button" type="button" onclick="editPDF()">Complete Form</button>
     </div>
 </div>
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
@@ -326,7 +326,7 @@ async function editPDF() {
         if (input.type === 'checkbox') {
             formData.append(input.name, input.checked ? 'Yes' : 'No');
         } else {
-            formData.append(input.id || input.name, input.value);
+            formData.append(input.name, input.value);
         }
     });
 

@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/addUser', async (req, res) => {
   const { name, email } = req.body;
   if (!name || !email) {
-    return res.status(400).send('Name and email are required'); // Correct chaining
+    return res.status(400).send('Name and email are required');
   }
   try {
     await db.collection('users').add({ name, email });
@@ -39,7 +39,6 @@ app.post('/addUser', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
 
 // Endpoint to handle PDF upload
 app.post('/upload', async (req, res) => {
@@ -69,7 +68,7 @@ app.post('/edit_pdf', async (req, res) => {
   });
 
   Object.keys(req.body).forEach(key => {
-    if (key !== 'email' ) { // Skip the email field
+    if (key !== 'email') { // Skip the email field
       try {
         if (key === 'lawyer_info') {
           const field = form.getTextField(key);
