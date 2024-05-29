@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/addUser', async (req, res) => {
   const { name, email } = req.body;
   if (!name || !email) {
-    return res.status(400).send('Name and email are required');
+    return res.status(400).send('Name and email are required'); // Correct chaining
   }
   try {
     await db.collection('users').add({ name, email });
@@ -39,6 +39,7 @@ app.post('/addUser', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 // Endpoint to handle PDF upload
 app.post('/upload', async (req, res) => {
@@ -74,8 +75,7 @@ app.post('/edit_pdf', async (req, res) => {
           const field = form.getTextField(key);
           field.setText(req.body[key]);
           field.updateAppearances(helveticaFont);
-          field.setFontSize(10); // Set the font size to a smaller value
-        } else if (key === 'lawyercheckyes' || key === 'lawyercheckno' || key === 'superior_court_checkbox' || key === 'supreme_court_checkbox') {
+        } else if (key === 'lawyercheckyes' || key === 'lawyercheckno' || key === 'superior_court_checkbox' || key === 'supreme_court_checkbox' || key === 'low_gross_income') {
           const field = form.getCheckBox(key);
           if (req.body[key] === 'Yes') {
             field.check();
@@ -84,12 +84,9 @@ app.post('/edit_pdf', async (req, res) => {
           }
         } else if (['food_stamps', 'supp_sec_inc', 'ssp', 'medical', 'county_relief', 'calworks', 'capi', 'ihss', 'wic', 'unemployment'].includes(key)) {
           const field = form.getCheckBox(key);
-          console.log(req.body[key]);  // Add this debug statement
           if (req.body[key] === 'Yes') {
-            console.log(`${key}: yes`);
             field.check();
           } else {
-            console.log(`${key}: no`);
             field.uncheck();
           }
         } else {

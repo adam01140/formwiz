@@ -138,7 +138,6 @@
 </head>
 <body>
 <center>
-
 <div id="whole">
 <h1>Waive Court Fees Form</h1>
 <div id="questions">
@@ -216,24 +215,23 @@
             <option value="appellate_division">Appellate Division of Superior Court</option>
         </select>
         <br>
-		
-		<p><strong>Do you receive any of these:</strong></p>
- 
+        <p><strong>Are you poor?</strong></p>
+        <select id="LowIncomeStatus" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <p><strong>Do you receive any of these:</strong></p>
         <label><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label><br>
-
-        <label><input type="checkbox" name="supp_sec_inc" value="supp_sec_inc"> Supp. Sec. Inc.</label><br>
-        <label><input type="checkbox" name="ssp" value="ssp"> SSP</label><br>
-        <label><input type="checkbox" name="medical" value="medical"> Medi-Cal</label><br>
-        <label><input type="checkbox" name="county_relief" value="county_relief"> County Relief/Gen. Assist.</label><br>
-        <label><input type="checkbox" name="calworks" value="calworks"> CalWORKS or Tribal TANF</label><br>
-        
-		<label><input type="checkbox" name="ihss" value="ihss"> IHSS</label><br>
-		<label><input type="checkbox" name="capi" value="capi"> CAPI</label><br>
-        <label><input type="checkbox" name="wic" value="wic"> WIC</label><br>
-        <label><input type="checkbox" name="unemployment" value="unemployment"> Unemployment</label><br>
-		
-		
-		
+        <label><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label><br>
+        <label><input type="checkbox" name="ssp" value="Yes"> SSP</label><br>
+        <label><input type="checkbox" name="medical" value="Yes"> Medi-Cal</label><br>
+        <label><input type="checkbox" name="county_relief" value="Yes"> County Relief/Gen. Assist.</label><br>
+        <label><input type="checkbox" name="calworks" value="Yes"> CalWORKS or Tribal TANF</label><br>
+        <label><input type="checkbox" name="ihss" value="Yes"> IHSS</label><br>
+        <label><input type="checkbox" name="capi" value="Yes"> CAPI</label><br>
+        <label><input type="checkbox" name="wic" value="Yes"> WIC</label><br>
+        <label><input type="checkbox" name="unemployment" value="Yes"> Unemployment</label><br>
         <button class="next-button" onclick="editPDF()">Complete Form</button>
     </div>
 </div>
@@ -305,6 +303,7 @@ async function editPDF() {
     const jobStatus = document.getElementById('JobStatus').value;
     const lawyerAdvance = lawyerStatus === 'yes' ? document.getElementById('LawyerAdvance').value : null;
     const courtType = document.getElementById('CourtType').value;
+    const lowIncomeStatus = document.getElementById('LowIncomeStatus').value;
     try {
         const response = await fetch('/addUser', {
             method: 'POST',
@@ -322,17 +321,20 @@ async function editPDF() {
 
     var formData = new FormData();
     formData.append('pdf', uploadedPdfFile);
-	
-	var inputs = document.querySelectorAll('#questions input, #questions select, #questions checkbox');
-inputs.forEach(input => {
-    if (input.type === 'checkbox') {
-        formData.append(input.name, input.checked ? 'Yes' : 'No');
+    var inputs = document.querySelectorAll('#questions input, #questions select');
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            formData.append(input.name, input.checked ? 'Yes' : 'No');
+        } else {
+            formData.append(input.id || input.name, input.value);
+        }
+    });
+
+    if (lowIncomeStatus === 'yes') {
+        formData.append('low_gross_income', 'Yes');
     } else {
-        formData.append(input.id || input.name, input.value);
+        formData.append('low_gross_income', 'No');
     }
-});
-
-
 
     // Append the lawyer status to the form data
     if (lawyerStatus === 'yes') {
@@ -357,8 +359,8 @@ inputs.forEach(input => {
         const employerName = document.getElementById('EmployerName').value;
         const employerAddress = document.getElementById('EmployerAddress').value;
         formData.append('job_title', jobTitle);
-        formData.append('employeer_name', employerName);
-        formData.append('employeer_address', employerAddress);
+        formData.append('employer_name', employerName);
+        formData.append('employer_address', employerAddress);
     }
 
     // Append the court type to the form data
