@@ -341,26 +341,8 @@
         
         <br><br>
 		
-		<div id="box">
-        <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
-        <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
-            <option value="" disabled selected>Select an option</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-        <div class="income-info" id="incomeInfoFields">
-            <br>
-            <p><strong>What would you like the court to do?</strong></p>
-            <select id="CourtAction" name="CourtAction" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="waive_all">Waive all court fees and costs</option>
-                <option value="waive_some">Waive some of the court fees</option>
-                <option value="pay_later">Let me make payments over time</option>
-            </select>
-        </div>
-		</div>
 		
-		<br><br>
+		
         
         <div id="box">
         <p><strong>Does your income change a lot from month to month?</strong></p>
@@ -438,18 +420,7 @@ function toggleJobFields() {
     }
 }
 
-function toggleIncomeFields() {
-    const incomePayStatus = document.getElementById('IncomePayStatus').value;
-    const incomeInfoFields = document.getElementById('incomeInfoFields');
-	
-    if (incomePayStatus === 'no') {
-        incomeInfoFields.style.display = 'block';
-    } else {
-	
-		//alert(incomePayStatus);
-        incomeInfoFields.style.display = 'none';
-    }
-}
+
 
 
 function togglePreviousRequestFields() {
@@ -462,15 +433,7 @@ function togglePreviousRequestFields() {
     }
 }
 
-function toggleMonthlyIncomeFields() {
-    const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
-    const monthlyIncomeFields = document.getElementById('monthlyIncomeFields');
-    if (changingIncomeStatus === 'yes') {
-        monthlyIncomeFields.style.display = 'block';
-    } else {
-        monthlyIncomeFields.style.display = 'none';
-    }
-}
+
 
 function downloadPDF() {
     var iframe = document.getElementById('pdfFrame');
@@ -503,6 +466,40 @@ function displayPDF(pdfBlob) {
     document.getElementById('pdfPreview').style.display = 'block';
 }
 
+
+
+
+
+var formData = new FormData();
+
+
+function toggleMonthlyIncomeFields() {
+    const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
+    const monthlyIncomeFields = document.getElementById('monthlyIncomeFields');
+    if (changingIncomeStatus === 'yes') {
+        monthlyIncomeFields.style.display = 'block';
+		
+		
+    } else {
+        monthlyIncomeFields.style.display = 'none';
+    }
+}
+
+function toggleIncomeFields() {
+    const incomePayStatus = document.getElementById('IncomePayStatus').value;
+    const incomeInfoFields = document.getElementById('incomeInfoFields');
+	
+    if (incomePayStatus === 'no') {
+        incomeInfoFields.style.display = 'block';
+		formData.append('not_enough', 'Yes');
+    } else {
+	
+		//alert(incomePayStatus);
+        incomeInfoFields.style.display = 'none';
+    }
+}
+
+
 async function editPDF() {
     if (!uploadedPdfFile) {
         alert('No PDF file is loaded for editing.');
@@ -522,19 +519,7 @@ async function editPDF() {
     const previousAvailable = document.getElementById('PreviousAvailable').value;
     const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
 	const incomePayStatus = document.getElementById('IncomePayStatus').value;
-    
-	/*
-	const monthlyIncomeSource1 = document.getElementById('monthly_income_source1').value;
-    const monthlyIncomeSource1Amount = document.getElementById('monthly_income_source1_amount').value;
-    const monthlyIncomeSource2 = document.getElementById('monthly_income_source2').value;
-    const monthlyIncomeSource2Amount = document.getElementById('monthly_income_source2_amount').value;
-    const monthlyIncomeSource3 = document.getElementById('monthly_income_source3').value;
-    const monthlyIncomeSource3Amount = document.getElementById('monthly_income_source3_amount').value;
-    const monthlyIncomeSource4 = document.getElementById('monthly_income_source4').value;
-    const monthlyIncomeSource4Amount = document.getElementById('monthly_income_source4_amount').value;
-    const monthlyIncomeSource5 = document.getElementById('monthly_income_source5').value;
-    const monthlyIncomeSource5Amount = document.getElementById('monthly_income_source5_amount').value;
-	*/
+
 	
     try {
         const response = await fetch('/addUser', {
@@ -551,7 +536,10 @@ async function editPDF() {
         alert('Failed to add user');
     }
 
-    var formData = new FormData();
+    
+	
+	
+	
     formData.append('pdf', uploadedPdfFile);
     var inputs = document.querySelectorAll('#questions input, #questions select');
     inputs.forEach(input => {
@@ -561,6 +549,8 @@ async function editPDF() {
             formData.append(input.name, input.value);
         }
     });
+	
+	
 	
 	
 	
@@ -607,6 +597,7 @@ async function editPDF() {
 
     if (courtAction === 'waive_all') {
         formData.append('waive_all', 'Yes');
+		
     } else if (courtAction === 'waive_some') {
         formData.append('waive_some', 'Yes');
     } else if (courtAction === 'pay_later') {
@@ -627,19 +618,7 @@ async function editPDF() {
     }
 
 
-/*
-    // Append monthly income sources and amounts
-    formData.append('monthly_income_source1', monthlyIncomeSource1);
-    formData.append('monthly_income_source1_amount', monthlyIncomeSource1Amount);
-    formData.append('monthly_income_source2', monthlyIncomeSource2);
-    formData.append('monthly_income_source2_amount', monthlyIncomeSource2Amount);
-    formData.append('monthly_income_source3', monthlyIncomeSource3);
-    formData.append('monthly_income_source3_amount', monthlyIncomeSource3Amount);
-    formData.append('monthly_income_source4', monthlyIncomeSource4);
-    formData.append('monthly_income_source4_amount', monthlyIncomeSource4Amount);
-    formData.append('monthly_income_source5', monthlyIncomeSource5);
-    formData.append('monthly_income_source5_amount', monthlyIncomeSource5Amount);
-*/
+
     // Debugging: Log the form data
     for (var pair of formData.entries()) {
         console.log(pair[0]+ ': ' + pair[1]); 

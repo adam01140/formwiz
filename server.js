@@ -61,7 +61,9 @@ const pdfFieldNames = [
   'waive_some', 'pay_later', 'waive_within_6months', 'previous_available', 'changing_income_checkbox',
   'monthly_income_source1_amount', 'monthly_income_source2', 'monthly_income_source2_amount',
   'monthly_income_source3', 'monthly_income_source3_amount', 'monthly_income_source4', 'monthly_income_source4_amount',
-  'monthly_income_source5', 'monthly_income_source5_amount', 'current_date', 'waive_all', 'waive_some', 'pay_later'
+  'monthly_income_source5', 'monthly_income_source5_amount', 
+  'not_enough',
+  'current_date', 'waive_all', 'waive_some', 'pay_later'
 ];
 
 
@@ -98,7 +100,7 @@ app.post('/edit_pdf', async (req, res) => {
           field.setText(req.body[key]);
           field.updateAppearances(helveticaFont);
         } else if (['lawyercheckyes', 'lawyercheckno', 'superior_court_checkbox', 
-		'supreme_court_checkbox', 'low_gross_income', 'waive_all', 'waive_some', 
+		'supreme_court_checkbox', 'low_gross_income', 'waive_all', 'not_enough', 'waive_some', 
 		'pay_later', 'waive_within_6months', 'previous_available', 
 		'changing_income_checkbox'].includes(key)) {
           const field = form.getCheckBox(key);
