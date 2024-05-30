@@ -50,9 +50,12 @@ app.post('/upload', async (req, res) => {
 });
 
 // List of field names that exist in the PDF
+
+
+//put textbox names here and checkmarks
 const pdfFieldNames = [
   'PetitionerName1[0]', 'PetitionerStrAddress[0]', 'PetitionerCity[0]', 'PetitionerState[0]',
-  'PetitionerZip[0]', 'PetitionerTel[0]', 'PetitionerTel[0]z', 'monthly_income_source1',  'lawyer_info', 'lawyercheckyes', 'lawyercheckno',
+  'PetitionerZip[0]', 'PetitionerTel[0]', 'current_date', 'monthly_income_source1',  'lawyer_info', 'lawyercheckyes', 'lawyercheckno',
   'job_title', 'employer_name', 'job', 'employer_address', 'superior_court_checkbox', 'supreme_court_checkbox',
   'food_stamps', 'supp_sec_inc', 'ssp', 'medical', 'county_relief', 'calworks', 'capi', 'ihss', 'wic', 'unemployment', 'low_gross_income',
   'waive_some', 'pay_later', 'waive_within_6months', 'previous_available', 'changing_income_checkbox',
