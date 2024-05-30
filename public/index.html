@@ -338,6 +338,27 @@
         </div>
         
         <br><br>
+		
+		<div id="box">
+        <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
+        <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <div class="income-info" id="incomeInfoFields">
+            <br>
+            <p><strong>What would you like the court to do?</strong></p>
+            <select id="CourtAction" name="CourtAction" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="waive_all">Waive all court fees and costs</option>
+                <option value="waive_some">Waive some of the court fees</option>
+                <option value="pay_later">Let me make payments over time</option>
+            </select>
+        </div>
+		</div>
+		
+		<br><br>
         
         <div id="box">
         <p><strong>Does your income change a lot from month to month?</strong></p>
@@ -418,12 +439,16 @@ function toggleJobFields() {
 function toggleIncomeFields() {
     const incomePayStatus = document.getElementById('IncomePayStatus').value;
     const incomeInfoFields = document.getElementById('incomeInfoFields');
+	
     if (incomePayStatus === 'no') {
         incomeInfoFields.style.display = 'block';
     } else {
+	
+		alert(incomePayStatus);
         incomeInfoFields.style.display = 'none';
     }
 }
+
 
 function togglePreviousRequestFields() {
     const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
@@ -490,11 +515,11 @@ async function editPDF() {
     const lawyerAdvance = lawyerStatus === 'yes' ? document.getElementById('LawyerAdvance').value : null;
     const courtType = document.getElementById('CourtType').value;
     const lowIncomeStatus = document.getElementById('LowIncomeStatus').value;
-    const incomePayStatus = document.getElementById('IncomePayStatus').value;
     const courtAction = document.getElementById('CourtAction').value;
     const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
     const previousAvailable = document.getElementById('PreviousAvailable').value;
     const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
+	const incomePayStatus = document.getElementById('IncomePayStatus').value;
     
 	/*
 	const monthlyIncomeSource1 = document.getElementById('monthly_income_source1').value;
@@ -570,7 +595,9 @@ async function editPDF() {
         formData.append('employeer_address', employerAddress);
     }
 
-    if (lowIncomeStatus === 'yes') {
+
+
+	if (lowIncomeStatus === 'yes') {
         formData.append('low_gross_income', 'Yes');
     } else {
         formData.append('low_gross_income', 'No');
@@ -583,7 +610,8 @@ async function editPDF() {
     } else if (courtAction === 'pay_later') {
         formData.append('pay_later', 'Yes');
     }
-
+	
+	
     if (waiveWithin6Months === 'yes') {
         formData.append('waive_within_6months', 'Yes');
     }
