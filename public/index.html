@@ -207,8 +207,6 @@
         <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip"><br>
         <p><strong>What's your phone number?</strong></p>
         <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
-		<input type="text" id="PetitionerTel[0]z" name="PetitionerTel[0]z" placeholder="Phone Number"><br>
-		
 		
 		</div>
         
@@ -261,13 +259,12 @@
         </select>
         <div class="job-info" id="jobInfoFields">
       <br>
-            <input type="text" id="JobTitle" name="JobTitle" placeholder="Job Title">
-            <br>
-
-            <input type="text" id="EmployerName" name="EmployerName" placeholder="Name of Employer">
+            
+			<input type="text" id="job" name="job" placeholder="Job Title">
+            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer">
             <br>
  
-            <input type="text" id="EmployerAddress" name="EmployerAddress" placeholder="Employer's Address">
+            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address">
             <br>
         </div>
         </div>
@@ -351,27 +348,22 @@
         </select>
         <div class="monthly-income-info" id="monthlyIncomeFields">
             <br>
-            <p><strong>List the source and amount of any income you get each month:</strong></p>
-			
-			
-			<input type="text" id="monthly_income_source1z" name="monthly_income_source1z" placeholder="Phone Number"><br>
-        
-		
+           <p><strong>List the source and amount of any income you get each month</strong></p>
+        <div id="changingIncomeInfoFields">
             <input type="text" id="monthly_income_source1" name="monthly_income_source1" placeholder="Income Source 1">
-            <input type="text" id="monthly_income_source1_amount" name="monthly_income_source1_amount" placeholder="Amount 1">
-            <br>
+            <input type="text" id="monthly_income_source1_amount" name="monthly_income_source1_amount" placeholder="Amount"><br>
             <input type="text" id="monthly_income_source2" name="monthly_income_source2" placeholder="Income Source 2">
-            <input type="text" id="monthly_income_source2_amount" name="monthly_income_source2_amount" placeholder="Amount 2">
-            <br>
+            <input type="text" id="monthly_income_source2_amount" name="monthly_income_source2_amount" placeholder="Amount"><br>
             <input type="text" id="monthly_income_source3" name="monthly_income_source3" placeholder="Income Source 3">
-            <input type="text" id="monthly_income_source3_amount" name="monthly_income_source3_amount" placeholder="Amount 3">
-            <br>
+            <input type="text" id="monthly_income_source3_amount" name="monthly_income_source3_amount" placeholder="Amount"><br>
             <input type="text" id="monthly_income_source4" name="monthly_income_source4" placeholder="Income Source 4">
-            <input type="text" id="monthly_income_source4_amount" name="monthly_income_source4_amount" placeholder="Amount 4">
-            <br>
+            <input type="text" id="monthly_income_source4_amount" name="monthly_income_source4_amount" placeholder="Amount"><br>
             <input type="text" id="monthly_income_source5" name="monthly_income_source5" placeholder="Income Source 5">
-            <input type="text" id="monthly_income_source5_amount" name="monthly_income_source5_amount" placeholder="Amount 5">
+            <input type="text" id="monthly_income_source5_amount" name="monthly_income_source5_amount" placeholder="Amount"><br>
         </div>
+            
+		
+		</div>
         </div>
         
         <br>
@@ -503,7 +495,9 @@ async function editPDF() {
     const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
     const previousAvailable = document.getElementById('PreviousAvailable').value;
     const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
-    const monthlyIncomeSource1 = document.getElementById('monthly_income_source1').value;
+    
+	/*
+	const monthlyIncomeSource1 = document.getElementById('monthly_income_source1').value;
     const monthlyIncomeSource1Amount = document.getElementById('monthly_income_source1_amount').value;
     const monthlyIncomeSource2 = document.getElementById('monthly_income_source2').value;
     const monthlyIncomeSource2Amount = document.getElementById('monthly_income_source2_amount').value;
@@ -513,7 +507,8 @@ async function editPDF() {
     const monthlyIncomeSource4Amount = document.getElementById('monthly_income_source4_amount').value;
     const monthlyIncomeSource5 = document.getElementById('monthly_income_source5').value;
     const monthlyIncomeSource5Amount = document.getElementById('monthly_income_source5_amount').value;
-
+	*/
+	
     try {
         const response = await fetch('/addUser', {
             method: 'POST',
@@ -539,6 +534,41 @@ async function editPDF() {
             formData.append(input.name, input.value);
         }
     });
+	
+	
+	
+	// Append the court type to the form data
+    if (courtType === 'superior') {
+        formData.append('superior_court_checkbox', 'Yes');
+    } else if (['supreme', 'appeal', 'appellate_division'].includes(courtType)) {
+        formData.append('supreme_court_checkbox', 'Yes');
+    }
+	
+	
+	 // Append the lawyer status to the form data
+    if (lawyerStatus === 'yes') {
+        const lawyerName = document.getElementById('LawyerName').value;
+        const lawFirm = document.getElementById('LawFirm').value;
+        const lawyerAddress = document.getElementById('LawyerAddress').value;
+        const lawyerPhone = document.getElementById('LawyerPhone').value;
+        const lawyerBarNumber = document.getElementById('LawyerBarNumber').value;
+        const lawyerInfo = `My lawyer's name is ${lawyerName}. Their law firm is ${lawFirm}, located at ${lawyerAddress}. Their phone number is ${lawyerPhone} and their state bar number is ${lawyerBarNumber}`;
+        formData.append('lawyer_info', lawyerInfo);
+
+        if (lawyerAdvance === 'yes') {
+            formData.append('lawyercheckyes', 'Yes');
+        } else if (lawyerAdvance === 'no') {
+            formData.append('lawyercheckno', 'Yes');
+        }
+    }
+
+    // Append the job status to the form data
+    if (jobStatus === 'yes') {
+        const employerName = document.getElementById('employer_name').value;
+        const employerAddress = document.getElementById('employer_address').value;
+        formData.append('employeer_name', employerName);
+        formData.append('employeer_address', employerAddress);
+    }
 
     if (lowIncomeStatus === 'yes') {
         formData.append('low_gross_income', 'Yes');
@@ -566,6 +596,8 @@ async function editPDF() {
         formData.append('changing_income_checkbox', 'Yes');
     }
 
+
+/*
     // Append monthly income sources and amounts
     formData.append('monthly_income_source1', monthlyIncomeSource1);
     formData.append('monthly_income_source1_amount', monthlyIncomeSource1Amount);
@@ -577,7 +609,7 @@ async function editPDF() {
     formData.append('monthly_income_source4_amount', monthlyIncomeSource4Amount);
     formData.append('monthly_income_source5', monthlyIncomeSource5);
     formData.append('monthly_income_source5_amount', monthlyIncomeSource5Amount);
-
+*/
     // Debugging: Log the form data
     for (var pair of formData.entries()) {
         console.log(pair[0]+ ': ' + pair[1]); 
