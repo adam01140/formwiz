@@ -81,8 +81,8 @@
         overflow-y: auto;
         overflow-x: hidden;
     }
-	
-	#questions2 {
+    
+    #questions2 {
         border: 4px solid white;
         border-radius: 10px;
         padding: 20px;
@@ -93,8 +93,8 @@
         overflow-y: auto;
         overflow-x: hidden;
     }
-	
-	#box {
+    
+    #box {
         border: 4px solid lightblue;
         border-radius: 10px;
         padding: 20px;
@@ -167,7 +167,7 @@
         border: none;
     }
 
-    .lawyer-info, .job-info, .income-info {
+    .lawyer-info, .job-info, .income-info, .previous-request-info, .monthly-income-info {
         display: none;
     }
 
@@ -186,10 +186,10 @@
 <div id="questions">
     <div id="questions1">
         <h1></h1>
-		
-		
-		<div id="box">
-		
+        
+        
+        <div id="box">
+        
         <form id="userForm">
             <p><strong>What's your full name?</strong></p>
             <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
@@ -207,12 +207,15 @@
         <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip"><br>
         <p><strong>What's your phone number?</strong></p>
         <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
-        </div>
+		<input type="text" id="PetitionerTel[0]z" name="PetitionerTel[0]z" placeholder="Phone Number"><br>
 		
-		<br><br>
 		
-		<div id="box">
-		<p><strong>Do you have a lawyer?</strong></p>
+		</div>
+        
+        <br><br>
+        
+        <div id="box">
+        <p><strong>Do you have a lawyer?</strong></p>
         <select id="LawyerStatus" name="LawyerStatus" required onchange="toggleLawyerFields()">
             <option value="" disabled selected>Select an option</option>
             <option value="yes">Yes</option>
@@ -220,7 +223,7 @@
         </select>
         <div class="lawyer-info" id="lawyerInfoFields">
           
-		  <br>
+          <br>
             <input type="text" id="LawyerName" name="LawyerName" placeholder="Lawyer's Full Name">
             <br>
             
@@ -235,9 +238,9 @@
             
             <input type="text" id="LawyerBarNumber" name="LawyerBarNumber" placeholder="State Bar Number">
             
-			
-			
-			<br><br>
+            
+            
+            <br><br>
             <p><strong>Has your lawyer agreed to advance some of your fees or costs?</strong></p>
             <select id="LawyerAdvance" name="LawyerAdvance" required>
                 <option value="" disabled selected>Select an option</option>
@@ -245,11 +248,11 @@
                 <option value="no">No</option>
             </select>
         </div>
-		</div>
-		
-		<br><br>
-		
-		<div id="box">
+        </div>
+        
+        <br><br>
+        
+        <div id="box">
         <p><strong>Do you have a job?</strong></p>
         <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
             <option value="" disabled selected>Select an option</option>
@@ -267,11 +270,11 @@
             <input type="text" id="EmployerAddress" name="EmployerAddress" placeholder="Employer's Address">
             <br>
         </div>
-		</div>
-		
-		<br><br>
-		
-		<div id="box">
+        </div>
+        
+        <br><br>
+        
+        <div id="box">
         <p><strong>What court fees would you like waived?</strong></p>
         <select id="CourtType" name="CourtType" required>
             <option value="" disabled selected>Select an option</option>
@@ -281,24 +284,24 @@
             <option value="appellate_division">Appellate Division of Superior Court</option>
         </select>
         </div>
-		
-		<br><br>
-		
-		<div id="box">
+        
+        <br><br>
+        
+        <div id="box">
         <p><strong>Is your gross monthly household income less than the amount listed: </strong></p>
-		<center>
-		<img src="gross_monthy.JPG"  width="500" height="70">
-		<br><br>
+        <center>
+        <img src="gross_monthy.JPG"  width="500" height="70">
+        <br><br>
         <select id="LowIncomeStatus" name="LowIncomeStatus" required>
             <option value="" disabled selected>Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
-		</div>
-		
-		<br><br>
-		
-		<div id="box">
+        </div>
+        
+        <br><br>
+        
+        <div id="box">
         <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
         <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
             <option value="" disabled selected>Select an option</option>
@@ -315,17 +318,71 @@
                 <option value="pay_later">Let me make payments over time</option>
             </select>
         </div>
-		</div>
-		
-		<br>
-		<center>
+        </div>
         
-		<div id="box">
-		<div id="questions2">
+        <br><br>
+        
+        <div id="box">
+        <p><strong>Have you asked the court to waive your court fees for this case in the last six months?</strong></p>
+        <select id="WaiveWithin6Months" name="WaiveWithin6Months" required onchange="togglePreviousRequestFields()">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <div class="previous-request-info" id="previousRequestFields">
+            <br>
+            <p><strong>Is your previous request reasonably available?</strong></p>
+            <select id="PreviousAvailable" name="PreviousAvailable" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        </div>
+        
+        <br><br>
+        
+        <div id="box">
+        <p><strong>Does your income change a lot from month to month?</strong></p>
+        <select id="ChangingIncomeStatus" name="ChangingIncomeStatus" required onchange="toggleMonthlyIncomeFields()">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <div class="monthly-income-info" id="monthlyIncomeFields">
+            <br>
+            <p><strong>List the source and amount of any income you get each month:</strong></p>
+			
+			
+			<input type="text" id="monthly_income_source1z" name="monthly_income_source1z" placeholder="Phone Number"><br>
+        
 		
-		<p><strong>Do you receive any of these:</strong></p>
+            <input type="text" id="monthly_income_source1" name="monthly_income_source1" placeholder="Income Source 1">
+            <input type="text" id="monthly_income_source1_amount" name="monthly_income_source1_amount" placeholder="Amount 1">
+            <br>
+            <input type="text" id="monthly_income_source2" name="monthly_income_source2" placeholder="Income Source 2">
+            <input type="text" id="monthly_income_source2_amount" name="monthly_income_source2_amount" placeholder="Amount 2">
+            <br>
+            <input type="text" id="monthly_income_source3" name="monthly_income_source3" placeholder="Income Source 3">
+            <input type="text" id="monthly_income_source3_amount" name="monthly_income_source3_amount" placeholder="Amount 3">
+            <br>
+            <input type="text" id="monthly_income_source4" name="monthly_income_source4" placeholder="Income Source 4">
+            <input type="text" id="monthly_income_source4_amount" name="monthly_income_source4_amount" placeholder="Amount 4">
+            <br>
+            <input type="text" id="monthly_income_source5" name="monthly_income_source5" placeholder="Income Source 5">
+            <input type="text" id="monthly_income_source5_amount" name="monthly_income_source5_amount" placeholder="Amount 5">
+        </div>
+        </div>
+        
+        <br>
+        <center>
+        
+        <div id="box">
+        <div id="questions2">
+        
+        <p><strong>Do you receive any of these:</strong></p>
         <label class="checkbox-label"><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label>
-		<label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
+        <label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
         <label class="checkbox-label"><input type="checkbox" name="ssp" value="Yes"> SSP</label>
         <label class="checkbox-label"><input type="checkbox" name="medical" value="Yes"> Medi-Cal</label>
         <label class="checkbox-label"><input type="checkbox" name="county_relief" value="Yes"> County Relief/Gen. Assist.</label>
@@ -335,12 +392,12 @@
         <label class="checkbox-label"><input type="checkbox" name="wic" value="Yes"> WIC</label>
         <label class="checkbox-label"><input type="checkbox" name="unemployment" value="Yes"> Unemployment</label>
         
-		</div>
-		</div>
-		<button class="next-button" type="button" onclick="editPDF()">Complete Form</button>
+        </div>
+        </div>
+        <button class="next-button" type="button" onclick="editPDF()">Complete Form</button>
    
-		
-	</div>
+        
+    </div>
 </div>
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 <script>
@@ -373,6 +430,26 @@ function toggleIncomeFields() {
         incomeInfoFields.style.display = 'block';
     } else {
         incomeInfoFields.style.display = 'none';
+    }
+}
+
+function togglePreviousRequestFields() {
+    const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
+    const previousRequestFields = document.getElementById('previousRequestFields');
+    if (waiveWithin6Months === 'yes') {
+        previousRequestFields.style.display = 'block';
+    } else {
+        previousRequestFields.style.display = 'none';
+    }
+}
+
+function toggleMonthlyIncomeFields() {
+    const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
+    const monthlyIncomeFields = document.getElementById('monthlyIncomeFields');
+    if (changingIncomeStatus === 'yes') {
+        monthlyIncomeFields.style.display = 'block';
+    } else {
+        monthlyIncomeFields.style.display = 'none';
     }
 }
 
@@ -423,6 +500,19 @@ async function editPDF() {
     const lowIncomeStatus = document.getElementById('LowIncomeStatus').value;
     const incomePayStatus = document.getElementById('IncomePayStatus').value;
     const courtAction = document.getElementById('CourtAction').value;
+    const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
+    const previousAvailable = document.getElementById('PreviousAvailable').value;
+    const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
+    const monthlyIncomeSource1 = document.getElementById('monthly_income_source1').value;
+    const monthlyIncomeSource1Amount = document.getElementById('monthly_income_source1_amount').value;
+    const monthlyIncomeSource2 = document.getElementById('monthly_income_source2').value;
+    const monthlyIncomeSource2Amount = document.getElementById('monthly_income_source2_amount').value;
+    const monthlyIncomeSource3 = document.getElementById('monthly_income_source3').value;
+    const monthlyIncomeSource3Amount = document.getElementById('monthly_income_source3_amount').value;
+    const monthlyIncomeSource4 = document.getElementById('monthly_income_source4').value;
+    const monthlyIncomeSource4Amount = document.getElementById('monthly_income_source4_amount').value;
+    const monthlyIncomeSource5 = document.getElementById('monthly_income_source5').value;
+    const monthlyIncomeSource5Amount = document.getElementById('monthly_income_source5_amount').value;
 
     try {
         const response = await fetch('/addUser', {
@@ -464,39 +554,29 @@ async function editPDF() {
         formData.append('pay_later', 'Yes');
     }
 
-    // Append the lawyer status to the form data
-    if (lawyerStatus === 'yes') {
-        const lawyerName = document.getElementById('LawyerName').value;
-        const lawFirm = document.getElementById('LawFirm').value;
-        const lawyerAddress = document.getElementById('LawyerAddress').value;
-        const lawyerPhone = document.getElementById('LawyerPhone').value;
-        const lawyerBarNumber = document.getElementById('LawyerBarNumber').value;
-        const lawyerInfo = `My lawyer's name is ${lawyerName}. Their law firm is ${lawFirm}, located at ${lawyerAddress}. Their phone number is ${lawyerPhone} and their state bar number is ${lawyerBarNumber}`;
-        formData.append('lawyer_info', lawyerInfo);
-
-        if (lawyerAdvance === 'yes') {
-            formData.append('lawyercheckyes', 'Yes');
-        } else if (lawyerAdvance === 'no') {
-            formData.append('lawyercheckno', 'Yes');
-        }
+    if (waiveWithin6Months === 'yes') {
+        formData.append('waive_within_6months', 'Yes');
     }
 
-    // Append the job status to the form data
-    if (jobStatus === 'yes') {
-        const jobTitle = document.getElementById('JobTitle').value;
-        const employerName = document.getElementById('EmployerName').value;
-        const employerAddress = document.getElementById('EmployerAddress').value;
-        formData.append('job_title', jobTitle);
-        formData.append('employer_name', employerName);
-        formData.append('employer_address', employerAddress);
+    if (previousAvailable === 'yes') {
+        formData.append('previous_available', 'Yes');
     }
 
-    // Append the court type to the form data
-    if (courtType === 'superior') {
-        formData.append('superior_court_checkbox', 'Yes');
-    } else if (['supreme', 'appeal', 'appellate_division'].includes(courtType)) {
-        formData.append('supreme_court_checkbox', 'Yes');
+    if (changingIncomeStatus === 'yes') {
+        formData.append('changing_income_checkbox', 'Yes');
     }
+
+    // Append monthly income sources and amounts
+    formData.append('monthly_income_source1', monthlyIncomeSource1);
+    formData.append('monthly_income_source1_amount', monthlyIncomeSource1Amount);
+    formData.append('monthly_income_source2', monthlyIncomeSource2);
+    formData.append('monthly_income_source2_amount', monthlyIncomeSource2Amount);
+    formData.append('monthly_income_source3', monthlyIncomeSource3);
+    formData.append('monthly_income_source3_amount', monthlyIncomeSource3Amount);
+    formData.append('monthly_income_source4', monthlyIncomeSource4);
+    formData.append('monthly_income_source4_amount', monthlyIncomeSource4Amount);
+    formData.append('monthly_income_source5', monthlyIncomeSource5);
+    formData.append('monthly_income_source5_amount', monthlyIncomeSource5Amount);
 
     // Debugging: Log the form data
     for (var pair of formData.entries()) {
@@ -525,8 +605,18 @@ async function editPDF() {
         });
 }
 
+// Function to set the current date in the specified format
+function setCurrentDate() {
+    const currentDate = new Date();
+    const formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') + '/' + 
+                          currentDate.getDate().toString().padStart(2, '0') + '/' + 
+                          currentDate.getFullYear();
+    document.getElementById('current_date').value = formattedDate;
+}
+
 window.onload = function() {
     loadDefaultPDF();
+    setCurrentDate();
 };
 </script>
 <div id="pdfPreview" style="display:none;">

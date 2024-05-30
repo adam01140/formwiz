@@ -52,10 +52,13 @@ app.post('/upload', async (req, res) => {
 // List of field names that exist in the PDF
 const pdfFieldNames = [
   'PetitionerName1[0]', 'PetitionerStrAddress[0]', 'PetitionerCity[0]', 'PetitionerState[0]',
-  'PetitionerZip[0]', 'PetitionerTel[0]', 'lawyer_info', 'lawyercheckyes', 'lawyercheckno',
+  'PetitionerZip[0]', 'PetitionerTel[0]', 'PetitionerTel[0]z', 'monthly_income_source1z', 'monthly_income_source1_amountz',  'lawyer_info', 'lawyercheckyes', 'lawyercheckno',
   'job_title', 'employer_name', 'employer_address', 'superior_court_checkbox', 'supreme_court_checkbox',
   'food_stamps', 'supp_sec_inc', 'ssp', 'medical', 'county_relief', 'calworks', 'capi', 'ihss', 'wic', 'unemployment', 'low_gross_income',
-  'waive_all', 'waive_some', 'pay_later'
+  'waive_all', 'waive_some', 'pay_later', 'waive_within_6months', 'previous_available', 'changing_income_checkbox',
+  'monthly_income_source1', 'monthly_income_source1_amount', 'monthly_income_source2', 'monthly_income_source2_amount',
+  'monthly_income_source3', 'monthly_income_source3_amount', 'monthly_income_source4', 'monthly_income_source4_amount',
+  'monthly_income_source5', 'monthly_income_source5_amount', 'current_date'
 ];
 
 // Endpoint to edit PDF
@@ -84,7 +87,7 @@ app.post('/edit_pdf', async (req, res) => {
           const field = form.getTextField(key);
           field.setText(req.body[key]);
           field.updateAppearances(helveticaFont);
-        } else if (['lawyercheckyes', 'lawyercheckno', 'superior_court_checkbox', 'supreme_court_checkbox', 'low_gross_income', 'waive_all', 'waive_some', 'pay_later'].includes(key)) {
+        } else if (['lawyercheckyes', 'lawyercheckno', 'superior_court_checkbox', 'supreme_court_checkbox', 'low_gross_income', 'waive_all', 'waive_some', 'pay_later', 'waive_within_6months', 'previous_available', 'changing_income_checkbox'].includes(key)) {
           const field = form.getCheckBox(key);
           if (req.body[key] === 'Yes') {
             field.check();
