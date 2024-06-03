@@ -55,15 +55,19 @@ app.post('/upload', async (req, res) => {
 //put textbox names here and checkmarks
 const pdfFieldNames = [
   'PetitionerName1[0]', 'PetitionerStrAddress[0]', 'PetitionerCity[0]', 'PetitionerState[0]',
-  'PetitionerZip[0]', 'PetitionerTel[0]', 'current_date', 'monthly_income_source1',  'lawyer_info', 'lawyercheckyes', 'lawyercheckno',
-  'job_title', 'employer_name', 'job', 'employer_address', 'superior_court_checkbox', 'supreme_court_checkbox',
-  'food_stamps', 'supp_sec_inc', 'ssp', 'medical', 'county_relief', 'calworks', 'capi', 'ihss', 'wic', 'unemployment', 'low_gross_income',
+  'PetitionerZip[0]', 'PetitionerTel[0]', 'current_date', 'monthly_income_source1', 'lawyer_info', 
+  'lawyercheckyes', 'lawyercheckno', 'job_title', 'employer_name', 'job', 'employer_address', 
+  'superior_court_checkbox', 'supreme_court_checkbox', 'food_stamps', 'supp_sec_inc', 'ssp', 
+  'medical', 'county_relief', 'calworks', 'capi', 'ihss', 'wic', 'unemployment', 'low_gross_income',
   'waive_some', 'pay_later', 'waive_within_6months', 'previous_available', 'changing_income_checkbox',
   'monthly_income_source1_amount', 'monthly_income_source2', 'monthly_income_source2_amount',
-  'monthly_income_source3', 'monthly_income_source3_amount', 'monthly_income_source4', 'monthly_income_source4_amount',
-  'monthly_income_source5', 'monthly_income_source5_amount', 
-  'not_enough',
-  'current_date', 'waive_all', 'waive_some', 'pay_later'
+  'monthly_income_source3', 'monthly_income_source3_amount', 'monthly_income_source4', 
+  'monthly_income_source4_amount', 'monthly_income_source5', 'monthly_income_source5_amount',
+  'not_enough', 'waive_all', 'dependency_name1', 'dependency_age1', 'dependency_relationship1',
+  'dependency_income1', 'dependency_name2', 'dependency_age2', 'dependency_relationship2',
+  'dependency_income2', 'dependency_name3', 'dependency_age3', 'dependency_relationship3',
+  'dependency_income3', 'dependency_name4', 'dependency_age4', 'dependency_relationship4',
+  'dependency_income4', 'dependency_income_total', 'monthly_income_total', 'total_combined_income'
 ];
 
 
@@ -99,6 +103,9 @@ app.post('/edit_pdf', async (req, res) => {
           const field = form.getTextField(key);
           field.setText(req.body[key]);
           field.updateAppearances(helveticaFont);
+		  
+		  
+		  //add checkboxes here
         } else if (['lawyercheckyes', 'lawyercheckno', 'superior_court_checkbox', 
 		'supreme_court_checkbox', 'low_gross_income', 'waive_all', 'not_enough', 'waive_some', 
 		'pay_later', 'waive_within_6months', 'previous_available', 

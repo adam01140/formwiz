@@ -187,8 +187,10 @@
     <div id="questions1">
         <h1></h1>
         
-		<input type="text" id="current_date" name="current_date" style = "display:none" placeholder="Enter your full name" required>
-            
+		<input type="text" id="current_date" name="current_date" style = "display:none">
+        <input type="text" id="dependency_income_total" name="dependency_income_total" style="display:none;">
+		<input type="text" id="total_combined_income" name="total_combined_income" style="display:none;">
+    
         
         <div id="box">
         
@@ -351,12 +353,19 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
-        <div class="monthly-income-info" id="monthlyIncomeFields">
-            <br>
+        
+        </div>
+        
+        <br><br>
+        <center>
+		
+		
+		<div id="box">
+          
            <p><strong>List the source and amount of any income you get each month</strong></p>
-        <div id="changingIncomeInfoFields">
+        
             <input type="text" id="monthly_income_source1" name="monthly_income_source1" placeholder="Income Source 1">
-            <input type="text" id="monthly_income_source1_amount" name="monthly_income_source1_amount" placeholder="Amount"><br>
+			<input type="text" id="monthly_income_source1_amount" name="monthly_income_source1_amount" placeholder="Amount"><br>
             <input type="text" id="monthly_income_source2" name="monthly_income_source2" placeholder="Income Source 2">
             <input type="text" id="monthly_income_source2_amount" name="monthly_income_source2_amount" placeholder="Amount"><br>
             <input type="text" id="monthly_income_source3" name="monthly_income_source3" placeholder="Income Source 3">
@@ -365,14 +374,12 @@
             <input type="text" id="monthly_income_source4_amount" name="monthly_income_source4_amount" placeholder="Amount"><br>
             <input type="text" id="monthly_income_source5" name="monthly_income_source5" placeholder="Income Source 5">
             <input type="text" id="monthly_income_source5_amount" name="monthly_income_source5_amount" placeholder="Amount"><br>
-        </div>
+       
             
 		
 		</div>
-        </div>
-        
-        <br>
-        <center>
+		
+		
         
         <div id="box">
         <div id="questions2">
@@ -391,6 +398,38 @@
         
         </div>
         </div>
+		
+		
+		
+		
+		<!-- Monthly income total hidden input -->
+<input type="text" id="monthly_income_total" name="monthly_income_total" style="display:none;">
+
+<!-- Dependency information and total hidden input -->
+<div id="dependencyInfo">
+    <p><strong>List the income of all other persons living in your home:</strong></p>
+    <input type="text" id="dependency_name1" name="dependency_name1" placeholder="dependency_name1">
+    <input type="text" id="dependency_age1" name="dependency_age1" placeholder="dependency_age1">
+    <input type="text" id="dependency_relationship1" name="dependency_relationship1" placeholder="dependency_relationship1">
+    <input type="text" id="dependency_income1" name="dependency_income1" placeholder="dependency_income1">
+    <input type="text" id="dependency_name2" name="dependency_name2" placeholder="dependency_name2">
+    <input type="text" id="dependency_age2" name="dependency_age2" placeholder="dependency_age2">
+    <input type="text" id="dependency_relationship2" name="dependency_relationship2" placeholder="dependency_relationship2">
+    <input type="text" id="dependency_income2" name="dependency_income2" placeholder="dependency_income2">
+    <input type="text" id="dependency_name3" name="dependency_name3" placeholder="dependency_name3">
+    <input type="text" id="dependency_age3" name="dependency_age3" placeholder="dependency_age3">
+    <input type="text" id="dependency_relationship3" name="dependency_relationship3" placeholder="dependency_relationship3">
+    <input type="text" id="dependency_income3" name="dependency_income3" placeholder="dependency_income3">
+    <input type="text" id="dependency_name4" name="dependency_name4" placeholder="dependency_name4">
+    <input type="text" id="dependency_age4" name="dependency_age4" placeholder="dependency_age4">
+    <input type="text" id="dependency_relationship4" name="dependency_relationship4" placeholder="dependency_relationship4">
+    <input type="text" id="dependency_income4" name="dependency_income4" placeholder="dependency_income4">
+</div>
+
+
+
+
+
         <button class="next-button" type="button" onclick="editPDF()">Complete Form</button>
    
         
@@ -521,6 +560,56 @@ async function editPDF() {
 	const incomePayStatus = document.getElementById('IncomePayStatus').value;
 
 	
+	
+	const currentDate = new Date();
+    const formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') + '/' + 
+                          currentDate.getDate().toString().padStart(2, '0') + '/' + 
+                          currentDate.getFullYear();
+    document.getElementById('current_date').value = formattedDate;
+	
+	
+	// Calculate the total of monthly incomes
+    const incomes = [
+        document.getElementById('monthly_income_source1_amount').value,
+        document.getElementById('monthly_income_source2_amount').value,
+        document.getElementById('monthly_income_source3_amount').value,
+        document.getElementById('monthly_income_source4_amount').value
+    ];
+    const totalMonthlyIncome = incomes.reduce((sum, income) => sum + (parseFloat(income) || 0), 0);
+    document.getElementById('monthly_income_total').value = totalMonthlyIncome;
+
+    // Calculate the total of dependency incomes
+    const dependencies = [
+        document.getElementById('dependency_income1').value,
+        document.getElementById('dependency_income2').value,
+        document.getElementById('dependency_income3').value,
+        document.getElementById('dependency_income4').value
+    ];
+    const totalDependencyIncome = dependencies.reduce((sum, income) => sum + (parseFloat(income) || 0), 0);
+    document.getElementById('dependency_income_total').value = totalDependencyIncome;
+	
+
+
+    // Calculate the combined total of monthly and dependency incomes
+    const combinedTotal = totalMonthlyIncome + totalDependencyIncome;
+    document.getElementById('total_combined_income').value = combinedTotal;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     try {
         const response = await fetch('/addUser', {
             method: 'POST',
@@ -549,6 +638,21 @@ async function editPDF() {
             formData.append(input.name, input.value);
         }
     });
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -648,11 +752,12 @@ async function editPDF() {
 
 // Function to set the current date in the specified format
 function setCurrentDate() {
-    const currentDate = new Date();
-    const formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') + '/' + 
-                          currentDate.getDate().toString().padStart(2, '0') + '/' + 
-                          currentDate.getFullYear();
-    document.getElementById('current_date').value = formattedDate;
+
+
+
+	
+    
+
 }
 
 window.onload = function() {
