@@ -19,7 +19,7 @@
     
     input[type="text"], input[type="email"] {
         text-align: center;
-        width: 200px;
+        width: 170px;
         height: 20px;
         font-size: 16px;
         border-radius: 5px;
@@ -76,7 +76,7 @@
         padding: 20px;
         margin: 10px;
         background-color: #ffffff;
-        width: 600px;
+        width: 950px;
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
@@ -402,7 +402,7 @@
 		
 		
 		
-		<!-- Monthly income total hidden input -->
+<div id="box">
 <input type="text" id="monthly_income_total" name="monthly_income_total" style="display:none;">
 
 <!-- Dependency information and total hidden input -->
@@ -424,6 +424,121 @@
     <input type="text" id="dependency_age4" name="dependency_age4" placeholder="dependency_age4">
     <input type="text" id="dependency_relationship4" name="dependency_relationship4" placeholder="dependency_relationship4">
     <input type="text" id="dependency_income4" name="dependency_income4" placeholder="dependency_income4">
+</div>
+
+</div>
+
+
+
+
+
+<br><br>
+
+
+<div id="box">
+    <p><strong>Your Money and Property:</strong></p>
+    <p>Cash: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount of Cash"></p>
+    <p>Financial Accounts:</p>
+    <input type="text" id="bank_name1" name="bank_name1" placeholder="Bank Name 1">
+    <input type="text" id="bank_amount1" name="bank_amount1" placeholder="Amount 1"><br>
+    <input type="text" id="bank_name2" name="bank_name2" placeholder="Bank Name 2">
+    <input type="text" id="bank_amount2" name="bank_amount2" placeholder="Amount 2"><br>
+    <input type="text" id="bank_name3" name="bank_name3" placeholder="Bank Name 3">
+    <input type="text" id="bank_amount3" name="bank_amount3" placeholder="Amount 3"><br>
+
+</div>
+
+
+
+<div id="box">
+    <p><strong>Cars, boats, and other vehicles:</strong></p>
+    <p>Vehicle 1:</p>
+    <input type="text" id="vehicle1_make_year" name="vehicle1_make_year" placeholder="Make / Year">
+    <input type="text" id="vehicle1_market_value" name="vehicle1_market_value" placeholder="Fair Market Value">
+    <input type="text" id="vehicle1_amount_owed" name="vehicle1_amount_owed" placeholder="Amount Owed"><br>
+    
+    <p>Vehicle 2:</p>
+    <input type="text" id="vehicle2_make_year" name="vehicle2_make_year" placeholder="Make / Year">
+    <input type="text" id="vehicle2_market_value" name="vehicle2_market_value" placeholder="Fair Market Value">
+    <input type="text" id="vehicle2_amount_owed" name="vehicle2_amount_owed" placeholder="Amount Owed"><br>
+    
+    <p>Vehicle 3:</p>
+    <input type="text" id="vehicle3_make_year" name="vehicle3_make_year" placeholder="Make / Year">
+    <input type="text" id="vehicle3_market_value" name="vehicle3_market_value" placeholder="Fair Market Value">
+    <input type="text" id="vehicle3_amount_owed" name="vehicle3_amount_owed" placeholder="Amount Owed">
+</div>
+
+
+
+<br><br>
+
+
+<div id="box">
+    <p><strong>Real Estate:</strong></p>
+    <p>Property 1:</p>
+    <input type="text" id="real_estate1_address" name="real_estate1_address" placeholder="Address">
+    <input type="text" id="real_estate1_market_value" name="real_estate1_market_value" placeholder="Fair Market Value">
+    <input type="text" id="real_estate1_amount_owed" name="real_estate1_amount_owed" placeholder="Amount Owed"><br>
+    
+    <p>Property 2:</p>
+    <input type="text" id="real_estate2_address" name="real_estate2_address" placeholder="Address">
+    <input type="text" id="real_estate2_market_value" name="real_estate2_market_value" placeholder="Fair Market Value">
+    <input type="text" id="real_estate2_amount_owed" name="real_estate2_amount_owed" placeholder="Amount Owed">
+</div>
+
+
+<br><br>
+
+<div id="box">
+    <p><strong>Other Personal Property:</strong></p>
+    <p>Item 1:</p>
+    <input type="text" id="property1_description" name="property1_description" placeholder="Description">
+    <input type="text" id="property1_market_value" name="property1_market_value" placeholder="Fair Market Value">
+    <input type="text" id="property1_amount_owed" name="property1_amount_owed" placeholder="Amount Owed"><br>
+    
+    <p>Item 2:</p>
+    <input type="text" id="property2_description" name="property2_description" placeholder="Description">
+    <input type="text" id="property2_market_value" name="property2_market_value" placeholder="Fair Market Value">
+    <input type="text" id="property2_amount_owed" name="property2_amount_owed" placeholder="Amount Owed">
+</div>
+
+
+
+
+
+<div id="box">
+    <p><strong>Your Monthly Deductions and Expenses:</strong></p>
+    <p>Payroll Deductions:</p>
+    <input type="text" id="payroll_description1" name="payroll_description1" placeholder="Deduction Description 1">
+    <input type="text" id="payroll_deduction1" name="payroll_deduction1" placeholder="Deduction Amount 1"><br>
+    <input type="text" id="payroll_description2" name="payroll_description2" placeholder="Deduction Description 2">
+    <input type="text" id="payroll_deduction2" name="payroll_deduction2" placeholder="Deduction Amount 2"><br>
+    <input type="text" id="payroll_description3" name="payroll_description3" placeholder="Deduction Description 3">
+    <input type="text" id="payroll_deduction3" name="payroll_deduction3" placeholder="Deduction Amount 3"><br>
+    <input type="text" id="payroll_description4" name="payroll_description4" placeholder="Deduction Description 4">
+    <input type="text" id="payroll_deduction4" name="payroll_deduction4" placeholder="Deduction Amount 4"><br>
+	
+	
+    <p>Rent or house payment & maintenance: <input type="text" id="rent_expense" name="rent_expense" placeholder="Amount"></p>
+    <p>Food and household supplies: <input type="text" id="food_expense" name="food_expense" placeholder="Amount"></p>
+    <p>Utilities and telephone: <input type="text" id="utilities_expense" name="utilities_expense" placeholder="Amount"></p>
+    <p>Clothing: <input type="text" id="clothing_expense" name="clothing_expense" placeholder="Amount"></p>
+    <p>Laundry and cleaning: <input type="text" id="laundry_expense" name="laundry_expense" placeholder="Amount"></p>
+    <p>Medical and dental expenses: <input type="text" id="medical_expense" name="medical_expense" placeholder="Amount"></p>
+    <p>Insurance (life, health, accident, etc.): <input type="text" id="insurance_expense" name="insurance_expense" placeholder="Amount"></p>
+    <p>School, child care: <input type="text" id="school_childcare_expense" name="school_childcare_expense" placeholder="Amount"></p>
+    <p>Child, spousal support (another marriage): <input type="text" id="support_expense" name="support_expense" placeholder="Amount"></p>
+    <p>Transportation, gas, auto repair, and insurance: <input type="text" id="transportation_expense" name="transportation_expense" placeholder="Amount"></p>
+    <p>Installment payments:</p>
+    <input type="text" id="installment_payment1" name="installment_payment1" placeholder="Payment 1 Amount"><br>
+    <input type="text" id="installment_payment2" name="installment_payment2" placeholder="Payment 2 Amount"><br>
+    <input type="text" id="installment_payment3" name="installment_payment3" placeholder="Payment 3 Amount"><br>
+    <p>Wages/earnings withheld by court order: <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount"></p>
+    <p>Other monthly expenses:</p>
+    <input type="text" id="other_expense1" name="other_expense1" placeholder="Expense 1 Amount"><br>
+    <input type="text" id="other_expense2" name="other_expense2" placeholder="Expense 2 Amount"><br>
+    <input type="text" id="other_expense3" name="other_expense3" placeholder="Expense 3 Amount"><br>
+    <p>Total monthly expenses: <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" placeholder="Total Amount"></p>
 </div>
 
 
