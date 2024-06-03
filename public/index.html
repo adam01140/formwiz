@@ -88,7 +88,7 @@
         padding: 20px;
         margin: 10px;
         background-color: #ffffff;
-        width: 250px;
+        width: 300px;
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
@@ -384,7 +384,7 @@
         <div id="box">
         <div id="questions2">
         
-        <p><strong>Do you receive any of these:</strong></p>
+        <p><strong>Do you receive any of these benifits:</strong></p>
         <label class="checkbox-label"><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label>
         <label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
         <label class="checkbox-label"><input type="checkbox" name="ssp" value="Yes"> SSP</label>
@@ -529,11 +529,23 @@
     <p>School, child care: <input type="text" id="school_childcare_expense" name="school_childcare_expense" placeholder="Amount"></p>
     <p>Child, spousal support (another marriage): <input type="text" id="support_expense" name="support_expense" placeholder="Amount"></p>
     <p>Transportation, gas, auto repair, and insurance: <input type="text" id="transportation_expense" name="transportation_expense" placeholder="Amount"></p>
-    <p>Installment payments:</p>
-    <input type="text" id="installment_payment1" name="installment_payment1" placeholder="Payment 1 Amount"><br>
-    <input type="text" id="installment_payment2" name="installment_payment2" placeholder="Payment 2 Amount"><br>
-    <input type="text" id="installment_payment3" name="installment_payment3" placeholder="Payment 3 Amount"><br>
-    <p>Wages/earnings withheld by court order: <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount"></p>
+    
+	
+	<p>Installment payments:</p>
+    <input type="text" id="installment_payment1" name="installment_payment1" placeholder="Payment 1">
+    <input type="text" id="installment_payment1_amount" name="installment_payment1_amount" placeholder="Payment 1 Amount"><br>
+	
+	
+	
+	<input type="text" id="installment_payment2" name="installment_payment2" placeholder="Payment 2">
+	<input type="text" id="installment_payment2_amount" name="installment_payment2_amount" placeholder="Payment 2 Amount"><br>
+	
+	
+    <input type="text" id="installment_payment3" name="installment_payment3" placeholder="Payment 3">
+    <input type="text" id="installment_payment3_amount" name="installment_payment3_amount" placeholder="Payment 3 Amount"><br>
+	
+	
+	<p>Wages/earnings withheld by court order: <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount"></p>
     <p>Other monthly expenses:</p>
     <input type="text" id="other_expense1" name="other_expense1" placeholder="Expense 1 Amount"><br>
     <input type="text" id="other_expense2" name="other_expense2" placeholder="Expense 2 Amount"><br>

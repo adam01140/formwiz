@@ -67,8 +67,30 @@ const pdfFieldNames = [
   'dependency_income1', 'dependency_name2', 'dependency_age2', 'dependency_relationship2',
   'dependency_income2', 'dependency_name3', 'dependency_age3', 'dependency_relationship3',
   'dependency_income3', 'dependency_name4', 'dependency_age4', 'dependency_relationship4',
-  'dependency_income4', 'dependency_income_total', 'monthly_income_total', 'total_combined_income'
+  'dependency_income4', 'dependency_income_total', 'monthly_income_total', 'total_combined_income',
+  'cash_amount', 'bank_name1', 'bank_amount1', 'bank_name2', 'bank_amount2', 'bank_name3', 'bank_amount3',
+  'vehicle1_make_year', 'vehicle1_market_value', 'vehicle1_amount_owed', 'vehicle2_make_year', 
+  'vehicle2_market_value', 'vehicle2_amount_owed', 'vehicle3_make_year', 'vehicle3_market_value', 
+  'vehicle3_amount_owed', 
+  'real_estate1_address', 'real_estate1_market_value', 'real_estate1_amount_owed',
+  'real_estate2_address', 'real_estate2_market_value', 'real_estate2_amount_owed', 
+  'property1_description','property1_market_value', 'property1_amount_owed', 'property2_description', 'property2_market_value',
+  'property2_amount_owed', 
+  'payroll_description1', 'payroll_deduction1', 'payroll_description2', 
+  'payroll_deduction2', 'payroll_description3', 'payroll_deduction3', 'payroll_description4', 
+  'payroll_deduction4', 
+  'rent_expense', 'food_expense', 'utilities_expense', 'clothing_expense', 
+  'laundry_expense', 'medical_expense', 'insurance_expense', 'school_childcare_expense', 'support_expense',
+  'transportation_expense', 
+  'installment_payment1', 'installment_payment2', 'installment_payment3', 
+  'installment_payment1_amount', 'installment_payment2_amount', 'installment_payment3_amount',
+  'withheld_earnings', 
+  'other_expense1', 'other_expense2', 'other_expense3', 
+  'other_expense1_amount','other_expense2_amount','other_expense3_amount',
+  'total_monthly_expenses'
 ];
+
+
 
 
 
