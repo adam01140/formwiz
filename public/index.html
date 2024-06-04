@@ -368,7 +368,7 @@
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-        <option value="5">5</option>
+
     </select>
     <div id="incomeFieldsContainer"></div>
 </div>
@@ -397,31 +397,34 @@
 		
 		
 		
-<div id="box">
+
 <input type="text" id="monthly_income_total" name="monthly_income_total" style="display:none;">
 
-<!-- Dependency information and total hidden input -->
-<div id="dependencyInfo">
-    <p><strong>List the income of all other persons living in your home:</strong></p>
-    <input type="text" id="dependency_name1" name="dependency_name1" placeholder="dependency_name1">
-    <input type="text" id="dependency_age1" name="dependency_age1" placeholder="dependency_age1">
-    <input type="text" id="dependency_relationship1" name="dependency_relationship1" placeholder="dependency_relationship1">
-    <input type="text" id="dependency_income1" name="dependency_income1" placeholder="dependency_income1">
-    <input type="text" id="dependency_name2" name="dependency_name2" placeholder="dependency_name2">
-    <input type="text" id="dependency_age2" name="dependency_age2" placeholder="dependency_age2">
-    <input type="text" id="dependency_relationship2" name="dependency_relationship2" placeholder="dependency_relationship2">
-    <input type="text" id="dependency_income2" name="dependency_income2" placeholder="dependency_income2">
-    <input type="text" id="dependency_name3" name="dependency_name3" placeholder="dependency_name3">
-    <input type="text" id="dependency_age3" name="dependency_age3" placeholder="dependency_age3">
-    <input type="text" id="dependency_relationship3" name="dependency_relationship3" placeholder="dependency_relationship3">
-    <input type="text" id="dependency_income3" name="dependency_income3" placeholder="dependency_income3">
-    <input type="text" id="dependency_name4" name="dependency_name4" placeholder="dependency_name4">
-    <input type="text" id="dependency_age4" name="dependency_age4" placeholder="dependency_age4">
-    <input type="text" id="dependency_relationship4" name="dependency_relationship4" placeholder="dependency_relationship4">
-    <input type="text" id="dependency_income4" name="dependency_income4" placeholder="dependency_income4">
+
+
+
+
+
+<div id="box">
+    <p><strong>Do you have anybody else living in your home?</strong></p>
+    <select id="hasDependents" name="hasDependents" required onchange="toggleDependencyFields()">
+        <option value="" disabled selected>Select an option</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="dependencyFieldsContainer" style="display:none;">
+        <p><strong>How many people?</strong></p>
+        <select id="numberOfDependents" name="numberOfDependents" required onchange="displayDependencyFields()">
+            <option value="" disabled selected>Select number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div id="dependencyInfo" style="display:none;"></div>
 </div>
 
-</div>
 
 
 
@@ -430,18 +433,31 @@
 <br><br>
 
 
-<div id="box">
-    <p><strong>Your Money and Property:</strong></p>
-    <p>Cash: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount of Cash"></p>
-    <p>Financial Accounts:</p>
-    <input type="text" id="bank_name1" name="bank_name1" placeholder="Bank Name 1">
-    <input type="text" id="bank_amount1" name="bank_amount1" placeholder="Amount 1"><br>
-    <input type="text" id="bank_name2" name="bank_name2" placeholder="Bank Name 2">
-    <input type="text" id="bank_amount2" name="bank_amount2" placeholder="Amount 2"><br>
-    <input type="text" id="bank_name3" name="bank_name3" placeholder="Bank Name 3">
-    <input type="text" id="bank_amount3" name="bank_amount3" placeholder="Amount 3"><br>
 
+
+
+<div id="box">
+    <p><strong>Financial Accounts:</strong></p>
+	
+	<p>Cash: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount of Cash"></p>
+	
+    <select id="hasBankAccount" name="hasBankAccount" required onchange="toggleBankAccountFields()">
+        <option value="" disabled selected>Do you have a bank account?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="bankAccountFieldsContainer" style="display:none;">
+        <p><strong>How many accounts?</strong></p>
+        <select id="numberOfBankAccounts" name="numberOfBankAccounts" required onchange="displayBankAccountFields()">
+            <option value="" disabled selected>Select number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div id="bankAccountInfo" style="display:none;"></div>
 </div>
+
 
 
 
@@ -698,6 +714,89 @@ function displayIncomeFields() {
 
 
 
+function toggleDependencyFields() {
+    const hasDependents = document.getElementById('hasDependents').value;
+    const dependencyFieldsContainer = document.getElementById('dependencyFieldsContainer');
+    const dependencyInfo = document.getElementById('dependencyInfo');
+
+    if (hasDependents === 'yes') {
+        dependencyFieldsContainer.style.display = 'block';
+    } else {
+        dependencyFieldsContainer.style.display = 'none';
+        dependencyInfo.style.display = 'none';
+        dependencyInfo.innerHTML = ''; // Clear previous fields
+    }
+}
+
+function displayDependencyFields() {
+    const number = parseInt(document.getElementById('numberOfDependents').value, 10);
+    const container = document.getElementById('dependencyInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        container.appendChild(document.createTextNode(`Person ${i}:`));
+        container.appendChild(createDependencyInput(`dependency_name${i}`, 'Name'));
+        container.appendChild(createDependencyInput(`dependency_age${i}`, 'Age'));
+        container.appendChild(createDependencyInput(`dependency_relationship${i}`, 'Relationship'));
+        container.appendChild(createDependencyInput(`dependency_income${i}`, 'Monthly Income'));
+        container.appendChild(document.createElement('br'));
+    }
+}
+
+function createDependencyInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+
+
+function toggleBankAccountFields() {
+    const hasBankAccount = document.getElementById('hasBankAccount').value;
+    const bankAccountFieldsContainer = document.getElementById('bankAccountFieldsContainer');
+    const bankAccountInfo = document.getElementById('bankAccountInfo');
+
+    if (hasBankAccount === 'yes') {
+        bankAccountFieldsContainer.style.display = 'block';
+    } else {
+        bankAccountFieldsContainer.style.display = 'none';
+        bankAccountInfo.style.display = 'none';
+        bankAccountInfo.innerHTML = ''; // Clear previous fields
+    }
+}
+
+function displayBankAccountFields() {
+    const number = parseInt(document.getElementById('numberOfBankAccounts').value, 10);
+    const container = document.getElementById('bankAccountInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        container.appendChild(document.createTextNode(`Bank Account ${i}:`));
+        container.appendChild(createBankAccountInput(`bank_name${i}`, 'Bank Name'));
+        container.appendChild(createBankAccountInput(`bank_amount${i}`, 'Amount'));
+        container.appendChild(document.createElement('br'));
+    }
+}
+
+function createBankAccountInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+
 
 async function editPDF() {
     if (!uploadedPdfFile) {
@@ -725,33 +824,28 @@ async function editPDF() {
 
     for (let i = 1; i <= numberOfIncomeSources; i++) {
         const incomeAmountElement = document.getElementById(`monthly_income_source${i}_amount`);
-        if (incomeAmountElement && incomeAmountElement.value) {
+        if (incomeAmountElement) {
             totalMonthlyIncome += parseFloat(incomeAmountElement.value) || 0;
         }
     }
 
     document.getElementById('monthly_income_total').value = totalMonthlyIncome.toFixed(2);
 
-    // Calculate the total of dependency incomes
-    const dependencies = [
-        document.getElementById('dependency_income1').value,
-        document.getElementById('dependency_income2').value,
-        document.getElementById('dependency_income3').value,
-        document.getElementById('dependency_income4').value
-    ];
-    const totalDependencyIncome = dependencies.reduce((sum, income) => sum + (parseFloat(income) || 0), 0);
+    let totalDependencyIncome = 0;
+    const maxDependencies = 4; // Max number of dependents you expect
+
+    for (let i = 1; i <= maxDependencies; i++) {
+        const dependencyIncome = document.getElementById(`dependency_income${i}`);
+        if (dependencyIncome) {
+            totalDependencyIncome += parseFloat(dependencyIncome.value) || 0;
+        }
+    }
+
     document.getElementById('dependency_income_total').value = totalDependencyIncome.toFixed(2);
 
     const combinedTotal = totalMonthlyIncome + totalDependencyIncome;
     document.getElementById('total_combined_income').value = combinedTotal.toFixed(2);
-	
-	const currentDate = new Date();
-    const formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') + '/' + 
-                          currentDate.getDate().toString().padStart(2, '0') + '/' + 
-                          currentDate.getFullYear();
-    document.getElementById('current_date').value = formattedDate;
-	
-	
+
 	
 	
 	

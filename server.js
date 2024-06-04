@@ -62,7 +62,7 @@ const pdfFieldNames = [
   'waive_some', 'pay_later', 'waive_within_6months', 'previous_available', 'changing_income_checkbox',
   'monthly_income_source1_amount', 'monthly_income_source2', 'monthly_income_source2_amount',
   'monthly_income_source3', 'monthly_income_source3_amount', 'monthly_income_source4', 
-  'monthly_income_source4_amount', 'monthly_income_source5', 'monthly_income_source5_amount',
+  'monthly_income_source4_amount',
   'not_enough', 'waive_all', 'dependency_name1', 'dependency_age1', 'dependency_relationship1',
   'dependency_income1', 'dependency_name2', 'dependency_age2', 'dependency_relationship2',
   'dependency_income2', 'dependency_name3', 'dependency_age3', 'dependency_relationship3',
