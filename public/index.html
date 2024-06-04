@@ -463,21 +463,23 @@
 
 <div id="box">
     <p><strong>Cars, boats, and other vehicles:</strong></p>
-    <p>Vehicle 1:</p>
-    <input type="text" id="vehicle1_make_year" name="vehicle1_make_year" placeholder="Make / Year">
-    <input type="text" id="vehicle1_market_value" name="vehicle1_market_value" placeholder="Fair Market Value">
-    <input type="text" id="vehicle1_amount_owed" name="vehicle1_amount_owed" placeholder="Amount Owed"><br>
-    
-    <p>Vehicle 2:</p>
-    <input type="text" id="vehicle2_make_year" name="vehicle2_make_year" placeholder="Make / Year">
-    <input type="text" id="vehicle2_market_value" name="vehicle2_market_value" placeholder="Fair Market Value">
-    <input type="text" id="vehicle2_amount_owed" name="vehicle2_amount_owed" placeholder="Amount Owed"><br>
-    
-    <p>Vehicle 3:</p>
-    <input type="text" id="vehicle3_make_year" name="vehicle3_make_year" placeholder="Make / Year">
-    <input type="text" id="vehicle3_market_value" name="vehicle3_market_value" placeholder="Fair Market Value">
-    <input type="text" id="vehicle3_amount_owed" name="vehicle3_amount_owed" placeholder="Amount Owed">
+    <select id="hasVehicles" name="hasVehicles" required onchange="toggleVehicleFields()">
+        <option value="" disabled selected>Do you own any vehicles?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="vehicleFieldsContainer" style="display:none;">
+        <p><strong>How many vehicles?</strong></p>
+        <select id="numberOfVehicles" name="numberOfVehicles" required onchange="displayVehicleFields()">
+            <option value="" disabled selected>Select number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div id="vehicleInfo" style="display:none;"></div>
 </div>
+
 
 
 
@@ -796,6 +798,54 @@ function createBankAccountInput(id, placeholder) {
 
 
 
+
+
+
+
+
+
+
+
+function toggleVehicleFields() {
+    const hasVehicles = document.getElementById('hasVehicles').value;
+    const vehicleFieldsContainer = document.getElementById('vehicleFieldsContainer');
+    const vehicleInfo = document.getElementById('vehicleInfo');
+    
+    if (hasVehicles === 'yes') {
+        vehicleFieldsContainer.style.display = 'block';
+        displayVehicleFields(); // Call this here to ensure fields show if previously selected
+    } else {
+        vehicleFieldsContainer.style.display = 'none';
+        vehicleInfo.innerHTML = ''; // Clear previous fields
+        vehicleInfo.style.display = 'none';
+    }
+}
+
+function displayVehicleFields() {
+    const number = parseInt(document.getElementById('numberOfVehicles').value, 10);
+    const container = document.getElementById('vehicleInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        const vehicleDiv = document.createElement('div');
+        vehicleDiv.appendChild(document.createTextNode(`Vehicle ${i}:`));
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_make_year`, 'Make / Year'));
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_market_value`, 'Fair Market Value'));
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_amount_owed`, 'Amount Owed'));
+        container.appendChild(vehicleDiv);
+        container.appendChild(document.createElement('br'));
+    }
+}
+
+function createVehicleInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
 
 
 async function editPDF() {
