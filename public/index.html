@@ -488,16 +488,22 @@
 
 <div id="box">
     <p><strong>Real Estate:</strong></p>
-    <p>Property 1:</p>
-    <input type="text" id="real_estate1_address" name="real_estate1_address" placeholder="Address">
-    <input type="text" id="real_estate1_market_value" name="real_estate1_market_value" placeholder="Fair Market Value">
-    <input type="text" id="real_estate1_amount_owed" name="real_estate1_amount_owed" placeholder="Amount Owed"><br>
-    
-    <p>Property 2:</p>
-    <input type="text" id="real_estate2_address" name="real_estate2_address" placeholder="Address">
-    <input type="text" id="real_estate2_market_value" name="real_estate2_market_value" placeholder="Fair Market Value">
-    <input type="text" id="real_estate2_amount_owed" name="real_estate2_amount_owed" placeholder="Amount Owed">
+    <select id="hasRealEstate" name="hasRealEstate" required onchange="toggleRealEstateFields()">
+        <option value="" disabled selected>Do you own any real estate?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="realEstateFieldsContainer" style="display:none;">
+        <p><strong>How many properties?</strong></p>
+        <select id="numberOfProperties" name="numberOfProperties" required onchange="displayRealEstateFields()">
+            <option value="" disabled selected>Select number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+    </div>
+    <div id="realEstateInfo" style="display:none;"></div>
 </div>
+
 
 
 <br><br>
@@ -839,6 +845,50 @@ function displayVehicleFields() {
 }
 
 function createVehicleInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+
+function toggleRealEstateFields() {
+    const hasRealEstate = document.getElementById('hasRealEstate').value;
+    const realEstateFieldsContainer = document.getElementById('realEstateFieldsContainer');
+    const realEstateInfo = document.getElementById('realEstateInfo');
+
+    if (hasRealEstate === 'yes') {
+        realEstateFieldsContainer.style.display = 'block';
+        displayRealEstateFields(); // Ensure fields show if previously selected
+    } else {
+        realEstateFieldsContainer.style.display = 'none';
+        realEstateInfo.innerHTML = ''; // Clear previous fields
+        realEstateInfo.style.display = 'none';
+    }
+}
+
+function displayRealEstateFields() {
+    const number = parseInt(document.getElementById('numberOfProperties').value, 10);
+    const container = document.getElementById('realEstateInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        const propertyDiv = document.createElement('div');
+        propertyDiv.appendChild(document.createTextNode(`Property ${i}:`));
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_address`, 'Address'));
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_market_value`, 'Fair Market Value'));
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_amount_owed`, 'Amount Owed'));
+        container.appendChild(propertyDiv);
+        container.appendChild(document.createElement('br'));
+    }
+}
+
+function createRealEstateInput(id, placeholder) {
     const input = document.createElement('input');
     input.type = 'text';
     input.id = id;
