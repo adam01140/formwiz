@@ -510,16 +510,24 @@
 
 <div id="box">
     <p><strong>Other Personal Property:</strong></p>
-    <p>Item 1:</p>
-    <input type="text" id="property1_description" name="property1_description" placeholder="Description">
-    <input type="text" id="property1_market_value" name="property1_market_value" placeholder="Fair Market Value">
-    <input type="text" id="property1_amount_owed" name="property1_amount_owed" placeholder="Amount Owed"><br>
-    
-    <p>Item 2:</p>
-    <input type="text" id="property2_description" name="property2_description" placeholder="Description">
-    <input type="text" id="property2_market_value" name="property2_market_value" placeholder="Fair Market Value">
-    <input type="text" id="property2_amount_owed" name="property2_amount_owed" placeholder="Amount Owed">
+    <select id="hasPersonalProperty" name="hasPersonalProperty" required onchange="togglePersonalPropertyFields()">
+        <option value="" disabled selected>Do you own any other personal property?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="personalPropertyFieldsContainer" style="display:none;">
+        <p><strong>How many items?</strong></p>
+        <select id="numberOfPersonalProperties" name="numberOfPersonalProperties" required onchange="displayPersonalPropertyFields()">
+            <option value="" disabled selected>Select number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <!-- Add more options if needed -->
+        </select>
+    </div>
+    <div id="personalPropertyInfo" style="display:none;"></div>
 </div>
+
 
 
 
@@ -889,6 +897,49 @@ function displayRealEstateFields() {
 }
 
 function createRealEstateInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+function togglePersonalPropertyFields() {
+    const hasPersonalProperty = document.getElementById('hasPersonalProperty').value;
+    const personalPropertyFieldsContainer = document.getElementById('personalPropertyFieldsContainer');
+    const personalPropertyInfo = document.getElementById('personalPropertyInfo');
+
+    if (hasPersonalProperty === 'yes') {
+        personalPropertyFieldsContainer.style.display = 'block';
+        displayPersonalPropertyFields(); // Ensure fields show if previously selected
+    } else {
+        personalPropertyFieldsContainer.style.display = 'none';
+        personalPropertyInfo.innerHTML = ''; // Clear previous fields
+        personalPropertyInfo.style.display = 'none';
+    }
+}
+
+function displayPersonalPropertyFields() {
+    const number = parseInt(document.getElementById('numberOfPersonalProperties').value, 10);
+    const container = document.getElementById('personalPropertyInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        const propertyDiv = document.createElement('div');
+        propertyDiv.appendChild(document.createTextNode(`Item ${i}:`));
+        propertyDiv.appendChild(createInput(`property${i}_description`, 'Description'));
+        propertyDiv.appendChild(createInput(`property${i}_market_value`, 'Fair Market Value'));
+        propertyDiv.appendChild(createInput(`property${i}_amount_owed`, 'Amount Owed'));
+        container.appendChild(propertyDiv);
+        container.appendChild(document.createElement('br'));
+    }
+}
+
+function createInput(id, placeholder) {
     const input = document.createElement('input');
     input.type = 'text';
     input.id = id;
