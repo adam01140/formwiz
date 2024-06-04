@@ -361,23 +361,18 @@
 		
 		
 		<div id="box">
-          
-           <p><strong>List the source and amount of any income you get each month</strong></p>
-        
-            <input type="text" id="monthly_income_source1" name="monthly_income_source1" placeholder="Income Source 1">
-			<input type="text" id="monthly_income_source1_amount" name="monthly_income_source1_amount" placeholder="Amount"><br>
-            <input type="text" id="monthly_income_source2" name="monthly_income_source2" placeholder="Income Source 2">
-            <input type="text" id="monthly_income_source2_amount" name="monthly_income_source2_amount" placeholder="Amount"><br>
-            <input type="text" id="monthly_income_source3" name="monthly_income_source3" placeholder="Income Source 3">
-            <input type="text" id="monthly_income_source3_amount" name="monthly_income_source3_amount" placeholder="Amount"><br>
-            <input type="text" id="monthly_income_source4" name="monthly_income_source4" placeholder="Income Source 4">
-            <input type="text" id="monthly_income_source4_amount" name="monthly_income_source4_amount" placeholder="Amount"><br>
-            <input type="text" id="monthly_income_source5" name="monthly_income_source5" placeholder="Income Source 5">
-            <input type="text" id="monthly_income_source5_amount" name="monthly_income_source5_amount" placeholder="Amount"><br>
-       
-            
-		
-		</div>
+    <p><strong>How many sources of income do you have?</strong></p>
+    <select id="numberOfIncomeSources" name="numberOfIncomeSources" required onchange="displayIncomeFields()">
+        <option value="" disabled selected>Select number</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <div id="incomeFieldsContainer"></div>
+</div>
+
 		
 		
         
@@ -547,9 +542,18 @@
 	
 	<p>Wages/earnings withheld by court order: <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount"></p>
     <p>Other monthly expenses:</p>
-    <input type="text" id="other_expense1" name="other_expense1" placeholder="Expense 1 Amount"><br>
-    <input type="text" id="other_expense2" name="other_expense2" placeholder="Expense 2 Amount"><br>
-    <input type="text" id="other_expense3" name="other_expense3" placeholder="Expense 3 Amount"><br>
+	
+	<input type="text" id="other_expense1" name="other_expense1" placeholder="Expense 1">
+    <input type="text" id="other_expense1" name="other_expense1_amount" placeholder="Expense 1 Amount"><br>
+	
+    <input type="text" id="other_expense2" name="other_expense2" placeholder="Expense 2">
+	<input type="text" id="other_expense2" name="other_expense2_amount" placeholder="Expense 2 Amount"><br>
+	
+	
+    <input type="text" id="other_expense3" name="other_expense3" placeholder="Expense 3">
+	<input type="text" id="other_expense3" name="other_expense3_amount" placeholder="Expense 3 Amount"><br>
+	
+	
     <p>Total monthly expenses: <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" placeholder="Total Amount"></p>
 </div>
 
@@ -666,6 +670,35 @@ function toggleIncomeFields() {
 }
 
 
+
+function displayIncomeFields() {
+    const number = parseInt(document.getElementById('numberOfIncomeSources').value, 10);
+    const container = document.getElementById('incomeFieldsContainer');
+    container.innerHTML = '';  // Clear existing fields
+
+    for (let i = 1; i <= number; i++) {
+        const sourceInput = document.createElement('input');
+        sourceInput.type = 'text';
+        sourceInput.id = 'monthly_income_source' + i;  // Ensure ID is correct
+        sourceInput.name = 'monthly_income_source' + i;
+        sourceInput.placeholder = 'Income Source ' + i;
+
+        const amountInput = document.createElement('input');
+        amountInput.type = 'text';
+        amountInput.id = 'monthly_income_source' + i + '_amount';  // Ensure ID is correct
+        amountInput.name = 'monthly_income_source' + i + '_amount';
+        amountInput.placeholder = 'Amount ' + i;
+
+        container.appendChild(document.createElement('br'));
+        container.appendChild(sourceInput);
+        container.appendChild(amountInput);
+        container.appendChild(document.createElement('br'));
+    }
+}
+
+
+
+
 async function editPDF() {
     if (!uploadedPdfFile) {
         alert('No PDF file is loaded for editing.');
@@ -687,23 +720,17 @@ async function editPDF() {
 	const incomePayStatus = document.getElementById('IncomePayStatus').value;
 
 	
-	
-	const currentDate = new Date();
-    const formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') + '/' + 
-                          currentDate.getDate().toString().padStart(2, '0') + '/' + 
-                          currentDate.getFullYear();
-    document.getElementById('current_date').value = formattedDate;
-	
-	
-	// Calculate the total of monthly incomes
-    const incomes = [
-        document.getElementById('monthly_income_source1_amount').value,
-        document.getElementById('monthly_income_source2_amount').value,
-        document.getElementById('monthly_income_source3_amount').value,
-        document.getElementById('monthly_income_source4_amount').value
-    ];
-    const totalMonthlyIncome = incomes.reduce((sum, income) => sum + (parseFloat(income) || 0), 0);
-    document.getElementById('monthly_income_total').value = totalMonthlyIncome;
+	const numberOfIncomeSources = parseInt(document.getElementById('numberOfIncomeSources').value, 10);
+    let totalMonthlyIncome = 0;
+
+    for (let i = 1; i <= numberOfIncomeSources; i++) {
+        const incomeAmountElement = document.getElementById(`monthly_income_source${i}_amount`);
+        if (incomeAmountElement && incomeAmountElement.value) {
+            totalMonthlyIncome += parseFloat(incomeAmountElement.value) || 0;
+        }
+    }
+
+    document.getElementById('monthly_income_total').value = totalMonthlyIncome.toFixed(2);
 
     // Calculate the total of dependency incomes
     const dependencies = [
@@ -713,17 +740,16 @@ async function editPDF() {
         document.getElementById('dependency_income4').value
     ];
     const totalDependencyIncome = dependencies.reduce((sum, income) => sum + (parseFloat(income) || 0), 0);
-    document.getElementById('dependency_income_total').value = totalDependencyIncome;
-	
+    document.getElementById('dependency_income_total').value = totalDependencyIncome.toFixed(2);
 
-
-    // Calculate the combined total of monthly and dependency incomes
     const combinedTotal = totalMonthlyIncome + totalDependencyIncome;
-    document.getElementById('total_combined_income').value = combinedTotal;
+    document.getElementById('total_combined_income').value = combinedTotal.toFixed(2);
 	
-	
-	
-	
+	const currentDate = new Date();
+    const formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') + '/' + 
+                          currentDate.getDate().toString().padStart(2, '0') + '/' + 
+                          currentDate.getFullYear();
+    document.getElementById('current_date').value = formattedDate;
 	
 	
 	
