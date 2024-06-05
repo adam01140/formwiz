@@ -1190,102 +1190,16 @@ function toggleField(fieldId) {
 }
 
 
-
-
 async function editPDF() {
-
-
-toggleField('rent_expense');
-toggleField('food_expense');
-toggleField('utilities_expense');
-toggleField('clothing_expense');
-toggleField('laundry_expense');
-toggleField('medical_expense');
-toggleField('insurance_expense');
-toggleField('school_childcare_expense');
-toggleField('support_expense');
-toggleField('transportation_expense');
-
+    formData = new FormData(); // Reset formData for fresh use each time the function is called.
 
     if (!uploadedPdfFile) {
-        alert('No PDF file is loaded for editing.');
+        alert('No PDF file is loaded for editing. Please upload the file again.');
         return;
     }
 
-    // Collect name and email from the form
-    const name = document.getElementById('PetitionerName1[0]').value;
-    const email = document.getElementById('email').value;
-    const lawyerStatus = document.getElementById('LawyerStatus').value;
-    const jobStatus = document.getElementById('JobStatus').value;
-    const lawyerAdvance = lawyerStatus === 'yes' ? document.getElementById('LawyerAdvance').value : null;
-    const courtType = document.getElementById('CourtType').value;
-    const lowIncomeStatus = document.getElementById('LowIncomeStatus').value;
-    const courtAction = document.getElementById('CourtAction').value;
-    const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
-    const previousAvailable = document.getElementById('PreviousAvailable').value;
-    const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
-	const incomePayStatus = document.getElementById('IncomePayStatus').value;
-
-	
-	const numberOfIncomeSources = parseInt(document.getElementById('numberOfIncomeSources').value, 10);
-    let totalMonthlyIncome = 0;
-
-    for (let i = 1; i <= numberOfIncomeSources; i++) {
-        const incomeAmountElement = document.getElementById(`monthly_income_source${i}_amount`);
-        if (incomeAmountElement) {
-            totalMonthlyIncome += parseFloat(incomeAmountElement.value) || 0;
-        }
-    }
-
-    document.getElementById('monthly_income_total').value = totalMonthlyIncome.toFixed(2);
-
-    let totalDependencyIncome = 0;
-    const maxDependencies = 4; // Max number of dependents you expect
-
-    for (let i = 1; i <= maxDependencies; i++) {
-        const dependencyIncome = document.getElementById(`dependency_income${i}`);
-        if (dependencyIncome) {
-            totalDependencyIncome += parseFloat(dependencyIncome.value) || 0;
-        }
-    }
-
-    document.getElementById('dependency_income_total').value = totalDependencyIncome.toFixed(2);
-
-    const combinedTotal = totalMonthlyIncome + totalDependencyIncome;
-    document.getElementById('total_combined_income').value = combinedTotal.toFixed(2);
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-    try {
-        const response = await fetch('/addUser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email }),
-        });
-        const result = await response.text();
-        alert(result);
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to add user');
-    }
-
-    
-	
-	
-	
-    formData.append('pdf', uploadedPdfFile);
-    var inputs = document.querySelectorAll('#questions input, #questions select');
+    // Collect inputs from the form
+    const inputs = document.querySelectorAll('#questions input, #questions select');
     inputs.forEach(input => {
         if (input.type === 'checkbox') {
             formData.append(input.name, input.checked ? 'Yes' : 'No');
@@ -1293,117 +1207,41 @@ toggleField('transportation_expense');
             formData.append(input.name, input.value);
         }
     });
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Append the court type to the form data
-    if (courtType === 'superior') {
-        formData.append('superior_court_checkbox', 'Yes');
-    } else if (['supreme', 'appeal', 'appellate_division'].includes(courtType)) {
-        formData.append('supreme_court_checkbox', 'Yes');
-    }
-	
-	
-	 // Append the lawyer status to the form data
-    if (lawyerStatus === 'yes') {
-        const lawyerName = document.getElementById('LawyerName').value;
-        const lawFirm = document.getElementById('LawFirm').value;
-        const lawyerAddress = document.getElementById('LawyerAddress').value;
-        const lawyerPhone = document.getElementById('LawyerPhone').value;
-        const lawyerBarNumber = document.getElementById('LawyerBarNumber').value;
-        const lawyerInfo = `My lawyer's name is ${lawyerName}. Their law firm is ${lawFirm}, located at ${lawyerAddress}. Their phone number is ${lawyerPhone} and their state bar number is ${lawyerBarNumber}`;
-        formData.append('lawyer_info', lawyerInfo);
 
-        if (lawyerAdvance === 'yes') {
-            formData.append('lawyercheckyes', 'Yes');
-        } else if (lawyerAdvance === 'no') {
-            formData.append('lawyercheckno', 'Yes');
-        }
-    }
-
-    // Append the job status to the form data
-    if (jobStatus === 'yes') {
-        const employerName = document.getElementById('employer_name').value;
-        const employerAddress = document.getElementById('employer_address').value;
-        formData.append('employeer_name', employerName);
-        formData.append('employeer_address', employerAddress);
-    }
-
-
-
-	if (lowIncomeStatus === 'yes') {
-        formData.append('low_gross_income', 'Yes');
-    } else {
-        formData.append('low_gross_income', 'No');
-    }
-
-    if (courtAction === 'waive_all') {
-        formData.append('waive_all', 'Yes');
-		
-    } else if (courtAction === 'waive_some') {
-        formData.append('waive_some', 'Yes');
-    } else if (courtAction === 'pay_later') {
-        formData.append('pay_later', 'Yes');
-    }
-	
-	
-    if (waiveWithin6Months === 'yes') {
-        formData.append('waive_within_6months', 'Yes');
-    }
-
-    if (previousAvailable === 'yes') {
-        formData.append('previous_available', 'Yes');
-    }
-
-    if (changingIncomeStatus === 'yes') {
-        formData.append('changing_income_checkbox', 'Yes');
-    }
-
-
+    // Append the PDF file to formData
+    formData.append('pdf', uploadedPdfFile);
 
     // Debugging: Log the form data
+    console.log('FormData contents:');
     for (var pair of formData.entries()) {
-        console.log(pair[0]+ ': ' + pair[1]); 
+        console.log(`${pair[0]}: ${pair[1]}`);
     }
 
+    // Send the formData to the server
     fetch('/edit_pdf', {
         method: 'POST',
         body: formData,
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.blob();
-        })
-        .then(blob => {
-            var url = window.URL.createObjectURL(blob);
-            document.getElementById('pdfFrame').src = url;
-            document.getElementById('pdfPreview').style.display = 'block';
-            downloadPDF();
-        })
-        .catch(error => {
-            console.error('Error updating PDF:', error);
-            alert('Error updating PDF: ' + error.message);
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        var url = window.URL.createObjectURL(blob);
+        document.getElementById('pdfFrame').src = url;
+        document.getElementById('pdfPreview').style.display = 'block';
+        downloadPDF();
+    })
+    .catch(error => {
+        console.error('Error updating PDF:', error);
+        alert('Error updating PDF: ' + error.message);
+    });
 }
+
+
+
 
 // Function to set the current date in the specified format
 function setCurrentDate() {

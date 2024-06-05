@@ -98,11 +98,15 @@ const pdfFieldNames = [
 
 // Endpoint to edit PDF
 app.post('/edit_pdf', async (req, res) => {
+  // Check if the PDF file is included in the request and is not empty
   if (!req.files || !req.files.pdf) {
     return res.status(400).send('No PDF file uploaded.');
   }
   const pdfFile = req.files.pdf;
   const pdfBytes = pdfFile.data;
+  if (!pdfBytes) {
+    return res.status(400).send('PDF file is empty.');
+  }
 
   const pdfDoc = await PDFDocument.load(pdfBytes);
   const form = pdfDoc.getForm();
@@ -114,9 +118,6 @@ app.post('/edit_pdf', async (req, res) => {
     console.log(`Field name: ${field.getName()}`);
   });
   
-  
-
-
   // Process only the fields that exist in the PDF
   pdfFieldNames.forEach(key => {
     if (req.body[key] !== undefined) {
@@ -125,13 +126,7 @@ app.post('/edit_pdf', async (req, res) => {
           const field = form.getTextField(key);
           field.setText(req.body[key]);
           field.updateAppearances(helveticaFont);
-		  
-		  
-		  //add checkboxes here
-        } else if (['lawyercheckyes', 'lawyercheckno', 'superior_court_checkbox', 
-		'supreme_court_checkbox', 'low_gross_income', 'waive_all', 'not_enough', 'waive_some', 
-		'pay_later', 'waive_within_6months', 'previous_available', 
-		'changing_income_checkbox'].includes(key)) {
+        } else if (['lawyercheckyes', 'lawyercheckno', 'superior_court_checkbox', 'supreme_court_checkbox', 'low_gross_income', 'waive_all', 'not_enough', 'waive_some', 'pay_later', 'waive_within_6months', 'previous_available', 'changing_income_checkbox'].includes(key)) {
           const field = form.getCheckBox(key);
           if (req.body[key] === 'Yes') {
             field.check();
@@ -164,6 +159,7 @@ app.post('/edit_pdf', async (req, res) => {
   });
   res.send(Buffer.from(updatedPdfBytes));
 });
+
 
 // Serve static PDF file
 app.get('/form.pdf', (req, res) => {
