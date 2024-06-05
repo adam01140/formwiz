@@ -353,6 +353,10 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+		
+		<div id="monthlyIncomeFields" style="display: none;">
+		
+		</div>
         
         </div>
         
@@ -636,20 +640,34 @@
 </div>
 
 
+
+
+
+
+<div id="box">
+    <p><strong>Other Monthly Expenses:</strong></p>
+    <select id="hasOtherExpenses" name="hasOtherExpenses" required onchange="toggleOtherExpenses()">
+        <option value="" disabled selected>Select an option</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="otherExpensesContainer" style="display:none;">
+        <select id="numberOfOtherExpenses" name="numberOfOtherExpenses" required onchange="displayOtherExpenseFields()">
+            <option value="" disabled selected>Select number of expenses</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div id="otherExpenseFields"></div>
+</div>
+
+
+
+
+
 <div id="box">
 	
-	
-	<p>Other monthly expenses:</p>
-	
-	<input type="text" id="other_expense1" name="other_expense1" placeholder="Expense 1">
-    <input type="text" id="other_expense1" name="other_expense1_amount" placeholder="Expense 1 Amount"><br>
-	
-    <input type="text" id="other_expense2" name="other_expense2" placeholder="Expense 2">
-	<input type="text" id="other_expense2" name="other_expense2_amount" placeholder="Expense 2 Amount"><br>
-	
-	
-    <input type="text" id="other_expense3" name="other_expense3" placeholder="Expense 3">
-	<input type="text" id="other_expense3" name="other_expense3_amount" placeholder="Expense 3 Amount"><br>
 	
 	
     <p>Total monthly expenses: <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" placeholder="Total Amount"></p>
@@ -746,12 +764,11 @@ function toggleMonthlyIncomeFields() {
     const monthlyIncomeFields = document.getElementById('monthlyIncomeFields');
     if (changingIncomeStatus === 'yes') {
         monthlyIncomeFields.style.display = 'block';
-		
-		
     } else {
         monthlyIncomeFields.style.display = 'none';
     }
 }
+
 
 function toggleIncomeFields() {
     const incomePayStatus = document.getElementById('IncomePayStatus').value;
@@ -793,6 +810,41 @@ function displayIncomeFields() {
         container.appendChild(document.createElement('br'));
     }
 }
+
+
+
+function toggleOtherExpenses() {
+    const hasExpenses = document.getElementById('hasOtherExpenses').value;
+    const expensesContainer = document.getElementById('otherExpensesContainer');
+    const expenseFields = document.getElementById('otherExpenseFields');
+    if (hasExpenses === 'yes') {
+        expensesContainer.style.display = 'block';
+    } else {
+        expensesContainer.style.display = 'none';
+        expenseFields.innerHTML = '';  // Clear the fields
+        expenseFields.style.display = 'none';
+    }
+}
+
+
+
+function displayOtherExpenseFields() {
+    const number = parseInt(document.getElementById('numberOfOtherExpenses').value, 10);
+    const container = document.getElementById('otherExpenseFields');
+    container.innerHTML = ''; // Clear existing fields
+
+    for (let i = 1; i <= number; i++) {
+        container.appendChild(createOtherExpenseField(i));
+    }
+    container.style.display = 'block';
+}
+
+function createOtherExpenseField(index) {
+    const div = document.createElement('div');
+    div.innerHTML = `<strong>Expense ${index}:</strong> <input type="text" id="other_expense${index}" name="other_expense${index}" placeholder="Expense ${index} Description"> <input type="text" id="other_expense${index}_amount" name="other_expense${index}_amount" placeholder="Amount">`;
+    return div;
+}
+
 
 
 

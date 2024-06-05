@@ -174,3 +174,144 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+" when the user submits the form the first time it works perfect but if they submit it again they get an alert saying "Error updating PDF: Failed to fetch" and the server gives this error:"PS C:\Users\ChaabaneA\3D Objects\My stuff\formwiz> node server.js
+Server is running on port 3000
+Field name: PetitionerCity[0]
+Field name: PetitionerState[0]
+Field name: PetitionerZip[0]
+Field name: case_number
+Field name: case_name
+Field name: superior_court_checkbox
+Field name: supreme_court_checkbox
+Field name: PetitionerName1[0]
+Field name: changing_income_checkbox
+Field name: monthly_income_source2
+Field name: monthly_income_source3
+Field name: monthly_income_source1_amount
+Field name: monthly_income_source2_amount
+Field name: monthly_income_source3_amount
+Field name: monthly_income_source4_amount
+Field name: monthly_income_total
+Field name: food_stamps
+Field name: supp_sec_inc
+Field name: ssp
+Field name: medical
+Field name: wic
+Field name: county_relief
+Field name: ihss
+Field name: capi
+Field name: unemployment
+Field name: calworks
+Field name: low_gross_income
+Field name: waive_all
+Field name: waive_some
+Field name: waive_within_6months
+Field name: lawyer_info
+Field name: current_date
+Field name: lawyercheckno
+Field name: lawyercheckyes
+Field name: employer_address
+Field name: pay_later
+Field name: previous_available
+Field name: PetitionerStrAddress[0]
+Field name: PetitionerTel[0]
+Field name: monthly_income_source1
+Field name: employer_name
+Field name: job
+Field name: not_enough
+Field name: monthly_income_source4
+Field name: dependency_name1
+Field name: dependency_name2
+Field name: dependency_name3
+Field name: dependency_name4
+Field name: dependency_age1
+Field name: dependency_age2
+Field name: dependency_age3
+Field name: dependency_age4
+Field name: dependency_relationship1
+Field name: dependency_relationship2
+Field name: dependency_relationship3
+Field name: dependency_relationship4
+Field name: dependency_income1
+Field name: dependency_income4
+Field name: dependency_income3
+Field name: dependency_income2
+Field name: dependency_income_total
+Field name: total_combined_income
+Field name: cash_amount
+Field name: bank_name1
+Field name: bank_name2
+Field name: bank_amount1
+Field name: bank_amount2
+Field name: bank_name3
+Field name: vehicle1_make_year
+Field name: vehicle2_make_year
+Field name: vehicle3_make_year
+Field name: vehicle1_market_value
+Field name: vehicle2_market_value
+Field name: bank_amount3
+Field name: vehicle2_amount_owed
+Field name: vehicle3_amount_owed
+Field name: vehicle1_amount_owed
+Field name: vehicle3_market_value
+Field name: real_estate1_address
+Field name: real_estate1_market_value
+Field name: real_estate1_amount_owed
+Field name: real_estate2_amount_owed
+Field name: real_estate2_address
+Field name: property1_description
+Field name: real_estate2_market_value
+Field name: property1_market_value
+Field name: property2_market_value
+Field name: property1_amount_owed
+Field name: property2_amount_owed
+Field name: property2_description
+Field name: payroll_description1
+Field name: payroll_description2
+Field name: payroll_description3
+Field name: payroll_description4
+Field name: payroll_deduction1
+Field name: payroll_deduction2
+Field name: payroll_deduction3
+Field name: payroll_deduction4
+Field name: rent_expense
+Field name: food_expense
+Field name: utilities_expense
+Field name: clothing_expense
+Field name: laundry_expense
+Field name: medical_expense
+Field name: insurance_expense
+Field name: school_childcare_expense
+Field name: support_expense
+Field name: transportation_expense
+Field name: installment_payment1
+Field name: installment_payment1_amount
+Field name: installment_payment2_amount
+Field name: installment_payment3_amount
+Field name: installment_payment2
+Field name: withheld_earnings
+Field name: installment_payment3
+Field name: other_expense1
+Field name: other_expense2
+Field name: other_expense3
+Field name: other_expense1_amount
+Field name: other_expense2_amount
+Field name: other_expense3_amount
+Field name: total_monthly_expenses
+C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\cjs\utils\validators.js:140
+    throw new TypeError(exports.createTypeErrorMsg(value, valueName, types));
+          ^
+
+TypeError: `pdf` must be of type `string` or `Uint8Array` or `ArrayBuffer`, but was actually of type `undefined`
+    at exports.assertIs (C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\cjs\utils\validators.js:140:11)
+    at Function.<anonymous> (C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\cjs\api\PDFDocument.js:122:33)
+    at step (C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\node_modules\tslib\tslib.js:141:27)
+    at Object.next (C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\node_modules\tslib\tslib.js:122:57)
+    at C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\node_modules\tslib\tslib.js:115:75
+    at new Promise (<anonymous>)
+    at Object.__awaiter (C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\node_modules\tslib\tslib.js:111:16)
+    at PDFDocument.load (C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\pdf-lib\cjs\api\PDFDocument.js:116:24)
+    at C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\server.js:107:36
+    at Layer.handle [as handle_request] (C:\Users\ChaabaneA\3D Objects\My stuff\formwiz\node_modules\express\lib\router\layer.js:95:5)
+
+Node.js v20.11.1
