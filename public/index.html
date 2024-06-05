@@ -600,23 +600,46 @@
 	
 	<br><br>
 	
+	
+	
+	
+	<div id="box">
+    <p><strong>Installment Payments:</strong></p>
+    <select id="hasInstallments" name="hasInstallments" required onchange="toggleInstallmentFields()">
+        <option value="" disabled selected>Do you have any installment payments?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="installmentNumberContainer" style="display:none;">
+        <select id="numberOfInstallments" name="numberOfInstallments" onchange="displayInstallmentFields()">
+            <option value="" disabled selected>Select number of payments</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div id="installmentFieldsContainer"></div>
+</div>
+
+
+
+
+
 <div id="box">
-	<p>Installment payments:</p>
-    <input type="text" id="installment_payment1" name="installment_payment1" placeholder="Payment 1">
-    <input type="text" id="installment_payment1_amount" name="installment_payment1_amount" placeholder="Payment 1 Amount"><br>
+    <p><strong>Wages/Earnings Withheld by Court Order:</strong></p>
+    <select id="hasWithheldEarnings" name="hasWithheldEarnings" required onchange="toggleWithheldEarningsField()">
+        <option value="" disabled selected>Select an option</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount" style="display:none;">
+</div>
+
+
+<div id="box">
 	
 	
-	
-	<input type="text" id="installment_payment2" name="installment_payment2" placeholder="Payment 2">
-	<input type="text" id="installment_payment2_amount" name="installment_payment2_amount" placeholder="Payment 2 Amount"><br>
-	
-	
-    <input type="text" id="installment_payment3" name="installment_payment3" placeholder="Payment 3">
-    <input type="text" id="installment_payment3_amount" name="installment_payment3_amount" placeholder="Payment 3 Amount"><br>
-	
-	
-	<p>Wages/earnings withheld by court order: <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount"></p>
-    <p>Other monthly expenses:</p>
+	<p>Other monthly expenses:</p>
 	
 	<input type="text" id="other_expense1" name="other_expense1" placeholder="Expense 1">
     <input type="text" id="other_expense1" name="other_expense1_amount" placeholder="Expense 1 Amount"><br>
@@ -804,6 +827,79 @@ function displayDependencyFields() {
 }
 
 function createDependencyInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+
+
+function toggleInstallmentFields() {
+    const hasInstallments = document.getElementById('hasInstallments').value;
+    const numberContainer = document.getElementById('installmentNumberContainer');
+    const fieldsContainer = document.getElementById('installmentFieldsContainer');
+
+    if (hasInstallments === 'yes') {
+        numberContainer.style.display = 'block';
+        fieldsContainer.innerHTML = '';  // Clear previous entries when switching from no to yes
+    } else {
+        numberContainer.style.display = 'none';
+        fieldsContainer.style.display = 'none';
+        fieldsContainer.innerHTML = '';  // Clear previous entries
+    }
+}
+
+function displayInstallmentFields() {
+    const numberElement = document.getElementById('numberOfInstallments');
+    const number = parseInt(numberElement.value, 10);
+    const container = document.getElementById('installmentFieldsContainer');
+    container.innerHTML = ''; // Clear existing fields before adding new ones
+
+    if (!isNaN(number) && number > 0) {
+        for (let i = 1; i <= number; i++) {
+            container.appendChild(createInput(`installment_payment${i}`, `Payment ${i}`));
+            container.appendChild(createInput(`installment_payment${i}_amount`, `Payment ${i} Amount`));
+            container.appendChild(document.createElement('br'));
+        }
+        container.style.display = 'block'; // Display the container
+    } else {
+        container.style.display = 'none'; // Hide the container if number is invalid or zero
+    }
+}
+
+
+
+function toggleWithheldEarningsField() {
+    var select = document.getElementById('hasWithheldEarnings');
+    var input = document.getElementById('withheld_earnings');
+    if (select.value === 'yes') {
+        input.style.display = 'inline-block';
+    } else {
+        input.style.display = 'none';
+        input.value = '';  // Clear the input when "No" is selected
+    }
+}
+
+
+
+function toggleField(fieldId) {
+    var checkbox = document.getElementById(fieldId + '_check');
+    var input = document.getElementById(fieldId);
+    if (checkbox.checked) {
+        input.style.display = 'inline-block';
+    } else {
+        input.style.display = 'none';
+        input.value = '';  // Clear the input when unchecked
+    }
+}
+
+
+function createInput(id, placeholder) {
     const input = document.createElement('input');
     input.type = 'text';
     input.id = id;
