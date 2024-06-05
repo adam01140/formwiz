@@ -521,7 +521,7 @@
             <option value="" disabled selected>Select number</option>
             <option value="1">1</option>
             <option value="2">2</option>
-            <option value="3">3</option>
+            
             <!-- Add more options if needed -->
         </select>
     </div>
@@ -531,33 +531,70 @@
 
 
 
+<div id="box">
+    <p><strong>Payroll Deductions:</strong></p>
+    <select id="hasPayrollDeductions" name="hasPayrollDeductions" required onchange="togglePayrollDeductionFields()">
+        <option value="" disabled selected>Do you have any payroll deductions?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="payrollDeductionsContainer" style="display:none;">
+        <p><strong>How many deductions?</strong></p>
+        <select id="numberOfPayrollDeductions" name="numberOfPayrollDeductions" required onchange="displayPayrollDeductionFields()">
+            <option value="" disabled selected>Select number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div id="payrollDeductionInfo" style="display:none;"></div>
+</div>
 
 
 <div id="box">
     <p><strong>Your Monthly Deductions and Expenses:</strong></p>
-    <p>Payroll Deductions:</p>
-    <input type="text" id="payroll_description1" name="payroll_description1" placeholder="Deduction Description 1">
-    <input type="text" id="payroll_deduction1" name="payroll_deduction1" placeholder="Deduction Amount 1"><br>
-    <input type="text" id="payroll_description2" name="payroll_description2" placeholder="Deduction Description 2">
-    <input type="text" id="payroll_deduction2" name="payroll_deduction2" placeholder="Deduction Amount 2"><br>
-    <input type="text" id="payroll_description3" name="payroll_description3" placeholder="Deduction Description 3">
-    <input type="text" id="payroll_deduction3" name="payroll_deduction3" placeholder="Deduction Amount 3"><br>
-    <input type="text" id="payroll_description4" name="payroll_description4" placeholder="Deduction Description 4">
-    <input type="text" id="payroll_deduction4" name="payroll_deduction4" placeholder="Deduction Amount 4"><br>
-	
-	
-    <p>Rent or house payment & maintenance: <input type="text" id="rent_expense" name="rent_expense" placeholder="Amount"></p>
-    <p>Food and household supplies: <input type="text" id="food_expense" name="food_expense" placeholder="Amount"></p>
-    <p>Utilities and telephone: <input type="text" id="utilities_expense" name="utilities_expense" placeholder="Amount"></p>
-    <p>Clothing: <input type="text" id="clothing_expense" name="clothing_expense" placeholder="Amount"></p>
-    <p>Laundry and cleaning: <input type="text" id="laundry_expense" name="laundry_expense" placeholder="Amount"></p>
-    <p>Medical and dental expenses: <input type="text" id="medical_expense" name="medical_expense" placeholder="Amount"></p>
-    <p>Insurance (life, health, accident, etc.): <input type="text" id="insurance_expense" name="insurance_expense" placeholder="Amount"></p>
-    <p>School, child care: <input type="text" id="school_childcare_expense" name="school_childcare_expense" placeholder="Amount"></p>
-    <p>Child, spousal support (another marriage): <input type="text" id="support_expense" name="support_expense" placeholder="Amount"></p>
-    <p>Transportation, gas, auto repair, and insurance: <input type="text" id="transportation_expense" name="transportation_expense" placeholder="Amount"></p>
-    
-	
+    <label class="checkbox-label">
+        <input type="checkbox" id="rent_expense_check" onchange="toggleField('rent_expense')"> Rent or house payment & maintenance:
+        <input type="text" id="rent_expense" name="rent_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="food_expense_check" onchange="toggleField('food_expense')"> Food and household supplies:
+        <input type="text" id="food_expense" name="food_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="utilities_expense_check" onchange="toggleField('utilities_expense')"> Utilities and telephone:
+        <input type="text" id="utilities_expense" name="utilities_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="clothing_expense_check" onchange="toggleField('clothing_expense')"> Clothing:
+        <input type="text" id="clothing_expense" name="clothing_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="laundry_expense_check" onchange="toggleField('laundry_expense')"> Laundry and cleaning:
+        <input type="text" id="laundry_expense" name="laundry_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="medical_expense_check" onchange="toggleField('medical_expense')"> Medical and dental expenses:
+        <input type="text" id="medical_expense" name="medical_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="insurance_expense_check" onchange="toggleField('insurance_expense')"> Insurance (life, health, accident, etc.):
+        <input type="text" id="insurance_expense" name="insurance_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="school_childcare_expense_check" onchange="toggleField('school_childcare_expense')"> School, child care:
+        <input type="text" id="school_childcare_expense" name="school_childcare_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="support_expense_check" onchange="toggleField('support_expense')"> Child, spousal support (another marriage):
+        <input type="text" id="support_expense" name="support_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <label class="checkbox-label">
+        <input type="checkbox" id="transportation_expense_check" onchange="toggleField('transportation_expense')"> Transportation, gas, auto repair, and insurance:
+        <input type="text" id="transportation_expense" name="transportation_expense" placeholder="Amount" style="display:none;">
+    </label>
+
 	<p>Installment payments:</p>
     <input type="text" id="installment_payment1" name="installment_payment1" placeholder="Payment 1">
     <input type="text" id="installment_payment1_amount" name="installment_payment1_amount" placeholder="Payment 1 Amount"><br>
@@ -949,7 +986,73 @@ function createInput(id, placeholder) {
 }
 
 
+
+function togglePayrollDeductionFields() {
+    const hasDeductions = document.getElementById('hasPayrollDeductions').value;
+    const deductionsContainer = document.getElementById('payrollDeductionsContainer');
+    const deductionsInfo = document.getElementById('payrollDeductionInfo');
+
+    if (hasDeductions === 'yes') {
+        deductionsContainer.style.display = 'block';
+    } else {
+        deductionsContainer.style.display = 'none';
+        deductionsInfo.innerHTML = ''; // Clear previous fields
+        deductionsInfo.style.display = 'none';
+    }
+}
+
+function displayPayrollDeductionFields() {
+    const number = parseInt(document.getElementById('numberOfPayrollDeductions').value, 10);
+    const container = document.getElementById('payrollDeductionInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        container.appendChild(document.createTextNode(`Deduction ${i}:`));
+        container.appendChild(createDeductionInput(`payroll_description${i}`, `Deduction Description ${i}`));
+        container.appendChild(createDeductionInput(`payroll_deduction${i}`, `Deduction Amount ${i}`));
+        container.appendChild(document.createElement('br'));
+    }
+}
+
+function createDeductionInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+function toggleField(fieldId) {
+    var checkbox = document.getElementById(fieldId + '_check');
+    var input = document.getElementById(fieldId);
+    if (checkbox.checked) {
+        input.style.display = 'inline-block';
+    } else {
+        input.style.display = 'none';
+        input.value = '0';  // Set the value to 0 if the checkbox is unchecked
+    }
+}
+
+
+
+
 async function editPDF() {
+
+
+toggleField('rent_expense');
+toggleField('food_expense');
+toggleField('utilities_expense');
+toggleField('clothing_expense');
+toggleField('laundry_expense');
+toggleField('medical_expense');
+toggleField('insurance_expense');
+toggleField('school_childcare_expense');
+toggleField('support_expense');
+toggleField('transportation_expense');
+
+
     if (!uploadedPdfFile) {
         alert('No PDF file is loaded for editing.');
         return;
