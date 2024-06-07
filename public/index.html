@@ -269,6 +269,7 @@
       <br>
             
 			<input type="text" id="job" name="job" placeholder="Job Title">
+			<br>
             <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer">
             <br>
  
@@ -295,7 +296,7 @@
         <div id="box">
         <p><strong>Is your gross monthly household income less than the amount listed: </strong></p>
         <center>
-        <img src="gross_monthy.JPG"  width="500" height="70">
+        <img src="gross_monthly.jpg"  width="780" height="100">
         <br><br>
         <select id="LowIncomeStatus" name="LowIncomeStatus" required>
             <option value="" disabled selected>Select an option</option>
@@ -430,6 +431,7 @@
             <option value="4">4</option>
         </select>
     </div>
+	<br>
     <div id="dependencyInfo" style="display:none;"></div>
 </div>
 
@@ -447,15 +449,19 @@
 <div id="box">
     <p><strong>Financial Accounts:</strong></p>
 	
-	<p>Cash: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount of Cash"></p>
+	<p>Cash Savings: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount"></p>
+	
+	
+	<p><strong>Do you have a bank account?</strong></p>
 	
     <select id="hasBankAccount" name="hasBankAccount" required onchange="toggleBankAccountFields()">
-        <option value="" disabled selected>Do you have a bank account?</option>
+        <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
     <div id="bankAccountFieldsContainer" style="display:none;">
         <p><strong>How many accounts?</strong></p>
+		
         <select id="numberOfBankAccounts" name="numberOfBankAccounts" required onchange="displayBankAccountFields()">
             <option value="" disabled selected>Select number</option>
             <option value="1">1</option>
@@ -463,6 +469,7 @@
             <option value="3">3</option>
         </select>
     </div>
+	<br>
     <div id="bankAccountInfo" style="display:none;"></div>
 </div>
 
@@ -470,9 +477,9 @@
 
 
 <div id="box">
-    <p><strong>Cars, boats, and other vehicles:</strong></p>
+    <p><strong>Do you own any cars, boats, and other vehicles:</strong></p>
     <select id="hasVehicles" name="hasVehicles" required onchange="toggleVehicleFields()">
-        <option value="" disabled selected>Do you own any vehicles?</option>
+        <option value="" disabled selected>Select?</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
@@ -485,6 +492,7 @@
             <option value="3">3</option>
         </select>
     </div>
+	<br>
     <div id="vehicleInfo" style="display:none;"></div>
 </div>
 
@@ -495,9 +503,9 @@
 
 
 <div id="box">
-    <p><strong>Real Estate:</strong></p>
+    <p><strong>Do you own any real estate:</strong></p>
     <select id="hasRealEstate" name="hasRealEstate" required onchange="toggleRealEstateFields()">
-        <option value="" disabled selected>Do you own any real estate?</option>
+        <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
@@ -509,6 +517,8 @@
             <option value="2">2</option>
         </select>
     </div>
+	<br>
+	
     <div id="realEstateInfo" style="display:none;"></div>
 </div>
 
@@ -517,9 +527,9 @@
 <br><br>
 
 <div id="box">
-    <p><strong>Other Personal Property:</strong></p>
+    <p><strong>Do you own any other personal property?</strong></p>
     <select id="hasPersonalProperty" name="hasPersonalProperty" required onchange="togglePersonalPropertyFields()">
-        <option value="" disabled selected>Do you own any other personal property?</option>
+        <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
@@ -533,6 +543,7 @@
             <!-- Add more options if needed -->
         </select>
     </div>
+	<br>
     <div id="personalPropertyInfo" style="display:none;"></div>
 </div>
 
@@ -540,9 +551,9 @@
 
 
 <div id="box">
-    <p><strong>Payroll Deductions:</strong></p>
+    <p><strong>Do you have any payroll deductions?</strong></p>
     <select id="hasPayrollDeductions" name="hasPayrollDeductions" required onchange="togglePayrollDeductionFields()">
-        <option value="" disabled selected>Do you have any payroll deductions?</option>
+        <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
@@ -556,12 +567,14 @@
             <option value="4">4</option>
         </select>
     </div>
+	<br>
     <div id="payrollDeductionInfo" style="display:none;"></div>
 </div>
 
 
 <div id="box">
     <p><strong>Your Monthly Deductions and Expenses:</strong></p>
+
     <label class="checkbox-label">
         <input type="checkbox" id="rent_expense_check" onchange="toggleField('rent_expense')"> Rent or house payment & maintenance:
         <input type="text" id="rent_expense" name="rent_expense" placeholder="Amount" style="display:none;">
@@ -612,13 +625,15 @@
 	
 	
 	<div id="box">
-    <p><strong>Installment Payments:</strong></p>
+    <p><strong>Do you have any installment payments?</strong></p>
     <select id="hasInstallments" name="hasInstallments" required onchange="toggleInstallmentFields()">
-        <option value="" disabled selected>Do you have any installment payments?</option>
+        <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	
     <div id="installmentNumberContainer" style="display:none;">
+	<br>
         <select id="numberOfInstallments" name="numberOfInstallments" onchange="displayInstallmentFields()">
             <option value="" disabled selected>Select number of payments</option>
             <option value="1">1</option>
@@ -626,6 +641,7 @@
             <option value="3">3</option>
         </select>
     </div>
+	<br>
     <div id="installmentFieldsContainer"></div>
 </div>
 
@@ -634,12 +650,13 @@
 
 
 <div id="box">
-    <p><strong>Wages/Earnings Withheld by Court Order:</strong></p>
+    <p><strong>Do you have any wages/earnings withheld by the court:</strong></p>
     <select id="hasWithheldEarnings" name="hasWithheldEarnings" required onchange="toggleWithheldEarningsField()">
         <option value="" disabled selected>Select an option</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	<br>
     <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount" style="display:none;">
 </div>
 
@@ -649,20 +666,24 @@
 
 
 <div id="box">
-    <p><strong>Other Monthly Expenses:</strong></p>
+    <p><strong>Do you have any other monthly expenses?</strong></p>
     <select id="hasOtherExpenses" name="hasOtherExpenses" required onchange="toggleOtherExpenses()">
         <option value="" disabled selected>Select an option</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
     <div id="otherExpensesContainer" style="display:none;">
+	<br>
+	
+		<p><strong>How many other monthly expenses?</strong></p>
         <select id="numberOfOtherExpenses" name="numberOfOtherExpenses" required onchange="displayOtherExpenseFields()">
-            <option value="" disabled selected>Select number of expenses</option>
+            <option value="" disabled selected>Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
     </div>
+	<br>
     <div id="otherExpenseFields"></div>
 </div>
 
@@ -845,7 +866,7 @@ function displayOtherExpenseFields() {
 
 function createOtherExpenseField(index) {
     const div = document.createElement('div');
-    div.innerHTML = `<strong>Expense ${index}:</strong> <input type="text" id="other_expense${index}" name="other_expense${index}" placeholder="Expense ${index} Description"> <input type="text" id="other_expense${index}_amount" name="other_expense${index}_amount" placeholder="Amount">`;
+    div.innerHTML = `<strong></strong> <input type="text" id="other_expense${index}" name="other_expense${index}" placeholder="Expense Description"> <input type="text" id="other_expense${index}_amount" name="other_expense${index}_amount" placeholder="Amount">`;
     return div;
 }
 
@@ -918,8 +939,8 @@ function displayInstallmentFields() {
 
     if (!isNaN(number) && number > 0) {
         for (let i = 1; i <= number; i++) {
-            container.appendChild(createInput(`installment_payment${i}`, `Payment ${i}`));
-            container.appendChild(createInput(`installment_payment${i}_amount`, `Payment ${i} Amount`));
+            container.appendChild(createInput(`installment_payment${i}`, `Payment`));
+            container.appendChild(createInput(`installment_payment${i}_amount`, `Payment Amount`));
             container.appendChild(document.createElement('br'));
         }
         container.style.display = 'block'; // Display the container
@@ -989,7 +1010,7 @@ function displayBankAccountFields() {
     container.style.display = 'block';
 
     for (let i = 1; i <= number; i++) {
-        container.appendChild(document.createTextNode(`Bank Account ${i}:`));
+        container.appendChild(document.createTextNode(``));
         container.appendChild(createBankAccountInput(`bank_name${i}`, 'Bank Name'));
         container.appendChild(createBankAccountInput(`bank_amount${i}`, 'Amount'));
         container.appendChild(document.createElement('br'));
@@ -1038,7 +1059,7 @@ function displayVehicleFields() {
 
     for (let i = 1; i <= number; i++) {
         const vehicleDiv = document.createElement('div');
-        vehicleDiv.appendChild(document.createTextNode(`Vehicle ${i}:`));
+        vehicleDiv.appendChild(document.createTextNode(``));
         vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_make_year`, 'Make / Year'));
         vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_market_value`, 'Fair Market Value'));
         vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_amount_owed`, 'Amount Owed'));
@@ -1082,7 +1103,7 @@ function displayRealEstateFields() {
 
     for (let i = 1; i <= number; i++) {
         const propertyDiv = document.createElement('div');
-        propertyDiv.appendChild(document.createTextNode(`Property ${i}:`));
+        propertyDiv.appendChild(document.createTextNode(``));
         propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_address`, 'Address'));
         propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_market_value`, 'Fair Market Value'));
         propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_amount_owed`, 'Amount Owed'));
@@ -1125,7 +1146,7 @@ function displayPersonalPropertyFields() {
 
     for (let i = 1; i <= number; i++) {
         const propertyDiv = document.createElement('div');
-        propertyDiv.appendChild(document.createTextNode(`Item ${i}:`));
+        propertyDiv.appendChild(document.createTextNode(``));
         propertyDiv.appendChild(createInput(`property${i}_description`, 'Description'));
         propertyDiv.appendChild(createInput(`property${i}_market_value`, 'Fair Market Value'));
         propertyDiv.appendChild(createInput(`property${i}_amount_owed`, 'Amount Owed'));
@@ -1166,9 +1187,9 @@ function displayPayrollDeductionFields() {
     container.style.display = 'block';
 
     for (let i = 1; i <= number; i++) {
-        container.appendChild(document.createTextNode(`Deduction ${i}:`));
-        container.appendChild(createDeductionInput(`payroll_description${i}`, `Deduction Description ${i}`));
-        container.appendChild(createDeductionInput(`payroll_deduction${i}`, `Deduction Amount ${i}`));
+        container.appendChild(document.createTextNode(``));
+        container.appendChild(createDeductionInput(`payroll_description${i}`, `Deduction Description`));
+        container.appendChild(createDeductionInput(`payroll_deduction${i}`, `Deduction Amount`));
         container.appendChild(document.createElement('br'));
     }
 }
