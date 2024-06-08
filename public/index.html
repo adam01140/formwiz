@@ -691,11 +691,11 @@
 
 
 
-<div id="box">
+<div id="box" style = "display:none">
 	
 	
 	
-    <p>Total monthly expenses: <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" placeholder="Total Amount"></p>
+    <p>Total monthly expenses: <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" placeholder="Total Amount" ></p>
 </div>
 
 
@@ -767,7 +767,7 @@ function loadDefaultPDF() {
         })
         .catch(error => {
             console.error('Error loading default PDF:', error);
-            alert('Error loading default PDF: ' + error.message);
+           // alert('Error loading default PDF: ' + error.message);
         });
 }
 
@@ -1283,10 +1283,10 @@ toggleField('transportation_expense');
             body: JSON.stringify({ name, email }),
         });
         const result = await response.text();
-        alert(result);
+        //alert(result);
     } catch (error) {
         console.error('Error:', error);
-        alert('Failed to add user');
+       // alert('Failed to add user');
     }
 
     
@@ -1297,7 +1297,7 @@ toggleField('transportation_expense');
 	formData = new FormData(); // Reset formData for fresh use each time the function is called.
 
     if (!uploadedPdfFile) {
-        alert('No PDF file is loaded for editing. Please upload the file again.');
+        //alert('No PDF file is loaded for editing. Please upload the file again.');
         return;
     }
 
@@ -1410,7 +1410,7 @@ toggleField('transportation_expense');
     })
     .catch(error => {
         console.error('Error updating PDF:', error);
-        alert('Error updating PDF: ' + error.message);
+        //alert('Error updating PDF: ' + error.message);
     });
 }
 
