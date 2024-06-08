@@ -447,10 +447,19 @@
 
 
 <div id="box">
-    <p><strong>Financial Accounts:</strong></p>
-	
-	<p>Cash Savings: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount"></p>
-	
+
+    <p><strong>Do you have any cash savings?</strong></p>
+    <select id="hasCashSavings" name="hasCashSavings" required onchange="toggleCashSavings()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="cashSavingsContainer" style="display:none;">
+        <p>Cash Savings: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount"></p>
+    </div>
+
+
+
 	
 	<p><strong>Do you have a bank account?</strong></p>
 	
@@ -732,6 +741,16 @@ function toggleJobFields() {
 }
 
 
+function toggleCashSavings() {
+    var hasCash = document.getElementById('hasCashSavings').value;
+    var container = document.getElementById('cashSavingsContainer');
+    if (hasCash === 'yes') {
+        container.style.display = 'block';
+    } else {
+        container.style.display = 'none';
+        document.getElementById('cash_amount').value = ''; // Clear the input
+    }
+}
 
 
 function togglePreviousRequestFields() {
@@ -1215,6 +1234,51 @@ function toggleField(fieldId) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//edit pdf code
 async function editPDF() {
     
 	toggleField('rent_expense');
