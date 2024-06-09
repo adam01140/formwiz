@@ -832,9 +832,9 @@ function toggleIncomeFields() {
 function calculateTotalExpenses() {
     let total = 0;
     const expenseFields = [
-        'rent_expense', 'food_expense', 'utilities_expense', 'clothing_expense', 'laundry_expense', 
-        'medical_expense', 'insurance_expense', 'school_childcare_expense', 'support_expense', 
-        'transportation_expense', 'withheld_earnings'
+        'rent_expense', 'food_expense', 'utilities_expense', 'clothing_expense', 'laundry_expense',
+        'medical_expense', 'insurance_expense', 'school_childcare_expense', 'support_expense',
+        'transportation_expense'
     ];
 
     // Sum up all expenses from checkboxes if they are checked
@@ -848,6 +848,22 @@ function calculateTotalExpenses() {
     const numberOfInstallments = parseInt(document.getElementById('numberOfInstallments').value || 0);
     for (let i = 1; i <= numberOfInstallments; i++) {
         total += parseFloat(document.getElementById(`installment_payment${i}_amount`).value) || 0;
+    }
+
+    // Include payroll deductions if any
+    const numberOfPayrollDeductions = parseInt(document.getElementById('numberOfPayrollDeductions').value || 0);
+    for (let i = 1; i <= numberOfPayrollDeductions; i++) {
+        total += parseFloat(document.getElementById(`payroll_deduction${i}`).value) || 0;
+    }
+
+    // Include withheld earnings if specified
+    const withheldEarnings = parseFloat(document.getElementById('withheld_earnings').value) || 0;
+    total += withheldEarnings;
+
+    // Include other monthly expenses if any
+    const numberOfOtherExpenses = parseInt(document.getElementById('numberOfOtherExpenses').value || 0);
+    for (let i = 1; i <= numberOfOtherExpenses; i++) {
+        total += parseFloat(document.getElementById(`other_expense${i}_amount`).value) || 0;
     }
 
     // Update the total monthly expenses input
