@@ -766,7 +766,7 @@
 
 
 <div id = "navigation">
-    <button class="next-button" onclick="showPrevious()">← Previous</button>
+    <button id = "previous" style = "display:none" class="next-button" onclick="showPrevious()">← Previous</button>
     <button class="next-button" onclick="showNext()">Next →</button>
 	<br>
 	<br>
@@ -784,12 +784,17 @@
 var currentQuestionIndex = 1; // Start from the first question
 
 function showNext() {
+
+document.getElementById('previous').style.display = 'inline';
+
             var currentDiv = document.getElementById('question' + currentQuestionIndex);
             var nextDiv = document.getElementById('question' + (currentQuestionIndex + 1));
             if (nextDiv) {
                 currentDiv.style.display = 'none'; // Hide current div
                 nextDiv.style.display = 'block'; // Show next div
                 currentQuestionIndex++;
+				
+				
                 if (currentQuestionIndex === 19) {
                     document.getElementById('navigation').style.display = 'none';
 					document.getElementById('pdfPreview').style.display = 'block';
@@ -801,6 +806,15 @@ function showNext() {
         }
 
 function showPrevious() {
+
+
+
+if (currentQuestionIndex === 2) {
+	document.getElementById('previous').style.display = 'none';
+
+}
+				
+				
     if (currentQuestionIndex > 1) {
         var currentDiv = document.getElementById('question' + currentQuestionIndex);
         var prevDiv = document.getElementById('question' + (currentQuestionIndex - 1));
