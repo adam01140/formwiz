@@ -78,7 +78,7 @@
         padding: 20px;
         margin: 10px;
         background-color: #ffffff;
-        width: 90%;
+        width: 950px;
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
@@ -95,9 +95,6 @@
         overflow-y: auto;
         overflow-x: hidden;
     }
-	
-	
-
     
     #box {
         border: 4px solid lightblue;
@@ -105,21 +102,8 @@
         padding: 20px;
         margin: 10px;
         background-color: #ffffff;
-        width: 90%;
+        
         height: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-	
-	
-	#whole {
-        border: 4px solid lightblue;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        background-color: #ffffff;
-        width: 950px;
-        height: 650px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -203,24 +187,19 @@
 <center>
 
 
+<div id="whole">
 
 
-
-
-
-
-
-   
- <div id="whole">
-
-
-
- <div style="line-height: 0.4;">
+<div id="questions">
 <h1>Waive Court Fees Form</h1>
 <h3> Offered by <i> Form Wiz </i></h3>
 </div>
 
-<br>
+
+<div id="questions">
+    <div id="questions1">
+        <h1></h1>
+        
 		<input type="text" id="current_date" name="current_date" style = "display:none">
         <input type="text" id="dependency_income_total" name="dependency_income_total" style="display:none;">
 		<input type="text" id="total_combined_income" name="total_combined_income" style="display:none;">
@@ -228,10 +207,11 @@
         
        <div id="question1" class="questionBox">
         <div id="box" style="line-height: 0.4;" >
+		
         <form id="userForm">
             <p><strong>What's your full name?</strong></p>
             <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
-            <br><br>
+            <br><br><br>
             <p><strong>What's your email?</strong></p>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
         </form><br>
@@ -250,12 +230,12 @@
 
 		</div>
 		</div>
-     
+        <br><br>
         
 		
 		
-		<div id="question2" style = "display:none">
-        <div id="box">
+		<div id="question2" style = "display:none"
+        <div id="box" >
         <p><strong>Do you have a lawyer?</strong></p>
 		
 		
@@ -293,12 +273,12 @@
         </div>
         </div>
 		</div>
-     
+        <br><br>
         
 		
 		
 		
-		<div id="question3" style = "display:none">
+		<div id="question3" style = "display:none"
         <div id="box">
         <p><strong>Do you have a job?</strong></p>
         <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
@@ -319,11 +299,12 @@
         </div>
         </div>
         </div>
-     
+        <br><br>
+        
 		
 		
 		
-		<div id="question4" style = "display:none">
+		<div id="question4" style = "display:none"
         <div id="box">
         <p><strong>What court fees would you like waived?</strong></p>
         <select id="CourtType" name="CourtType" required>
@@ -335,13 +316,15 @@
         </select>
         </div>
         </div>
-       
+        <br><br>
+        
 		
-		<div id="question5" style = "display:none">
+		
+		<div id="question5" style = "display:none"
         <div id="box">
         <p><strong>Is your gross monthly household income less than the amount listed: </strong></p>
         <center>
-        <img src="gross_monthly.jpg"  width="750" height="80">
+        <img src="gross_monthly.jpg"  width="780" height="100">
         <br><br>
         <select id="LowIncomeStatus" name="LowIncomeStatus" required>
             <option value="" disabled selected>Select</option>
@@ -350,11 +333,13 @@
         </select>
         </div>
         </div>
-      
+        <br><br>
+        
 		
 		
 		
-		<div id="question6" style = "display:none">
+		
+		<div id="question6" style = "display:none"
         <div id="box">
         <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
         <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
@@ -374,10 +359,11 @@
         </div>
         </div>
         </div>
-     
+        <br><br>
+        
 		
 		
-		<div id="question7" style = "display:none">
+		<div id="question7" style = "display:none"
         <div id="box">
         <p><strong>Have you asked the court to waive your court fees for this case in the last six months?</strong></p>
         <select id="WaiveWithin6Months" name="WaiveWithin6Months" required onchange="togglePreviousRequestFields()">
@@ -396,11 +382,11 @@
         </div>
         </div>
         </div>
-       
+        <br><br>
 		
 		
 		
-        <div id="question8" style = "display:none">
+        <div id="question8" style = "display:none"
         <div id="box">
         <p><strong>Does your income change a lot from month to month?</strong></p>
         <select id="ChangingIncomeStatus" name="ChangingIncomeStatus" required onchange="toggleMonthlyIncomeFields()">
@@ -414,10 +400,12 @@
 		</div>
         </div>
         </div>
-     
+        <br><br>
+        <center>
 		
 		
-		<div id="question9" style = "display:none">
+		
+		<div id="question9" style = "display:none"
 		<div id="box">
     <p><strong>How many sources of income do you have?</strong></p>
     <select id="numberOfIncomeSources" name="numberOfIncomeSources" required onchange="displayIncomeFields()">
@@ -433,7 +421,7 @@
 	</div>
 		
 		
-        <div id="question9" style = "display:none">
+        <div id="question9" style = "display:none"
         <div id="box">
         <div id="questions2">
         <p><strong>Do you receive any of these benifits:</strong></p>
@@ -461,7 +449,7 @@
 
 
 
-<div id="question10" style = "display:none">
+<div id="question10" style = "display:none"
 <div id="box">
     <p><strong>Do you have anybody else living in your home?</strong></p>
     <select id="hasDependents" name="hasDependents" required onchange="toggleDependencyFields()">
@@ -484,12 +472,12 @@
 </div>
 </div>
 </div>
+<br><br>
 
 
 
 
-
-<div id="question11" style = "display:none">
+<div id="question11" style = "display:none"
 <div id="box">
 
     <p><strong>Do you have any cash savings?</strong></p>
@@ -531,7 +519,7 @@
 
 
 
-<div id="question12" style = "display:none">
+<div id="question12" style = "display:none"
 <div id="box">
     <p><strong>Do you own any cars, boats, and other vehicles:</strong></p>
     <select id="hasVehicles" name="hasVehicles" required onchange="toggleVehicleFields()">
@@ -552,11 +540,12 @@
     <div id="vehicleInfo" style="display:none;"></div>
 </div>
 </div>
+<br><br>
 
 
 
 
-<div id="question13" style = "display:none">
+<div id="question13" style = "display:none"
 <div id="box">
     <p><strong>Do you own any real estate:</strong></p>
     <select id="hasRealEstate" name="hasRealEstate" required onchange="toggleRealEstateFields()">
@@ -577,12 +566,13 @@
     <div id="realEstateInfo" style="display:none;"></div>
 </div>
 </div>
+<br><br>
 
 
 
 
 
-<div id="question14" style = "display:none">
+<div id="question14" style = "display:none"
 <div id="box">
     <p><strong>Do you own any other personal property?</strong></p>
     <select id="hasPersonalProperty" name="hasPersonalProperty" required onchange="togglePersonalPropertyFields()">
@@ -608,7 +598,7 @@
 
 
 
-<div id="question15" style = "display:none">
+<div id="question15" style = "display:none"
 <div id="box">
     <p><strong>Do you have any payroll deductions?</strong></p>
     <select id="hasPayrollDeductions" name="hasPayrollDeductions" required onchange="togglePayrollDeductionFields()">
@@ -633,7 +623,7 @@
 
 
 
-<div id="question16" style = "display:none">
+<div id="question16" style = "display:none"
 
 <div id="box">
     <p><strong>Your Monthly Deductions and Expenses:</strong></p>
@@ -682,10 +672,11 @@
 	
 	</div>
 	</div>
-
+	<br><br>
 	
 	
-	<div id="question17" style = "display:none">
+	
+	<div id="question17" style = "display:none"
 	<div id="box">
     <p><strong>Do you have any installment payments?</strong></p>
     <select id="hasInstallments" name="hasInstallments" required onchange="toggleInstallmentFields()">
@@ -710,7 +701,7 @@
 
 
 
-<div id="question17" style = "display:none">
+<div id="question17" style = "display:none"
 <div id="box">
     <p><strong>Do you have any wages/earnings withheld by the court:</strong></p>
     <select id="hasWithheldEarnings" name="hasWithheldEarnings" required onchange="toggleWithheldEarningsField()">
@@ -726,7 +717,7 @@
 
 
 
-<div id="question18" style = "display:none">
+<div id="question18" style = "display:none"
 <div id="box">
     <p><strong>Do you have any other monthly expenses?</strong></p>
     <select id="hasOtherExpenses" name="hasOtherExpenses" required onchange="toggleOtherExpenses()">
@@ -752,17 +743,12 @@
 
 
 
-		
+		<button class="next-button" onclick="goToNext()">Next</button>
+        <button class="next-button" type="button" onclick="editPDF()">Complete Form</button>
    
-<button class="next-button" onclick="goToNext()">Next</button>
-<br>
-
-<button class="next-button" type="button" onclick="editPDF()" style = "display:none">Complete Form</button>
-
-
-    
+        
 </div>
-
+</div>
 
 
 
@@ -780,10 +766,6 @@
 
 
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-
-
-		
-		
 <script>
 
 
@@ -882,7 +864,7 @@ function loadDefaultPDF() {
         .then(response => response.blob())
         .then(blob => {
             uploadedPdfFile = blob;
-            //displayPDF(blob);
+            displayPDF(blob);
         })
         .catch(error => {
             console.error('Error loading default PDF:', error);
@@ -1646,16 +1628,10 @@ window.onload = function() {
     setCurrentDate();
 };
 </script>
-
-
-
 <div id="pdfPreview" style="display:none;">
-    <iframe id="pdfFrame" style="display:none;"></iframe>
+    <iframe id="pdfFrame"></iframe>
 </div>
-
-
-
-
+</div>
 </center>
 </body>
 </html>
