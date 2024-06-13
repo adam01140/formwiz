@@ -78,7 +78,7 @@
         padding: 20px;
         margin: 10px;
         background-color: #ffffff;
-        width: 90%;
+        width: 950px;
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
@@ -95,9 +95,6 @@
         overflow-y: auto;
         overflow-x: hidden;
     }
-	
-	
-
     
     #box {
         border: 4px solid lightblue;
@@ -105,21 +102,8 @@
         padding: 20px;
         margin: 10px;
         background-color: #ffffff;
-        width: 90%;
+        
         height: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-	
-	
-	#whole {
-        border: 4px solid lightblue;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        background-color: #ffffff;
-        width: 950px;
-        height: 650px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -197,42 +181,25 @@
         margin: 0 auto;
         
     }
-	
-	
-	
-
-
-
 </style>
 </head>
 <body>
 <center>
-
-
-
-
-
-
-
-
-
-   
- <div id="whole">
-
-
-
- <div style="line-height: 0.4;">
+<div id="whole">
 <h1>Waive Court Fees Form</h1>
-<h3> Offered by <i> Form Wiz </i></h3>
-</div>
-
-<br>
+<div id="questions">
+    
+	
+	
+	<div id="questions1">
+        <h1></h1>
+        
 		<input type="text" id="current_date" name="current_date" style = "display:none">
         <input type="text" id="dependency_income_total" name="dependency_income_total" style="display:none;">
 		<input type="text" id="total_combined_income" name="total_combined_income" style="display:none;">
     
         
-       <div id="question1" class="questionBox">
+        <div id="question1" class="questionBox">
         <div id="box" style="line-height: 0.4;" >
         <form id="userForm">
             <p><strong>What's your full name?</strong></p>
@@ -256,8 +223,9 @@
 
 		</div>
 		</div>
-     
-        
+		
+		
+       
 		
 		
 		<div id="question2" style = "display:none">
@@ -298,13 +266,13 @@
             </select>
         </div>
         </div>
-		</div>
+        </div>
+		
      
-        
 		
 		
 		
-		<div id="question3" style = "display:none">
+       <div id="question3" style = "display:none">
         <div id="box">
         <p><strong>Do you have a job?</strong></p>
         <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
@@ -325,11 +293,10 @@
         </div>
         </div>
         </div>
-     
 		
 		
-		
-		<div id="question4" style = "display:none">
+ 
+        <div id="question4" style = "display:none">
         <div id="box">
         <p><strong>What court fees would you like waived?</strong></p>
         <select id="CourtType" name="CourtType" required>
@@ -342,6 +309,9 @@
         </div>
         </div>
        
+	   
+	   
+	   
 		
 		<div id="question5" style = "display:none">
         <div id="box">
@@ -357,10 +327,8 @@
         </div>
         </div>
       
-		
-		
-		
-		<div id="question6" style = "display:none">
+        
+       <div id="question6" style = "display:none">
         <div id="box">
         <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
         <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
@@ -457,6 +425,11 @@
         </div>
         </div>
 		</div>
+
+		
+		
+        
+      
 		
 		
 		
@@ -730,8 +703,6 @@
 </div>
 
 
-
-
 <div id="question18" style = "display:none">
 <div id="box">
     <p><strong>Do you have any other monthly expenses?</strong></p>
@@ -768,47 +739,35 @@
 
 
 
-		
-<div id = "navigation" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center;">
-    <button class="next-button" onclick="showPrevious()">← Previous</button>
-    <button class="next-button" onclick="showNext()">Next →</button>
-	<br>
-	<br>
-</div>
-
-
-
-
-
-
-
-    
-</div>
-
-
-
-
-
-
-
-
 
 <div id="box" style = "display:none">
+	
+	
+	
     <p>Total monthly expenses: <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" placeholder="Total Amount" ></p>
 </div>
 
 
 
 
-
+<div id = "navigation" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center;">
+    <button class="next-button" onclick="showPrevious()">← Previous</button>
+    <button class="next-button" onclick="showNext()">Next →</button>
+	<br>
+	 <button class="next-button" type="button" onclick="editPDF()">Download From</button>
+	<br>
+</div>
+        
+   
+        
+    </div>
+</div>
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-
-
-		
-		
 <script>
 
 
+
+var currentQuestionIndex = 1; // Start from the first question
 
 function showNext() {
             var currentDiv = document.getElementById('question' + currentQuestionIndex);
@@ -838,39 +797,6 @@ function showPrevious() {
         }
     }
 }
-
-
-
-
-var currentQuestionIndex = 1; // Start from the first question
-
-function goToNext() {
-    var currentDiv = document.getElementById('question' + currentQuestionIndex);
-    var nextDiv = document.getElementById('question' + (currentQuestionIndex + 1));
-
-    if (!nextDiv) {
-        console.error('Next div not found, possibly the last question.');
-        return; // Optional: Handle the last question case
-    }
-
-    if (currentDiv) {
-        currentDiv.style.display = 'none'; // Hide current div
-    }
-    nextDiv.style.display = 'block'; // Show next div
-    currentQuestionIndex++; // Increment to the next index
-}
-
-window.onload = function() {
-    // Initially show only the first question
-    document.getElementById('question1').style.display = 'block';
-    for (var i = 2; i <= 18; i++) { // Assuming you have 18 questions as per your provided code
-        var elem = document.getElementById('question' + i);
-        if (elem) {
-            elem.style.display = 'none';
-        }
-    }
-};
-
 
 
 let uploadedPdfFile = null;
@@ -1701,16 +1627,10 @@ window.onload = function() {
     setCurrentDate();
 };
 </script>
-
-
-
 <div id="pdfPreview" style="display:none;">
-    <iframe id="pdfFrame""></iframe>
+    <iframe id="pdfFrame"></iframe>
 </div>
-
-
-
-
+</div>
 </center>
 </body>
 </html>
