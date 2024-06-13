@@ -73,16 +73,24 @@
     }
 
     #questions {
-        border: 4px solid lightblue;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
-        background-color: #ffffff;
-        width: 950px;
-        height: 650px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
+    position: relative; /* Add this line */
+    border: 4px solid lightblue;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #ffffff;
+    width: 950px;
+    height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#navigation {
+    position: absolute; /* Updated from sticky to absolute */
+    bottom: 10px; /* Adjust this value as needed to align correctly */
+    width: 100%; /* Ensure it spans the entire width of the #questions div */
+}
+
     
     #questions2 {
         border: 4px solid white;
@@ -174,22 +182,7 @@
     }
 	
 	
-	#navigation {
 	
-	position: sticky;
-	bottom: 0%; /* Stick to the bottom */
-	display: flex;
-    justify-content: center; /* Center horizontally */
-    
-    
-	
-	height: 100%; /* Take full viewport height */
-    margin: 0;
-    padding: 0;
-     /* Change from fixed to sticky */
-   
-        
-    }
 
     .checkbox-label {
 	
