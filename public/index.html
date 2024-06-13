@@ -797,8 +797,8 @@ document.getElementById('previous').style.display = 'inline';
 				
                 if (currentQuestionIndex === 19) {
                     document.getElementById('navigation').style.display = 'none';
-					document.getElementById('pdfPreview').style.display = 'block';
-					document.getElementById('pdfFrame').style.display = 'block';
+					//document.getElementById('pdfPreview').style.display = 'block';
+					//document.getElementById('pdfFrame').style.display = 'block';
 					
 					// Hide navigation on question 19
                 }
@@ -902,7 +902,7 @@ function loadDefaultPDF() {
 function displayPDF(pdfBlob) {
     var url = URL.createObjectURL(pdfBlob);
     document.getElementById('pdfFrame').src = url;
-    document.getElementById('pdfPreview').style.display = 'block';
+    //document.getElementById('pdfPreview').style.display = 'block';
 }
 
 
@@ -1628,7 +1628,7 @@ toggleField('transportation_expense');
     .then(blob => {
         var url = window.URL.createObjectURL(blob);
         document.getElementById('pdfFrame').src = url;
-        document.getElementById('pdfPreview').style.display = 'block';
+        //document.getElementById('pdfPreview').style.display = 'block';
         downloadPDF();
     })
     .catch(error => {
@@ -1656,7 +1656,7 @@ window.onload = function() {
 };
 </script>
 <div id="pdfPreview" style="display:none;">
-    <iframe id="pdfFrame"></iframe>
+    <iframe id="pdfFrame" style = "display:none"></iframe>
 </div>
 </div>
 </center>
