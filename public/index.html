@@ -197,6 +197,12 @@
         margin: 0 auto;
         
     }
+	
+	
+	
+
+
+
 </style>
 </head>
 <body>
@@ -752,12 +758,28 @@
 
 
 
-		
-   
-<button class="next-button" onclick="goToNext()">Next</button>
-<br>
 
-<button class="next-button" type="button" onclick="editPDF()" style = "display:none">Complete Form</button>
+<div id="question19" style = "display:none">
+<div id="box">
+    <p><strong>You're all done!</strong></p>
+    <button class="next-button" type="button" onclick="editPDF()">Download From</button>
+</div>
+</div>
+
+
+
+		
+<div id = "navigation" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center;">
+    <button class="next-button" onclick="showPrevious()">← Previous</button>
+    <button class="next-button" onclick="showNext()">Next →</button>
+	<br>
+	<br>
+</div>
+
+
+
+
+
 
 
     
@@ -785,6 +807,39 @@
 		
 		
 <script>
+
+
+
+function showNext() {
+            var currentDiv = document.getElementById('question' + currentQuestionIndex);
+            var nextDiv = document.getElementById('question' + (currentQuestionIndex + 1));
+            if (nextDiv) {
+                currentDiv.style.display = 'none'; // Hide current div
+                nextDiv.style.display = 'block'; // Show next div
+                currentQuestionIndex++;
+                if (currentQuestionIndex === 19) {
+                    document.getElementById('navigation').style.display = 'none';
+					document.getElementById('pdfPreview').style.display = 'block';
+					document.getElementById('pdfFrame').style.display = 'block';
+					
+					// Hide navigation on question 19
+                }
+            }
+        }
+
+function showPrevious() {
+    if (currentQuestionIndex > 1) {
+        var currentDiv = document.getElementById('question' + currentQuestionIndex);
+        var prevDiv = document.getElementById('question' + (currentQuestionIndex - 1));
+        if (prevDiv) {
+            currentDiv.style.display = 'none'; // Hide current div
+            prevDiv.style.display = 'block'; // Show previous div
+            currentQuestionIndex--;
+        }
+    }
+}
+
+
 
 
 var currentQuestionIndex = 1; // Start from the first question
@@ -882,7 +937,7 @@ function loadDefaultPDF() {
         .then(response => response.blob())
         .then(blob => {
             uploadedPdfFile = blob;
-            //displayPDF(blob);
+            displayPDF(blob);
         })
         .catch(error => {
             console.error('Error loading default PDF:', error);
@@ -1650,7 +1705,7 @@ window.onload = function() {
 
 
 <div id="pdfPreview" style="display:none;">
-    <iframe id="pdfFrame" style="display:none;"></iframe>
+    <iframe id="pdfFrame""></iframe>
 </div>
 
 
