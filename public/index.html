@@ -92,7 +92,7 @@
 }
 
     
-    #questions2 {
+    #benifits {
         border: 4px solid white;
         border-radius: 10px;
         padding: 20px;
@@ -206,6 +206,7 @@
 <p>
 </div>
 	
+<br>
 	<div id="questions1">
         <h1></h1>
         
@@ -213,37 +214,17 @@
         <input type="text" id="dependency_income_total" name="dependency_income_total" style="display:none;">
 		<input type="text" id="total_combined_income" name="total_combined_income" style="display:none;">
     
-        
-        <div id="question1" class="questionBox">
-        <div id="box" style="line-height: 0.4;" >
-        <form id="userForm">
-            <p><strong>What's your full name?</strong></p>
-            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
-            <br><br>
-            <p><strong>What's your email?</strong></p>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        </form><br>
-        <p><strong>What's your street address?</strong></p>
-        <input type="text" id="PetitionerStrAddress[0]" name="PetitionerStrAddress[0]" placeholder="Street">
-        <br><br>
-        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City">
-        <br><br>
-        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State">
-        <br><br>
-        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip"><br>
-        <p><strong>What's your phone number?</strong></p>
-        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
-		
-		
 
-		</div>
-		</div>
-		
-		
-       
-		
-		
-		<div id="question2" style = "display:none">
+
+
+    
+
+
+
+
+
+    
+    <div id="gone" style = "display:none">
         <div id="box">
         <p><strong>Do you have a lawyer?</strong></p>
 		
@@ -282,38 +263,15 @@
         </div>
         </div>
         </div>
-		
-     
-		
-		
-		
-       <div id="question3" style = "display:none">
-        <div id="box">
-        <p><strong>Do you have a job?</strong></p>
-        <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
-            <option value="" disabled selected>Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-        <div class="job-info" id="jobInfoFields">
-      <br>
-            
-			<input type="text" id="job" name="job" placeholder="Job Title">
-			<br>
-            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer">
-            <br>
- 
-            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address">
-            <br>
-        </div>
-        </div>
-        </div>
-		
-		
- 
-        <div id="question4" style = "display:none">
+
+
+
+
+
+     <div id="gone2" style = "display:none">
         <div id="box">
         <p><strong>What court fees would you like waived?</strong></p>
+
         <select id="CourtType" name="CourtType" required>
             <option value="" disabled selected>Select</option>
             <option value="superior">Superior Court</option>
@@ -321,29 +279,173 @@
             <option value="appeal">Court of Appeal</option>
             <option value="appellate_division">Appellate Division of Superior Court</option>
         </select>
+
         </div>
         </div>
        
-	   
-	   
-	   
+
+
+
+
+        <div id="question1" class="questionBox">
+            <div id="box" style="line-height: 0.4;" >
+            <form id="userForm">
+                <p><strong>What's your email?</strong></p>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </form><br>
+            <p><strong>Your email will be stored and linked to your account for future forms</strong></p>
+            
+    
+            </div>
+            </div>
+
+
+
+            <div id="question2" style = "display:none">
+                <div id="box">
+
+
+                <p><strong>Have you had, or currently have any pending filed actions with any court in CA?</strong></p> 
+                <select id="PendingActions" name="PendingActions" required onchange="togglePendingActions()">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <br><br>
+                <div id="PendingActionsInfo" style = "display:none">
+
+                <p><strong>Have you requested the court to waive any court fees in the last six months?</strong></p>
+                <select id="WaiveWithin6Months" name="WaiveWithin6Months" required onchange="togglePreviousRequestFields()">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <div id="previousRequestFields" style = "display:none">
+                    <br>
+                    <p><strong>Is your previous request reasonably available?</strong></p>
+                    <select id="PreviousAvailable" name="PreviousAvailable" required onchange="togglePreviousRequestAvailable()">
+                        <option value="" disabled selected>Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+        
+        <div id="question3" class="questionBox" style = "display:none">
+        <div id="box" style="line-height: 0.4;" >
+        <form id="userForm">
+            <p><strong>What's your full name?</strong></p>
+            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
+            <br><br>
+            
+        </form><br>
+        <p><strong>What's your street address?</strong></p>
+        <input type="text" id="PetitionerStrAddress[0]" name="PetitionerStrAddress[0]" placeholder="Street">
+        <br><br>
+        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City">
+        <br><br>
+        <input type="text" id="County" name="County" placeholder="County"><br>
+        <br><br>
+        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State">
+        <br><br>
+        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip">
+        <br><br>
+       
+
+        <p><strong>What's your phone number?</strong></p>
+        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
+		<br><br>
 		
-		<div id="question5" style = "display:none">
+
+		</div>
+		</div>
+
+
+
+
+
+
+
+    <div id="question4" style = "display:none">
+        <div id="box">
+        <p><strong>Do you have a job?</strong></p>
+        <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br><br>
+        <div class="job-info" id="jobInfoFields">
+      <br>
+            
+			<input type="text" id="job" name="job" placeholder="Job Title">
+			<br><br>
+            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer">
+            <br><br>
+            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address">
+            <br><br>
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+		
+		
+    <div id="question5" style = "display:none">
+        <div id="box">
+        <div id="benifits">
+        <p><strong>Do you receive any of these benifits: </strong></p>
+        
+        <div id="box">
+        <label class="checkbox-label"><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label>
+        <label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
+        <label class="checkbox-label"><input type="checkbox" name="ssp" value="Yes"> SSP</label>
+        <label class="checkbox-label"><input type="checkbox" name="medical" value="Yes"> Medi-Cal</label>
+        <label class="checkbox-label"><input type="checkbox" name="county_relief" value="Yes"> County Relief/Gen. Assist.</label>
+        <label class="checkbox-label"><input type="checkbox" name="calworks" value="Yes"> CalWORKS or Tribal TANF</label>
+        <label class="checkbox-label"><input type="checkbox" name="ihss" value="Yes"> IHSS</label>
+        <label class="checkbox-label"><input type="checkbox" name="capi" value="Yes"> CAPI</label>
+        <label class="checkbox-label"><input type="checkbox" name="wic" value="Yes"> WIC</label>
+        <label class="checkbox-label"><input type="checkbox" name="unemployment" value="Yes"> Unemployment</label>
+        </div>
+        </div>
+
+        <center>
+        <label ><input type="checkbox" name="none" value="Yes"> No, none of these apply to me </label>
+        <br><br>
+
+        </div>
+		</div>
+       
+
+
+    <div id="question6" style = "display:none">
         <div id="box">
         <p><strong>Is your gross monthly household income less than the amount listed: </strong></p>
         <center>
         <img src="gross_monthly.jpg"  width="750" height="80">
         <br><br>
-        <select id="LowIncomeStatus" name="LowIncomeStatus" required>
+        <select id="LowIncomeStatus" name="LowIncomeStatus" required onchange="toggleSkipToEnd()">
             <option value="" disabled selected>Select</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
         </div>
         </div>
-      
-        
-       <div id="question6" style = "display:none">
+
+
+
+    <div id="question7" style = "display:none">
         <div id="box">
         <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
         <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
@@ -364,32 +466,8 @@
         </div>
         </div>
      
-		
-		
-		<div id="question7" style = "display:none">
-        <div id="box">
-        <p><strong>Have you asked the court to waive your court fees for this case in the last six months?</strong></p>
-        <select id="WaiveWithin6Months" name="WaiveWithin6Months" required onchange="togglePreviousRequestFields()">
-            <option value="" disabled selected>Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-        <div class="previous-request-info" id="previousRequestFields">
-            <br>
-            <p><strong>Is your previous request reasonably available?</strong></p>
-            <select id="PreviousAvailable" name="PreviousAvailable" required>
-                <option value="" disabled selected>Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-        </div>
-        </div>
-       
-		
-		
-		
-        <div id="question8" style = "display:none">
+
+	<div id="question8" style = "display:none">
         <div id="box">
         <p><strong>Does your income change a lot from month to month?</strong></p>
         <select id="ChangingIncomeStatus" name="ChangingIncomeStatus" required onchange="toggleMonthlyIncomeFields()">
@@ -397,17 +475,21 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
-		
-		<div id="monthlyIncomeFields" style="display: none;">
-		
-		</div>
+	
+
+         <div id="FeesWaived" style = "display:none">
+        
+       <p><strong>What would you like the court to do?</strong></p>
+            <select id="CourtAction" name="CourtAction" required>
+                <option value="" disabled selected>Select</option>
+                <option value="waive_all">Waive all court fees and costs</option>
+                <option value="waive_some">Waive some of the court fees</option>
+                <option value="pay_later">Let me make payments over time</option>
+            </select>
+
         </div>
-        </div>
-     
-		
-		
-		<div id="question9" style = "display:none">
-		<div id="box">
+    
+        <div id="monthlyIncomeFields" style = "display:none">
     <p><strong>How many sources of income do you have?</strong></p>
     <select id="numberOfIncomeSources" name="numberOfIncomeSources" required onchange="displayIncomeFields()">
         <option value="" disabled selected>Select</option>
@@ -418,44 +500,17 @@
 
     </select>
     <div id="incomeFieldsContainer"></div>
+    
+    
 	</div>
 	</div>
-		
-		
-        <div id="question9" style = "display:none">
-        <div id="box">
-        <div id="questions2">
-        <p><strong>Do you receive any of these benifits:</strong></p>
-        <label class="checkbox-label"><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label>
-        <label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
-        <label class="checkbox-label"><input type="checkbox" name="ssp" value="Yes"> SSP</label>
-        <label class="checkbox-label"><input type="checkbox" name="medical" value="Yes"> Medi-Cal</label>
-        <label class="checkbox-label"><input type="checkbox" name="county_relief" value="Yes"> County Relief/Gen. Assist.</label>
-        <label class="checkbox-label"><input type="checkbox" name="calworks" value="Yes"> CalWORKS or Tribal TANF</label>
-        <label class="checkbox-label"><input type="checkbox" name="ihss" value="Yes"> IHSS</label>
-        <label class="checkbox-label"><input type="checkbox" name="capi" value="Yes"> CAPI</label>
-        <label class="checkbox-label"><input type="checkbox" name="wic" value="Yes"> WIC</label>
-        <label class="checkbox-label"><input type="checkbox" name="unemployment" value="Yes"> Unemployment</label>
-        
-        </div>
-        </div>
-		</div>
-
-		
-		
-        
-      
-		
-		
-		
-
-<input type="text" id="monthly_income_total" name="monthly_income_total" style="display:none;">
+    </div>
+    </div>
 
 
 
 
-
-<div id="question10" style = "display:none">
+    <div id="question9" style = "display:none">
 <div id="box">
     <p><strong>Do you have anybody else living in your home?</strong></p>
     <select id="hasDependents" name="hasDependents" required onchange="toggleDependencyFields()">
@@ -483,7 +538,25 @@
 
 
 
-<div id="question11" style = "display:none">
+
+	   
+	   
+		
+		
+      
+        
+       
+		
+		
+
+<input type="text" id="monthly_income_total" name="monthly_income_total" style="display:none;">
+
+
+
+
+
+
+<div id="question10" style = "display:none">
 <div id="box">
 
     <p><strong>Do you have any cash savings?</strong></p>
@@ -525,7 +598,7 @@
 
 
 
-<div id="question12" style = "display:none">
+<div id="question11" style = "display:none">
 <div id="box">
     <p><strong>Do you own any cars, boats, and other vehicles:</strong></p>
     <select id="hasVehicles" name="hasVehicles" required onchange="toggleVehicleFields()">
@@ -550,7 +623,7 @@
 
 
 
-<div id="question13" style = "display:none">
+<div id="question12" style = "display:none">
 <div id="box">
     <p><strong>Do you own any real estate:</strong></p>
     <select id="hasRealEstate" name="hasRealEstate" required onchange="toggleRealEstateFields()">
@@ -576,7 +649,7 @@
 
 
 
-<div id="question14" style = "display:none">
+<div id="question13" style = "display:none">
 <div id="box">
     <p><strong>Do you own any other personal property?</strong></p>
     <select id="hasPersonalProperty" name="hasPersonalProperty" required onchange="togglePersonalPropertyFields()">
@@ -602,7 +675,7 @@
 
 
 
-<div id="question15" style = "display:none">
+<div id="question14" style = "display:none">
 <div id="box">
     <p><strong>Do you have any payroll deductions?</strong></p>
     <select id="hasPayrollDeductions" name="hasPayrollDeductions" required onchange="togglePayrollDeductionFields()">
@@ -627,7 +700,7 @@
 
 
 
-<div id="question16" style = "display:none">
+<div id="question15" style = "display:none">
 
 <div id="box">
     <p><strong>Your Monthly Deductions and Expenses:</strong></p>
@@ -679,7 +752,7 @@
 
 	
 	
-	<div id="question17" style = "display:none">
+	<div id="question16" style = "display:none">
 	<div id="box">
     <p><strong>Do you have any installment payments?</strong></p>
     <select id="hasInstallments" name="hasInstallments" required onchange="toggleInstallmentFields()">
@@ -781,11 +854,64 @@
 
 
 
+
+var skip = 0;
 var currentQuestionIndex = 1; // Start from the first question
+var start = currentQuestionIndex; // Start from the first question
+
+
+
+
+
+
+
+
+
+
 
 function showNext() {
 
+
+
+
+
+
+
 document.getElementById('previous').style.display = 'inline';
+
+//alert(currentQuestionIndex);
+//alert("skip" + skip);
+
+        if (currentQuestionIndex === 9) {
+            if(skip == 1){
+            document.getElementById('question9').style.display = 'none';
+            currentQuestionIndex = 18;
+            }
+        }   
+
+
+        if (currentQuestionIndex === 6) {
+            if(skip == 1){
+            document.getElementById('question6').style.display = 'none';
+            currentQuestionIndex = 7;
+            }
+        }           
+
+
+
+            document.querySelectorAll('#benifits input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        // Check if any checkbox within #benifits is checked
+        if (document.querySelectorAll('#benifits input[type="checkbox"]:checked').length > 0) {
+            currentQuestionIndex = 18;
+            //document.getElementById('question5').style.display = 'none';   
+        }
+    });
+});
+
+
+
+
 
             var currentDiv = document.getElementById('question' + currentQuestionIndex);
             var nextDiv = document.getElementById('question' + (currentQuestionIndex + 1));
@@ -794,28 +920,29 @@ document.getElementById('previous').style.display = 'inline';
                 nextDiv.style.display = 'block'; // Show next div
                 currentQuestionIndex++;
 				
-				
+			
                 if (currentQuestionIndex === 19) {
+                    document.getElementById('question5').style.display = 'none';
                     document.getElementById('navigation').style.display = 'none';
-					//document.getElementById('pdfPreview').style.display = 'block';
-					//document.getElementById('pdfFrame').style.display = 'block';
-					
-					// Hide navigation on question 19
                 }
             }
+
+
+
+
         }
 
 function showPrevious() {
 
 
 
-if (currentQuestionIndex === 2) {
+if (currentQuestionIndex === (start+1)) {
 	document.getElementById('previous').style.display = 'none';
 
 }
 				
 				
-    if (currentQuestionIndex > 1) {
+    if (currentQuestionIndex > start) {
         var currentDiv = document.getElementById('question' + currentQuestionIndex);
         var prevDiv = document.getElementById('question' + (currentQuestionIndex - 1));
         if (prevDiv) {
@@ -838,6 +965,18 @@ function toggleLawyerFields() {
         lawyerInfoFields.style.display = 'none';
     }
 }
+
+
+function toggleSkipToEnd() {
+    const LowIncomeStatus = document.getElementById('LowIncomeStatus').value;
+    
+    if (LowIncomeStatus === 'yes') {
+        skip = 1;
+    } else {
+        skip = 0;
+    }
+}
+
 
 function toggleJobFields() {
     const jobStatus = document.getElementById('JobStatus').value;
@@ -862,6 +1001,16 @@ function toggleCashSavings() {
 }
 
 
+function togglePendingActions() {
+    const PendingActions = document.getElementById('PendingActions').value;
+    const PendingActionsInfo = document.getElementById('PendingActionsInfo');
+    if (PendingActions === 'yes') {
+        PendingActionsInfo.style.display = 'block';
+    } else {
+        PendingActionsInfo.style.display = 'none';
+    }
+}
+
 function togglePreviousRequestFields() {
     const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
     const previousRequestFields = document.getElementById('previousRequestFields');
@@ -870,6 +1019,14 @@ function togglePreviousRequestFields() {
     } else {
         previousRequestFields.style.display = 'none';
     }
+}
+
+function togglePreviousRequestAvailable() {
+    const PreviousAvailable = document.getElementById('PreviousAvailable').value;
+  
+    if (PreviousAvailable === 'yes') {
+        alert("Be sure to attach your previous request with this document when submitting")
+    } 
 }
 
 
@@ -915,10 +1072,14 @@ var formData = new FormData();
 function toggleMonthlyIncomeFields() {
     const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
     const monthlyIncomeFields = document.getElementById('monthlyIncomeFields');
+    const FeesWaived = document.getElementById('FeesWaived');
     if (changingIncomeStatus === 'yes') {
         monthlyIncomeFields.style.display = 'block';
+        FeesWaived.style.display = 'none';
     } else {
+       
         monthlyIncomeFields.style.display = 'none';
+        FeesWaived.style.display = 'block';
     }
 }
 
@@ -932,7 +1093,8 @@ function toggleIncomeFields() {
 		formData.append('not_enough', 'Yes');
     } else {
 	
-		//alert(incomePayStatus);
+	    alert("Sorry, you are not eligible");
+        window.location.reload();
         incomeInfoFields.style.display = 'none';
     }
 }
@@ -1064,7 +1226,7 @@ function displayDependencyFields() {
     container.style.display = 'block';
 
     for (let i = 1; i <= number; i++) {
-        container.appendChild(document.createTextNode(`Person ${i}:`));
+        container.appendChild(document.createTextNode(``));
         container.appendChild(createDependencyInput(`dependency_name${i}`, 'Name'));
         container.appendChild(createDependencyInput(`dependency_age${i}`, 'Age'));
         container.appendChild(createDependencyInput(`dependency_relationship${i}`, 'Relationship'));
@@ -1436,7 +1598,7 @@ async function editPDF() {
 	calculateTotalExpenses();
 	
 	
-	toggleField('rent_expense');
+toggleField('rent_expense');
 toggleField('food_expense');
 toggleField('utilities_expense');
 toggleField('clothing_expense');
@@ -1533,37 +1695,20 @@ toggleField('transportation_expense');
 	
 	
 	
-	
-
-
+        formData.append('supreme_court_checkbox', 'Yes');
     
 	
 	
-	
-	// Append the court type to the form data
-    if (courtType === 'superior') {
-        formData.append('superior_court_checkbox', 'Yes');
-    } else if (['supreme', 'appeal', 'appellate_division'].includes(courtType)) {
-        formData.append('supreme_court_checkbox', 'Yes');
-    }
-	
-	
-	 // Append the lawyer status to the form data
-    if (lawyerStatus === 'yes') {
         const lawyerName = document.getElementById('LawyerName').value;
         const lawFirm = document.getElementById('LawFirm').value;
         const lawyerAddress = document.getElementById('LawyerAddress').value;
         const lawyerPhone = document.getElementById('LawyerPhone').value;
         const lawyerBarNumber = document.getElementById('LawyerBarNumber').value;
-        const lawyerInfo = `My lawyer's name is ${lawyerName}. Their law firm is ${lawFirm}, located at ${lawyerAddress}. Their phone number is ${lawyerPhone} and their state bar number is ${lawyerBarNumber}`;
+        const lawyerInfo = `Pro Se`;
         formData.append('lawyer_info', lawyerInfo);
-
-        if (lawyerAdvance === 'yes') {
-            formData.append('lawyercheckyes', 'Yes');
-        } else if (lawyerAdvance === 'no') {
-            formData.append('lawyercheckno', 'Yes');
-        }
-    }
+        formData.append('lawyercheckno', 'Yes');
+        
+    
 
     // Append the job status to the form data
     if (jobStatus === 'yes') {
