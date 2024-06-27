@@ -301,41 +301,10 @@
 
 
 
-            <div id="question2" style = "display:none">
-                <div id="box">
-
-
-                <p><strong>Have you had, or currently have any pending filed actions with any court in CA?</strong></p> 
-                <select id="PendingActions" name="PendingActions" required onchange="togglePendingActions()">
-                    <option value="" disabled selected>Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <br><br>
-                <div id="PendingActionsInfo" style = "display:none">
-
-                <p><strong>Have you requested the court to waive any court fees in the last six months?</strong></p>
-                <select id="WaiveWithin6Months" name="WaiveWithin6Months" required onchange="togglePreviousRequestFields()">
-                    <option value="" disabled selected>Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <div id="previousRequestFields" style = "display:none">
-                    <br>
-                    <p><strong>Is your previous request reasonably available?</strong></p>
-                    <select id="PreviousAvailable" name="PreviousAvailable" required onchange="togglePreviousRequestAvailable()">
-                        <option value="" disabled selected>Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-                </div>
-                </div>
-                </div>
-
+            
 
         
-        <div id="question3" class="questionBox" style = "display:none">
+        <div id="question2" class="questionBox" style = "display:none">
         <div id="box" style="line-height: 0.4;" >
         <form id="userForm">
             <p><strong>What's your full name?</strong></p>
@@ -370,7 +339,7 @@
 
 
 
-    <div id="question4" style = "display:none">
+    <div id="question3" style = "display:none">
         <div id="box">
         <p><strong>Do you have a job?</strong></p>
         <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
@@ -401,7 +370,7 @@
 
 		
 		
-    <div id="question5" style = "display:none">
+    <div id="question4" style = "display:none">
         <div id="box">
         <div id="benifits">
         <p><strong>Do you receive any of these benifits: </strong></p>
@@ -429,7 +398,7 @@
        
 
 
-    <div id="question6" style = "display:none">
+    <div id="question5" style = "display:none">
         <div id="box">
         <p><strong>Is your gross monthly household income less than the amount listed: </strong></p>
         <center>
@@ -445,7 +414,7 @@
 
 
 
-    <div id="question7" style = "display:none">
+    <div id="question6" style = "display:none">
         <div id="box">
         <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
         <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
@@ -467,7 +436,7 @@
         </div>
      
 
-	<div id="question8" style = "display:none">
+	<div id="question7" style = "display:none">
         <div id="box">
         <p><strong>Does your income change a lot from month to month?</strong></p>
         <select id="ChangingIncomeStatus" name="ChangingIncomeStatus" required onchange="toggleMonthlyIncomeFields()">
@@ -510,7 +479,7 @@
 
 
 
-    <div id="question9" style = "display:none">
+    <div id="question8" style = "display:none">
 <div id="box">
     <p><strong>Do you have anybody else living in your home?</strong></p>
     <select id="hasDependents" name="hasDependents" required onchange="toggleDependencyFields()">
@@ -556,7 +525,7 @@
 
 
 
-<div id="question10" style = "display:none">
+<div id="question9" style = "display:none">
 <div id="box">
 
     <p><strong>Do you have any cash savings?</strong></p>
@@ -598,7 +567,7 @@
 
 
 
-<div id="question11" style = "display:none">
+<div id="question10" style = "display:none">
 <div id="box">
     <p><strong>Do you own any cars, boats, and other vehicles:</strong></p>
     <select id="hasVehicles" name="hasVehicles" required onchange="toggleVehicleFields()">
@@ -623,7 +592,7 @@
 
 
 
-<div id="question12" style = "display:none">
+<div id="question11" style = "display:none">
 <div id="box">
     <p><strong>Do you own any real estate:</strong></p>
     <select id="hasRealEstate" name="hasRealEstate" required onchange="toggleRealEstateFields()">
@@ -649,7 +618,7 @@
 
 
 
-<div id="question13" style = "display:none">
+<div id="question12" style = "display:none">
 <div id="box">
     <p><strong>Do you own any other personal property?</strong></p>
     <select id="hasPersonalProperty" name="hasPersonalProperty" required onchange="togglePersonalPropertyFields()">
@@ -675,7 +644,7 @@
 
 
 
-<div id="question14" style = "display:none">
+<div id="question13" style = "display:none">
 <div id="box">
     <p><strong>Do you have any payroll deductions?</strong></p>
     <select id="hasPayrollDeductions" name="hasPayrollDeductions" required onchange="togglePayrollDeductionFields()">
@@ -700,7 +669,7 @@
 
 
 
-<div id="question15" style = "display:none">
+<div id="question14" style = "display:none">
 
 <div id="box">
     <p><strong>Your Monthly Deductions and Expenses:</strong></p>
@@ -752,7 +721,7 @@
 
 	
 	
-	<div id="question16" style = "display:none">
+	<div id="question15" style = "display:none">
 	<div id="box">
     <p><strong>Do you have any installment payments?</strong></p>
     <select id="hasInstallments" name="hasInstallments" required onchange="toggleInstallmentFields()">
@@ -777,7 +746,7 @@
 
 
 
-<div id="question17" style = "display:none">
+<div id="question16" style = "display:none">
 <div id="box">
     <p><strong>Do you have any wages/earnings withheld by the court:</strong></p>
     <select id="hasWithheldEarnings" name="hasWithheldEarnings" required onchange="toggleWithheldEarningsField()">
@@ -791,7 +760,7 @@
 </div>
 
 
-<div id="question18" style = "display:none">
+<div id="question17" style = "display:none">
 <div id="box">
     <p><strong>Do you have any other monthly expenses?</strong></p>
     <select id="hasOtherExpenses" name="hasOtherExpenses" required onchange="toggleOtherExpenses()">
@@ -814,6 +783,45 @@
     <div id="otherExpenseFields"></div>
 </div>
 </div>
+
+
+<div id="question18" style = "display:none">
+                <div id="box">
+
+
+                <p><strong>Have you had, or currently have any pending filed actions with any court in CA?</strong></p> 
+                <select id="PendingActions" name="PendingActions" required onchange="togglePendingActions()">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <br><br>
+                <div id="PendingActionsInfo" style = "display:none">
+
+                <p><strong>Have you requested the court to waive any court fees in the last six months?</strong></p>
+                <select id="WaiveWithin6Months" name="WaiveWithin6Months" required onchange="togglePreviousRequestFields()">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <div id="previousRequestFields" style = "display:none">
+                    <br>
+
+                    <p><strong>Please enter your case number</strong></p>
+                    <input type="text" id="case_number" name="case_number" placeholder="Case Number">
+
+                    <br><br>
+                    <p><strong>Is your previous request reasonably available?</strong></p>
+                    <select id="PreviousAvailable" name="PreviousAvailable" required onchange="togglePreviousRequestAvailable()">
+                        <option value="" disabled selected>Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                </div>
+                </div>
+                </div>
+
 
 
 
@@ -882,18 +890,18 @@ document.getElementById('previous').style.display = 'inline';
 //alert(currentQuestionIndex);
 //alert("skip" + skip);
 
-        if (currentQuestionIndex === 9) {
+        if (currentQuestionIndex === 8) {
             if(skip == 1){
-            document.getElementById('question9').style.display = 'none';
-            currentQuestionIndex = 18;
+            document.getElementById('question8').style.display = 'none';
+            currentQuestionIndex = 17;
             }
         }   
 
 
-        if (currentQuestionIndex === 6) {
+        if (currentQuestionIndex === 5) {
             if(skip == 1){
-            document.getElementById('question6').style.display = 'none';
-            currentQuestionIndex = 7;
+            document.getElementById('question5').style.display = 'none';
+            currentQuestionIndex = 6;
             }
         }           
 
@@ -903,7 +911,8 @@ document.getElementById('previous').style.display = 'inline';
     checkbox.addEventListener('change', function() {
         // Check if any checkbox within #benifits is checked
         if (document.querySelectorAll('#benifits input[type="checkbox"]:checked').length > 0) {
-            currentQuestionIndex = 18;
+            currentQuestionIndex = 17;
+            skip = 2
             //document.getElementById('question5').style.display = 'none';   
         }
     });
@@ -921,10 +930,14 @@ document.getElementById('previous').style.display = 'inline';
                 currentQuestionIndex++;
 				
 			
-                if (currentQuestionIndex === 19) {
-                    document.getElementById('question5').style.display = 'none';
-                    document.getElementById('navigation').style.display = 'none';
+                if (currentQuestionIndex === 18) {
+                    document.getElementById('question4').style.display = 'none';  
                 }
+
+                if (currentQuestionIndex === 19) {
+                document.getElementById('navigation').style.display = 'none';
+                }
+
             }
 
 
@@ -1025,7 +1038,7 @@ function togglePreviousRequestAvailable() {
     const PreviousAvailable = document.getElementById('PreviousAvailable').value;
   
     if (PreviousAvailable === 'yes') {
-        alert("Be sure to attach your previous request with this document when submitting")
+        alert("Please ensure that your previous fee waiver is attached to this new fee waiver request")
     } 
 }
 
@@ -1078,7 +1091,7 @@ function toggleMonthlyIncomeFields() {
         FeesWaived.style.display = 'none';
     } else {
        
-        monthlyIncomeFields.style.display = 'none';
+        monthlyIncomeFields.style.display = 'block';
         
     }
 }
@@ -1138,7 +1151,13 @@ function calculateTotalExpenses() {
     }
 
     // Update the total monthly expenses input
+
+
+    if (skip == 0) {
     document.getElementById('total_monthly_expenses').value = total.toFixed(2);
+    }
+
+
 }
 
 
@@ -1304,7 +1323,7 @@ function toggleField(fieldId) {
     } else {
         input.style.display = 'none';
         // Check if skip is not 1 before setting the value to 0
-        if (skip !== 1) {
+        if (skip == 0) {
             input.value = '0';  // Set the value to 0 if the checkbox is unchecked
         } else {
             input.value = '';  // Leave it blank if skip is 1
@@ -1541,16 +1560,6 @@ function createDeductionInput(id, placeholder) {
     return input;
 }
 
-function toggleField(fieldId) {
-    var checkbox = document.getElementById(fieldId + '_check');
-    var input = document.getElementById(fieldId);
-    if (checkbox.checked) {
-        input.style.display = 'inline-block';
-    } else {
-        input.style.display = 'none';
-        input.value = '0';  // Set the value to 0 if the checkbox is unchecked
-    }
-}
 
 
 
@@ -1638,11 +1647,16 @@ toggleField('transportation_expense');
     for (let i = 1; i <= numberOfIncomeSources; i++) {
         const incomeAmountElement = document.getElementById(`monthly_income_source${i}_amount`);
         if (incomeAmountElement) {
+
+            
             totalMonthlyIncome += parseFloat(incomeAmountElement.value) || 0;
         }
     }
 
+
+    if (skip == 0 || skip == 1) {
     document.getElementById('monthly_income_total').value = totalMonthlyIncome.toFixed(2);
+    }
 
     let totalDependencyIncome = 0;
     const maxDependencies = 4; // Max number of dependents you expect
@@ -1654,11 +1668,17 @@ toggleField('transportation_expense');
         }
     }
 
+    if (skip == 0 || skip == 1) {
     document.getElementById('dependency_income_total').value = totalDependencyIncome.toFixed(2);
+    }
+
 
     const combinedTotal = totalMonthlyIncome + totalDependencyIncome;
-    document.getElementById('total_combined_income').value = combinedTotal.toFixed(2);
 
+
+    if (skip == 0 || skip == 1) {
+    document.getElementById('total_combined_income').value = combinedTotal.toFixed(2);
+    }
 	
 		
     try {
@@ -1791,15 +1811,16 @@ toggleField('transportation_expense');
 
 
 
-// Function to set the current date in the specified format
 function setCurrentDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
 
-
-
-	
-    
-
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('current_date').value = today;
 }
+
 
 window.onload = function() {
     loadDefaultPDF();
