@@ -1079,7 +1079,7 @@ function toggleMonthlyIncomeFields() {
     } else {
        
         monthlyIncomeFields.style.display = 'none';
-        FeesWaived.style.display = 'block';
+        
     }
 }
 
@@ -1303,9 +1303,15 @@ function toggleField(fieldId) {
         input.style.display = 'inline-block';
     } else {
         input.style.display = 'none';
-        input.value = '';  // Clear the input when unchecked
+        // Check if skip is not 1 before setting the value to 0
+        if (skip !== 1) {
+            input.value = '0';  // Set the value to 0 if the checkbox is unchecked
+        } else {
+            input.value = '';  // Leave it blank if skip is 1
+        }
     }
 }
+
 
 
 function createInput(id, placeholder) {
