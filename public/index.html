@@ -390,7 +390,9 @@
         </div>
 
         <center>
-        <label ><input type="checkbox" name="none" value="Yes"> No, none of these apply to me </label>
+        <label><input type="checkbox" id="noneApplyCheckbox" name="none" value="Yes" onchange="checkNoneApply()"> No, none of these apply to me</label>
+
+        
         <br><br>
 
         </div>
@@ -868,6 +870,22 @@ var start = currentQuestionIndex; // Start from the first question
 
 
 
+function checkNoneApply() {
+    var noneApply = document.getElementById('noneApplyCheckbox').checked;
+    var benefitsCheckboxes = document.querySelectorAll('#benifits input[type="checkbox"]');
+
+    if (noneApply) {
+        // If 'none apply' is checked, uncheck all other checkboxes
+        benefitsCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    } else {
+        // If 'none apply' is unchecked, this part will restore the previous state if needed
+        // For simplicity, this code currently does nothing to change the state
+        // You could implement further logic here if you want to restore previous states
+    }
+}
+
 
 
 
@@ -887,7 +905,7 @@ function showNext() {
 document.getElementById('previous').style.display = 'inline';
 
 //alert(currentQuestionIndex);
-//alert("skip" + skip);
+
 
         if (currentQuestionIndex === 8) {
             if(skip == 1){
@@ -895,6 +913,20 @@ document.getElementById('previous').style.display = 'inline';
             currentQuestionIndex = 17;
             }
         }   
+
+
+
+        if(currentQuestionIndex == 4){
+
+
+        var benefitsCheckboxes = document.querySelectorAll('#benifits input[type="checkbox"]:checked');
+        if (benefitsCheckboxes.length > 0) {
+            skip = 1
+        } else{
+        skip = 0
+        }
+
+        }
 
 
         if (currentQuestionIndex === 5) {
@@ -906,16 +938,7 @@ document.getElementById('previous').style.display = 'inline';
 
 
 
-            document.querySelectorAll('#benifits input[type="checkbox"]').forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        // Check if any checkbox within #benifits is checked
-        if (document.querySelectorAll('#benifits input[type="checkbox"]:checked').length > 0) {
-            currentQuestionIndex = 17;
-            skip = 2
-            //document.getElementById('question5').style.display = 'none';   
-        }
-    });
-});
+           
 
 
 
