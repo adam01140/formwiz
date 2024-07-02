@@ -314,13 +314,12 @@
         </form><br>
         <p><strong>What's your street address?</strong></p>
         <input type="text" id="Street" name="Street" placeholder="Street">
-        <br><br>
         <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City">
-        <br><br>
-        <input type="text" id="County" name="County" placeholder="County"><br>
-        <br><br>
+ <br><br>
+        <input type="text" id="County" name="County" placeholder="County">
+        
         <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State">
-        <br><br>
+      <br><br>
         <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip">
         <br><br>
        
@@ -341,7 +340,7 @@
 
     <div id="question3" style = "display:none">
         <div id="box">
-        <p><strong>Do you have a job?</strong></p>
+        <p><strong>Are you currently employed?</strong></p>
         <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
             <option value="" disabled selected>Select</option>
             <option value="yes">Yes</option>
@@ -374,7 +373,7 @@
         <div id="box">
         <div id="benifits">
         <p><strong>Do you receive any of these benifits: </strong></p>
-        
+		<p><strong>(Mark all that apply) </strong></p>
         <div id="box">
         <label class="checkbox-label"><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label>
         <label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
@@ -922,6 +921,8 @@ document.getElementById('previous').style.display = 'inline';
         var benefitsCheckboxes = document.querySelectorAll('#benifits input[type="checkbox"]:checked');
         if (benefitsCheckboxes.length > 0) {
             skip = 1
+			document.getElementById('question4').style.display = 'none';
+			currentQuestionIndex = 17;
         } else{
         skip = 0
         }
