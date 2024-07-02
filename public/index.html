@@ -328,34 +328,30 @@
 
             
 
-        
-        <div id="question2" class="questionBox" style = "display:none">
-        <div id="box" style="line-height: 0.4;" >
-        <form id="userForm">
-            <p><strong>What's your full name?</strong></p>
-            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
-            <br><br>
-            
-        </form><br>
-        <p><strong>What's your street address?</strong></p>
-        <input type="text" id="Street" name="Street" placeholder="Street">
-        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City">
- <br><br>
-        <input type="text" id="County" name="County" placeholder="County">
-        
-        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State">
-      <br><br>
-        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip">
-        <br><br>
-       
 
-        <p><strong>What's your phone number?</strong></p>
-        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
-		<br><br>
+		<div id="question2" style = "display:none">
+        <div id="box">
+        <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
+        <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <div class="income-info" id="incomeInfoFields">
+            <br>
+            <p><strong>What would you like the court to do?</strong></p>
+            <select id="CourtAction" name="CourtAction" required>
+                <option value="" disabled selected>Select</option>
+                <option value="waive_all">Waive all court fees and costs</option>
+                <option value="waive_some">Waive some of the court fees</option>
+                <option value="pay_later">Let me make payments over time</option>
+            </select>
+        </div>
+        </div>
+        </div>
 		
-
-		</div>
-		</div>
+        
+        
 
 
 
@@ -921,10 +917,10 @@ function checkNoneApply() {
 function showNext() {
 
 
-
-if (currentQuestionIndex === 1) {
-currentQuestionIndex = 2
-document.getElementById('question1').style.display = 'none';
+//alert(currentQuestionIndex)
+if (currentQuestionIndex === 5) {
+currentQuestionIndex = 6
+document.getElementById('question5').style.display = 'none';
 }
 
 document.getElementById('previous').style.display = 'inline';
@@ -933,7 +929,7 @@ document.getElementById('previous').style.display = 'inline';
 
 
         if (currentQuestionIndex === 8) {
-            if(skip == 1){
+            if(skip == 1 || skip == 2){
             document.getElementById('question8').style.display = 'none';
             currentQuestionIndex = 17;
             }
@@ -956,8 +952,12 @@ document.getElementById('previous').style.display = 'inline';
         }
 
 
+
+
+
+		//skip income question
         if (currentQuestionIndex === 5) {
-            if(skip == 1){
+            if(skip == 1 || skip == 2){
             document.getElementById('question5').style.display = 'none';
             currentQuestionIndex = 6;
             }
@@ -996,6 +996,26 @@ document.getElementById('previous').style.display = 'inline';
 
 function showPrevious() {
 
+//alert(currentQuestionIndex);
+
+
+
+if (currentQuestionIndex === 18 && skip == 1) {
+currentQuestionIndex = 5
+document.getElementById('question18').style.display = 'none';
+}
+
+if (currentQuestionIndex === 18 && skip == 2) {
+currentQuestionIndex = 9
+document.getElementById('question18').style.display = 'none';
+}
+
+
+
+if (currentQuestionIndex === 7) {
+currentQuestionIndex = 6
+document.getElementById('question7').style.display = 'none';
+}
 
 
 if (currentQuestionIndex === (start+1)) {
@@ -1033,7 +1053,7 @@ function toggleSkipToEnd() {
     const LowIncomeStatus = document.getElementById('LowIncomeStatus').value;
     
     if (LowIncomeStatus === 'yes') {
-        skip = 1;
+        skip = 2;
     } else {
         skip = 0;
     }
@@ -1703,9 +1723,9 @@ toggleField('transportation_expense');
     }
 
 
-    if (skip == 0 || skip == 1) {
+   
     document.getElementById('monthly_income_total').value = totalMonthlyIncome.toFixed(2);
-    }
+    
 
     let totalDependencyIncome = 0;
     const maxDependencies = 4; // Max number of dependents you expect
@@ -1717,17 +1737,17 @@ toggleField('transportation_expense');
         }
     }
 
-    if (skip == 0 || skip == 1) {
+
     document.getElementById('dependency_income_total').value = totalDependencyIncome.toFixed(2);
-    }
+    
 
 
     const combinedTotal = totalMonthlyIncome + totalDependencyIncome;
 
 
-    if (skip == 0 || skip == 1) {
+   
     document.getElementById('total_combined_income').value = combinedTotal.toFixed(2);
-    }
+    
 	
 		
     try {
