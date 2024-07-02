@@ -289,12 +289,37 @@
 
         <div id="question1" class="questionBox">
             <div id="box" style="line-height: 0.4;" >
+			
+			<br>
+			<form id="userForm">
+            <p><strong>What's your full name?</strong></p>
+            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
+            <br><br>
+			
+			
             <form id="userForm">
-                <p><strong>What's your email?</strong></p>
+                <p><strong>What's your email? <br> <br><br> </strong> (Your email will be stored and linked to your account for future forms)</strong></p>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </form><br>
-            <p><strong>Your email will be stored and linked to your account for future forms</strong></p>
             
+			
+            
+        </form><br>
+        <p><strong>What's your street address?</strong></p>
+        <input type="text" id="Street" name="Street" placeholder="Street">
+        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City">
+ <br><br>
+        <input type="text" id="County" name="County" placeholder="County">
+        
+        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State">
+      <br><br>
+        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip">
+        <br><br>
+       
+
+        <p><strong>What's your phone number?</strong></p>
+        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
+		<br><br>
     
             </div>
             </div>
@@ -897,9 +922,10 @@ function showNext() {
 
 
 
-
-
-
+if (currentQuestionIndex === 1) {
+currentQuestionIndex = 2
+document.getElementById('question1').style.display = 'none';
+}
 
 document.getElementById('previous').style.display = 'inline';
 
