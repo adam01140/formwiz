@@ -88,6 +88,19 @@
 
 
 
+.income-field-container {
+    margin-bottom: 15px; /* Space between each pair of input fields */
+}
+
+.income-source, .income-amount {
+    width: 45%; /* Adjust width to fit in the container */
+    display: inline-block; /* Align inputs horizontally */
+    margin-right: 10px; /* Space between the inputs */
+}
+
+.income-amount {
+    margin-right: 0; /* No right margin on the amount field */
+}
 
 
 
@@ -115,16 +128,18 @@
 
     
     #benifits {
-        border: 4px solid white;
+        border: 4px solid lightblue;
         border-radius: 10px;
         padding: 20px;
         margin: 10px;
         background-color: #ffffff;
-        width: 500px;
+        width: 25%;
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
     }
+	
+	
     
     #box {
         border: 4px solid lightblue;
@@ -360,7 +375,7 @@
 			
 			
             <form id="userForm">
-                <p><strong>What's your email? <br> <br><br> </strong> (Your email will be stored and linked to your account for future forms)</strong></p>
+                <p><strong>What's your email? <br> <br><br> </strong> (Email will be linked to your account for future forms)</strong></p>
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </form><br>
             
@@ -393,6 +408,27 @@
 
 		<div id="question2" style = "display:none">
         <div id="box">
+		
+		<p><strong>Are you currently employed?</strong></p>
+        <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br><br>
+        <div class="job-info" id="jobInfoFields">
+      <br>
+            
+			<input type="text" id="job" name="job" placeholder="Job Title">
+			
+            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer">
+            
+            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address">
+           <br>
+        </div>
+		
+		
+		<br>
         <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
         <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
             <option value="" disabled selected>Select</option>
@@ -400,6 +436,7 @@
             <option value="no">No</option>
         </select>
 		<p>
+	
         <div class="income-info" id="incomeInfoFields">
             <br>
             <p><strong>What would you like the court to do?</strong></p>
@@ -409,6 +446,7 @@
                 <option value="waive_some">Waive some of the court fees</option>
                 <option value="pay_later">Let me make payments over time</option>
             </select>
+			<p>
         </div>
 		
         </div>
@@ -457,10 +495,12 @@
 		
     <div id="question4" style = "display:none">
         <div id="box">
-        <div id="benifits">
+        
         <p><strong>Do you receive any of these benifits: </strong></p>
 		<p><strong>(Mark all that apply) </strong></p>
-        <div id="box">
+		
+		<div id="benifits">
+      
         <label class="checkbox-label"><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label>
         <label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
         <label class="checkbox-label"><input type="checkbox" name="ssp" value="Yes"> SSP</label>
@@ -472,16 +512,17 @@
         <label class="checkbox-label"><input type="checkbox" name="wic" value="Yes"> WIC</label>
         <label class="checkbox-label"><input type="checkbox" name="unemployment" value="Yes"> Unemployment</label>
         </div>
-        </div>
+        
 
         <center>
 		<h3>
+		<br>
         <label><input type="checkbox" id="noneApplyCheckbox" name="none" value="Yes" onchange="checkNoneApply()"> No, none of these apply to me</label>
-
+		
         
         <br><br>
-
-        </div>
+		</div>
+      
 		</div>
        
 
@@ -534,32 +575,25 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
-	<p>
+	<br><br>
 
-         <div id="FeesWaived" style = "display:none">
-        
-       <p><strong>What would you like the court to do?</strong></p>
-            <select id="CourtAction" name="CourtAction" required>
-                <option value="" disabled selected>Select</option>
-                <option value="waive_all">Waive all court fees and costs</option>
-                <option value="waive_some">Waive some of the court fees</option>
-                <option value="pay_later">Let me make payments over time</option>
-            </select>
-
-        </div>
+         
     
-        <div id="monthlyIncomeFields" style = "display:none">
+        <div id="monthlyIncomeFields">
+		<br>
     <p><strong>How many sources of income do you have?</strong></p>
-    <select id="numberOfIncomeSources" name="numberOfIncomeSources" required onchange="displayIncomeFields()">
-        <option value="" disabled selected>Select</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-
-    </select>
-    <div id="incomeFieldsContainer"></div>
     
+	<select id="numberOfIncomeSources" name="numberOfIncomeSources" required onchange="displayIncomeFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="1">1</option><p>
+        <option value="2">2</option><p>
+        <option value="3">3</option><p>
+        <option value="4">4</option><p>
+		<br><br>
+    </select>
+	<br><br>
+    <div id="incomeFieldsContainer"></div>
+    <br>
     
 	</div>
 	</div>
@@ -986,6 +1020,15 @@ function checkNoneApply() {
 function showNext() {
 
 
+//alert(currentQuestionIndex);
+
+
+if (currentQuestionIndex === 2) {
+currentQuestionIndex = 3
+document.getElementById('question2').style.display = 'none';
+}
+
+
 //alert(currentQuestionIndex)
 if (currentQuestionIndex === 5) {
 currentQuestionIndex = 6
@@ -1067,6 +1110,11 @@ function showPrevious() {
 
 //alert(currentQuestionIndex);
 
+
+if (currentQuestionIndex === 4) {
+currentQuestionIndex = 3
+document.getElementById('question4').style.display = 'none';
+}
 
 
 if (currentQuestionIndex === 18 && skip == 1) {
