@@ -259,7 +259,7 @@
   
 #navigation {
     position: absolute; /* Updated from sticky to absolute */
-    bottom: 50px; /* Adjust this value as needed to align correctly */
+    bottom: 100px; /* Adjust this value as needed to align correctly */
     width: 100%; /* Ensure it spans the entire width of the #questions div */
 }
 
@@ -611,6 +611,7 @@
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	<br>
     <div id="dependencyFieldsContainer" style="display:none;">
         <p><strong>How many people?</strong></p>
         <select id="numberOfDependents" name="numberOfDependents" required onchange="displayDependencyFields()">
@@ -619,7 +620,9 @@
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
+			<br>
         </select>
+		<br>
     </div>
 	<br>
     <div id="dependencyInfo" style="display:none;">
