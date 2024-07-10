@@ -101,7 +101,7 @@
     margin: 10px auto;
     background-color: #ffffff;
     width: 97%;
-    height: 95vh; /* Sets the height to 100% of the viewport height */
+    height: 92vh; /* Sets the height to 100% of the viewport height */
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -212,7 +212,7 @@
 	
 	
 
-    .checkbox-label {
+    .checkbox-label, noneApplyCheckbox {
 	
 		font-size: 18px; /* Increase font size as needed */
         display: block;
@@ -237,7 +237,7 @@
     margin: 10px auto;
     background-color: #ffffff;
     width: 97%;
-    height: 85vh; /* Sets the height to 100% of the viewport height */
+    height: 83vh; /* Sets the height to 100% of the viewport height */
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -256,7 +256,7 @@
 <body>
 <center>
 <div id="whole">
-
+<br>
 <div id="questions">
     
 	 <div style="line-height: 0.4;">
@@ -352,7 +352,7 @@
         <div id="question1" class="questionBox">
             <div id="box" style="line-height: 0.4;" >
 			
-			<br>
+			<br><br>
 			<form id="userForm">
             <p><strong>What's your full name?</strong></p>
             <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Full name" required>
@@ -399,6 +399,7 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+		<p>
         <div class="income-info" id="incomeInfoFields">
             <br>
             <p><strong>What would you like the court to do?</strong></p>
@@ -409,7 +410,9 @@
                 <option value="pay_later">Let me make payments over time</option>
             </select>
         </div>
+		
         </div>
+		
         </div>
 		
         
@@ -429,7 +432,7 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
-        <br><br>
+        <p>
         <div class="job-info" id="jobInfoFields">
       <br>
             
@@ -472,6 +475,7 @@
         </div>
 
         <center>
+		<h3>
         <label><input type="checkbox" id="noneApplyCheckbox" name="none" value="Yes" onchange="checkNoneApply()"> No, none of these apply to me</label>
 
         
@@ -493,6 +497,7 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+		<p>
         </div>
         </div>
 
@@ -506,6 +511,7 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
+		<p>
         <div class="income-info" id="incomeInfoFields">
             <br>
             <p><strong>What would you like the court to do?</strong></p>
@@ -528,7 +534,7 @@
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
-	
+	<p>
 
          <div id="FeesWaived" style = "display:none">
         
