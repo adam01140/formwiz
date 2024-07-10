@@ -78,6 +78,16 @@
         margin-top: 20px;
     }
 
+
+
+	
+	input::placeholder {
+    font-size: 17.5px; /* Adjust this value as needed */
+    color: #999; /* Light grey color, adjust as needed */
+}
+
+
+
  #questions {
     position: relative;
     border: 4px solid lightblue;
@@ -136,12 +146,16 @@
 
     .next-button {
         background-color: #64adc4;
-        color: #fff;
+       color: #f2ffff; /* Extremely light cyan */
+
+
+
         border: none;
-        border-radius: 5px;
+        border-radius: 50px;
         padding: 10px 20px;
         margin-top: 10px;
         cursor: pointer;
+		height: 90px;
     }
 
     .back-button {
@@ -302,13 +316,13 @@
 			<br>
 			<form id="userForm">
             <p><strong>What's your full name?</strong></p>
-            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Enter your full name" required>
+            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Full name" required>
             <br><br>
 			
 			
             <form id="userForm">
                 <p><strong>What's your email? <br> <br><br> </strong> (Your email will be stored and linked to your account for future forms)</strong></p>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
             </form><br>
             
 			
@@ -878,7 +892,7 @@
 
 <div id = "navigation">
     <button id = "previous" style = "display:none" class="next-button" onclick="showPrevious()">← Previous</button>
-    <button class="next-button" onclick="showNext()">Next →</button>
+    <button class="next-button" onclick="showNext()"><h1> Next → </button>
 	<br>
 	
 </div>
