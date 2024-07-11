@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Waive Court Fees Form</title>
+<style>
+    p {
+        font-size: 23px; /* Change this value as needed */
+    }
+
+    select {
+        text-align: center;
+        width: 200px;
+        height: 50px;
+        background-color: #64adc4;
+        color: white;
+        font-size: 16px;
+        border-radius: 40px;
+        padding-left: 10px;
+        border: 1px solid #3f77b8;
+        cursor: pointer;
+    }
+
+    input[type="text"], input[type="email"] {
+        text-align: center;
+        width: 170px;
+        height: 30px;
+        font-size: 16px;
+        border-radius: 40px;
+        padding-left: 10px;
+        border: 1px solid #3f77b8;
+    }
+
+    option {
+        background-color: white;
+        color: black;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f4f4f9;
+        padding: 0px;
+        text-align: center;
+    }
+
+    button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 300px;
+        height: 40px;
+    }
+
+    #userProfile {
+        border: 4px solid lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px auto;
+        background-color: #ffffff;
+        width: 50%;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        margin-top: 20px;
+    }
+
+    input::placeholder {
+        font-size: 17.5px; /* Adjust this value as needed */
+        color: #999; /* Light grey color, adjust as needed */
+    }
+
+    .income-field-container {
+        margin-bottom: 15px; /* Space between each pair of input fields */
+    }
+
+    .income-source, .income-amount {
+        width: 45%; /* Adjust width to fit in the container */
+        display: inline-block; /* Align inputs horizontally */
+        margin-right: 10px; /* Space between the inputs */
+    }
+
+    .income-amount {
+        margin-right: 0; /* No right margin on the amount field */
+    }
+
+    #questions {
+        position: relative;
+        border: 4px #ffffff;
+        border-radius: 10px;
+        padding: 0px;
+        margin: 10px auto;
+        background-color: #ffffff;
+        width: 97%;
+        height: 88vh; /* Sets the height to 100% of the viewport height */
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #navigation {
+    position: absolute;
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adjust the space between buttons */
+}
+
+
+    #benifits {
+        border: 4px solid lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        background-color: #ffffff;
+        width: 55%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #deductions input[type="text"] {
+        height: 15px; /* Adjust this value to decrease the height */
+        padding: 4px 10px; /* Adjust padding to better fit the smaller height */
+        font-size: 10px; /* Optional: adjust font size to match the new height */
+    }
+
+    #deductions {
+        border: 4px solid lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        background-color: #ffffff;
+        width: 80%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .cash-savings-container {
+        display: flex; /* Uses Flexbox to align children inline */
+        align-items: center; /* Align items vertically */
+        gap: 0px; /* Adds space between the select and the div */
+        width: 200px;
+    }
+
+    .cash-savings-container select, .cash-savings-container #cashSavingsContainer {
+        flex-grow: 1; /* Allows both children to grow and fill the container */
+    }
+
+    .cash-savings-container #cashSavingsContainer {
+        display: flex; /* Align the paragraph inside the div */
+        align-items: center; /* Center the content vertically */
+    }
+
+    /* Reduce bottom margin/padding of the paragraph above the select element */
+    #question9 p {
+        margin-bottom: 0; /* Adjust or remove spacing */
+        padding-bottom: 0; /* Ensure no padding is adding extra space */
+    }
+
+    /* Ensure the container starts right after the paragraph */
+    .cash-savings-container {
+        margin-top: 0; /* Adjust top margin to pull it closer to the preceding element */
+    }
+
+     #box {
+        border: 4px solid lightblue;
+        border-color: #89CFF0;
+        border-radius: 10px;
+        padding-right: 20px;
+		padding-left: 20px;
+        margin: 50px;
+        background-color: #ffffff;
+        width: auto;
+        height: auto; /* Allow the div to grow with its content */
+    }
+
+    #userForms {
+        border: 4px solid lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        background-color: #ffffff;
+        width: 600px;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+	
+	
+	.button {
+            font-size: 1.2em;
+            font-weight: 600;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007aff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #005bb5;
+        }
+		
+
+    .next-button:active, .back-button:active {
+        background-color: #005bb5; /* Lighter shade of blue */
+        color: white; /* Extremely light cyan */
+        
+    }
+
+    .next-button, .back-button {
+		font-size: 30px;
+		background-color: #007aff; /* Lighter shade of blue */
+        color: white; /* Extremely light cyan */
+     
+		transition: background-color 0.3s;
+        
+        border: none;
+        border-radius: 50px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        height: 55px;
+        align-items: center; /* Vertically center the text */
+        justify-content: center; /* Horizontally center the text */
+        display: flex;
+    }
+	
+	
+
+    .pdf-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        margin-top: 20px;
+        height: 100%;
+        width: 100%;
+    }
+
+    #pdfPreview {
+        flex: 1;
+        border: 2px solid lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 0px;
+        background-color: #ffffff;
+        width: 100%;
+        height: 750px;
+        overflow-y: auto;
+        box-sizing: border-box;
+        display: none; /* Initially hidden */
+    }
+
+    #pdfFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .lawyer-info, .job-info, .income-info, .previous-request-info, .monthly-income-info {
+        display: none;
+    }
+
+    .checkbox-label, noneApplyCheckbox {
+        font-size: 18px; /* Increase font size as needed */
+        display: block;
+        text-align: left;
+        margin: 0 auto;
+        cursor: pointer; /* Changes cursor to pointer when hovering over the label */
+    }
+
+    .dependency-details {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Adjust width as needed */
+        padding: 10px 0; /* Adds vertical padding */
+    }
+
+    .dependency-input {
+        flex: 1; /* Distributes space evenly */
+        margin-right: 10px; /* Adds space between inputs */
+    }
+
+    .dependency-input:last-child {
+        margin-right: 0; /* Removes margin from the last input */
+    }
+
+    .vehicle-field-container {
+        display: flex; /* Aligns children (input fields) inline */
+        justify-content: center; /* Aligns children at the start of the container */
+        margin-bottom: 10px; /* Space between rows */
+    }
+
+    .vehicle-detail input {
+        margin-right: 5px; /* Reduces space to the right of each input field */
+    }
+
+    .estate-field-container {
+        display: flex; /* Aligns children (input fields) inline */
+        justify-content: center; /* Aligns children at the start of the container */
+        margin-bottom: 10px; /* Space between rows */
+    }
+
+    .estate_detail input {
+        margin-right: 10px; /* Reduces space to the right of each input field */
+    }
+
+    .bank-field-container {
+        display: flex; /* Aligns children (input fields) inline */
+        justify-content: center; /* Aligns children at the start of the container */
+        margin-bottom: 10px; /* Space between rows */
+    }
+
+    .bank_detail input {
+        margin-right: 10px; /* Reduces space to the right of each input field */
+    }
+
+    .personal-field-container {
+        display: flex; /* Aligns children (input fields) inline */
+        justify-content: center; /* Aligns children at the start of the container */
+        margin-bottom: 10px; /* Space between rows */
+    }
+
+    .personal_detail input {
+        margin-right: 10px; /* Reduces space to the right of each input field */
+    }
+
+    .payment-field-container {
+        display: flex; /* Aligns children (input fields) inline */
+        justify-content: center; /* Aligns children at the start of the container */
+        margin-bottom: 10px; /* Space between rows */
+    }
+
+    .payment_detail input {
+        margin-right: 10px; /* Reduces space to the right of each input field */
+    }
+
+    /* Styles specific to devices with a viewport width of 600px or less (typically smartphones) */
+    @media (max-width: 1000px) {
+        select {
+            text-align-last: center; /* Align text in select for Android */
+            -moz-text-align-last: center; /* For Firefox versions */
+            text-align: center; /* For iOS and standard browsers */
+            padding-right: 30px; /* Adjust this value as needed */
+        }
+
+        #questions {
+            position: relative;
+            border: 4px solid lightblue;
+            border-radius: 10px;
+            padding: 0px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            width: 97%;
+            height: 83vh; /* Sets the height to 100% of the viewport height */
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+         #navigation {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adjust the space between buttons */
+}
+
+
+    }
+</style>
+</head>
+<body>
+<center>
+<style>
+
+
+.navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; /* Adjust space between buttons */
+    }
+	
+	
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+        }
+        .container2 {
+			width: 100%;
+            text-align: center;
+            margin-top: 55px;
+			min-width: 800px; /* Increased width */
+			height: 95vh;
+           
+            border-radius: 12px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+		
+		.container3 {
+			width: 100%;
+            text-align: center;
+            max-width: 800px; /* Increased width */
+			height: 88vh;
+            padding: 40px;
+            border-radius: 12px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+		
+		
+        .header {
+            font-size: 3.5em;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .description {
+            font-size: 1.5em;
+            color: #6e6e73;
+            margin-bottom: 50px;
+        }
+        .button {
+            font-size: 1.2em;
+            font-weight: 600;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007aff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #005bb5;
+        }
+        .footer {
+            margin-top: 50px;
+            font-size: 1em;
+            color: #6e6e73;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .nav-link {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007aff;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .form-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-item {
+            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 800px; /* Increased width */
+            padding: 30px; /* Increased padding */
+            border: 1px solid #d1d1d6;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    </style>
+	
+	
+	
+<div class="container2">
+
+<div id="questions">
+    
+	 <div style="line-height: 0.4;">
+	<br><br><br>
+<h1>Waive Court Fees Form</h1>
+<h3><i> Offered by Form Wiz </i></h3>
+
+</div>
+
+	<div id="questions1">
+        <h1></h1>
+        <input type="text" id="current_date" name="current_date" placeholder="current_date" style = "display:none">
+
+        <input type="text" id="dependency_income_total" name="dependency_income_total" style="display:none;">
+		<input type="text" id="total_combined_income" name="total_combined_income" style="display:none;">
+    
+
+
+
+    
+
+
+
+
+
+    
+    <div id="gone" style = "display:none">
+        <center><div id="box">
+        <p><strong>Do you have a lawyer?</strong></p>
+		
+		
+        <select id="LawyerStatus" name="LawyerStatus" required onchange="toggleLawyerFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <div class="lawyer-info" id="lawyerInfoFields">
+          
+          <br>
+            <input type="text" id="LawyerName" name="LawyerName" placeholder="Lawyer's Full Name">
+            <br>
+            
+            <input type="text" id="LawFirm" name="LawFirm" placeholder="Law Firm">
+            <br>
+            
+            <input type="text" id="LawyerAddress" name="LawyerAddress" placeholder="Law Firm Address">
+            <br>
+            
+            <input type="text" id="LawyerPhone" name="LawyerPhone" placeholder="Phone Number">
+            <br>
+            
+            <input type="text" id="LawyerBarNumber" name="LawyerBarNumber" placeholder="State Bar Number">
+            
+            
+            
+            <br><br>
+            <p><strong>Has your lawyer agreed to advance some of your fees or costs?</strong></p>
+            <select id="LawyerAdvance" name="LawyerAdvance" required>
+                <option value="" disabled selected>Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+     <div id="gone2" style = "display:none">
+        <center><div id="box">
+        <p><strong>What court fees would you like waived?</strong></p>
+
+        <select id="CourtType" name="CourtType" required>
+            <option value="" disabled selected>Select</option>
+            <option value="superior">Superior Court</option>
+            <option value="supreme">Supreme Court</option>
+            <option value="appeal">Court of Appeal</option>
+            <option value="appellate_division">Appellate Division of Superior Court</option>
+        </select>
+
+        </div>
+        </div>
+       
+
+
+
+
+        <div id="question1" class="questionBox">
+			<center>
+            <center><div id="box" style="line-height: 0.4;" >
+			
+			<br><br>
+			<form id="userForm">
+            <p><strong>What's your full name?</strong></p>
+            <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Full name" required>
+            <br><br>
+			
+			
+            <form id="userForm">
+                <p><strong>What's your email? <br> <br><br> </strong> (Email will be linked to your account for future forms)</strong></p>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </form><br>
+            
+			
+            
+        </form><br>
+        <p><strong>What's your street address?</strong></p>
+        <input type="text" id="Street" name="Street" placeholder="Street">
+        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City" required>
+ <br><br>
+        <input type="text" id="County" name="County" placeholder="County" required>
+        
+        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State" required>
+      <br><br>
+        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip" required>
+        <br><br>
+       
+
+        <p><strong>What's your phone number?</strong></p>
+        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number" required><br>
+		<br><br>
+    <br><br>
+            </div>
+            </div>
+
+
+
+            
+
+
+		<div id="question2" style = "display:none">
+        <center><div id="box">
+		
+		<p><strong>Are you currently employed?</strong></p>
+        <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br><br>
+        <div class="job-info" id="jobInfoFields">
+      <br>
+            
+			<input type="text" id="job" name="job" placeholder="Job Title" required>
+			
+            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer" required>
+           
+            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address" required>
+           <br>
+        </div>
+		
+		
+		<br>
+        <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
+        <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+		<p>
+	
+        <div class="income-info" id="incomeInfoFields">
+            <br>
+            <p><strong>What would you like the court to do?</strong></p>
+            <select id="CourtAction" name="CourtAction" required>
+                <option value="" disabled selected>Select</option>
+                <option value="waive_all">Waive all court fees and costs</option>
+                <option value="waive_some">Waive some of the court fees</option>
+                <option value="pay_later">Let me make payments over time</option>
+            </select>
+			<p>
+        </div>
+		
+        </div>
+		
+        </div>
+		
+        
+        
+
+
+
+
+
+
+
+    <div id="question3" style = "display:none">
+        
+        </div>
+
+
+
+
+
+
+
+
+		
+		
+    <div id="question4" style = "display:none">
+        <center><div id="box">
+        
+        <p><strong>Do you receive any of these benifits: </strong></p>
+		<p><strong>(Mark all that apply) </strong></p>
+		
+		<div id="benifits">
+      
+        <label class="checkbox-label"><input type="checkbox" name="food_stamps" value="Yes"> Food Stamps</label>
+        <label class="checkbox-label"><input type="checkbox" name="supp_sec_inc" value="Yes"> Supp. Sec. Inc.</label>
+        <label class="checkbox-label"><input type="checkbox" name="ssp" value="Yes"> SSP</label>
+        <label class="checkbox-label"><input type="checkbox" name="medical" value="Yes"> Medi-Cal</label>
+        <label class="checkbox-label"><input type="checkbox" name="county_relief" value="Yes"> County Relief/Gen. Assist.</label>
+        <label class="checkbox-label"><input type="checkbox" name="calworks" value="Yes"> CalWORKS or Tribal TANF</label>
+        <label class="checkbox-label"><input type="checkbox" name="ihss" value="Yes"> IHSS</label>
+        <label class="checkbox-label"><input type="checkbox" name="capi" value="Yes"> CAPI</label>
+        <label class="checkbox-label"><input type="checkbox" name="wic" value="Yes"> WIC</label>
+        <label class="checkbox-label"><input type="checkbox" name="unemployment" value="Yes"> Unemployment</label>
+        </div>
+        
+
+        <center>
+		<h3>
+		<br>
+        <label><input type="checkbox" id="noneApplyCheckbox" name="none" value="Yes" onchange="checkNoneApply()"> No, none of these apply to me</label>
+		
+        
+        <br><br>
+		</div>
+      
+		</div>
+       
+
+
+    <div id="question5" style = "display:none">
+        <center><div id="box">
+        <p><strong>Is your gross monthly household income less than the amount listed: </strong></p>
+        <center>
+        <img src="gross_monthly.jpg"  width="700" height="80">
+        <br><br>
+        <select id="LowIncomeStatus" name="LowIncomeStatus" required onchange="toggleSkipToEnd()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+		<p>
+        </div>
+        </div>
+
+
+
+    <div id="question6" style = "display:none">
+        <center><div id="box">
+        <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
+        <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+		<p>
+        <div class="income-info" id="incomeInfoFields">
+            <br>
+            <p><strong>What would you like the court to do?</strong></p>
+            <select id="CourtAction" name="CourtAction" required>
+                <option value="" disabled selected>Select</option>
+                <option value="waive_all">Waive all court fees and costs</option>
+                <option value="waive_some">Waive some of the court fees</option>
+                <option value="pay_later">Let me make payments over time</option>
+            </select>
+        </div>
+        </div>
+        </div>
+     
+
+	<div id="question7" style = "display:none">
+        <center><div id="box">
+        <p><strong>Does your income change a lot from month to month?</strong></p>
+        <select id="ChangingIncomeStatus" name="ChangingIncomeStatus" required onchange="toggleMonthlyIncomeFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+	<br><br>
+
+         
+    
+        <div id="monthlyIncomeFields">
+		<br>
+    <p><strong>How many sources of income do you have?</strong></p>
+    
+	<select id="numberOfIncomeSources" name="numberOfIncomeSources" required onchange="displayIncomeFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="1">1</option><p>
+        <option value="2">2</option><p>
+        <option value="3">3</option><p>
+        <option value="4">4</option><p>
+		<br><br>
+    </select>
+	<br><br>
+    <div id="incomeFieldsContainer"></div>
+    <br>
+    
+	</div>
+	</div>
+    </div>
+    </div>
+
+
+
+
+    <div id="question8" style = "display:none">
+<center><div id="box">
+    <p><strong>Do you have anybody else living in your home?</strong></p>
+    <select id="hasDependents" name="hasDependents" required onchange="toggleDependencyFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br>
+    <div id="dependencyFieldsContainer" style="display:none;">
+        <p><strong>How many people?</strong></p>
+        <select id="numberOfDependents" name="numberOfDependents" required onchange="displayDependencyFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+			<br><br>
+        </select>
+		<br><br>
+    </div>
+	<br>
+    <div id="dependencyInfo" style="display:none;">
+	<br><br>
+</div>
+<br>
+</div>
+</div>
+
+
+
+
+
+
+	   
+	   
+		
+		
+      
+        
+       
+		
+		
+
+<input type="text" id="monthly_income_total" name="monthly_income_total" style="display:none;">
+
+
+
+
+
+
+<div id="question9" style = "display:none">
+<center><div id="box">
+
+    <p><strong>Do you have any cash savings?</strong></p>
+	
+
+	<br>
+    <div class="cash-savings-container">
+	
+    <select id="hasCashSavings" name="hasCashSavings" required onchange="toggleCashSavings()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <div id="cashSavingsContainer" style="display:none;">
+        <p>Cash Savings: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount"></p>
+    </div>
+</div>
+
+
+
+
+	
+	<p><strong>Do you have a bank account?</strong></p><br>
+    <select id="hasBankAccount" name="hasBankAccount" required onchange="toggleBankAccountFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br><br>
+    <div id="bankAccountFieldsContainer" style="display:none;">
+        <p><strong>How many accounts?</strong></p>
+		<br>
+        <select id="numberOfBankAccounts" name="numberOfBankAccounts" required onchange="displayBankAccountFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+	<br>
+    <div id="bankAccountInfo" style="display:none;">
+	<br><br>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="question10" style = "display:none">
+<center><div id="box">
+    <p><strong>Do you own any cars, boats, and other vehicles:</strong></p>
+    <select id="hasVehicles" name="hasVehicles" required onchange="toggleVehicleFields()">
+        <option value="" disabled selected>Select?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br>
+    <div id="vehicleFieldsContainer" style="display:none;">
+	<br>
+        <p><strong>How many vehicles?</strong></p>
+		<center>
+        <select id="numberOfVehicles" name="numberOfVehicles" required onchange="displayVehicleFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+		
+    </div>
+	<br>
+    <div id="vehicleInfo" style="display:none;"></div>
+	<br>
+</div>
+</div>
+
+
+
+
+<div id="question11" style = "display:none">
+<center><div id="box">
+    <p><strong>Do you own any real estate:</strong></p>
+    <select id="hasRealEstate" name="hasRealEstate" required onchange="toggleRealEstateFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br><br>
+    <div id="realEstateFieldsContainer" style="display:none;">
+        <p><strong>How many properties?</strong></p>
+        <select id="numberOfProperties" name="numberOfProperties" required onchange="displayRealEstateFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+    </div>
+	<br>
+	
+    <div id="realEstateInfo" style="display:none;"></div>
+	<br><br>
+</div>
+</div>
+
+
+
+
+
+<div id="question12" style = "display:none">
+<center><div id="box">
+    <p><strong>Do you own any other personal property?</strong></p>
+    <select id="hasPersonalProperty" name="hasPersonalProperty" required onchange="togglePersonalPropertyFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br><br>
+    <div id="personalPropertyFieldsContainer" style="display:none;">
+        <p><strong>How many items?</strong></p>
+        <select id="numberOfPersonalProperties" name="numberOfPersonalProperties" required onchange="displayPersonalPropertyFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            
+            <!-- Add more options if needed -->
+        </select>
+    </div>
+	<br>
+    <div id="personalPropertyInfo" style="display:none;"></div>
+	<br><br>
+</div>
+</div>
+
+
+
+
+<div id="question13" style = "display:none">
+<center><div id="box">
+    <p><strong>Do you have any payroll deductions?</strong></p>
+    <select id="hasPayrollDeductions" name="hasPayrollDeductions" required onchange="togglePayrollDeductionFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br><br>
+    <div id="payrollDeductionsContainer" style="display:none;">
+        <p><strong>How many deductions?</strong></p>
+        <select id="numberOfPayrollDeductions" name="numberOfPayrollDeductions" required onchange="displayPayrollDeductionFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+	<br>
+    <div id="payrollDeductionInfo" style="display:none;"></div>
+	<br><br>
+</div>
+</div>
+
+
+
+<div id="question14" style = "display:none">
+
+<center><div id="box">
+    <p><strong>Mark All Monthly Deductions and Expenses:</strong></p>
+	
+<div id="deductions">
+    <label class="checkbox-label">
+        <input type="checkbox" id="rent_expense_check" onchange="toggleField('rent_expense')"> Rent or house payment & maintenance:
+        <input type="text" id="rent_expense" name="rent_expense" placeholder="Amount" style="display:none;">
+    </label>
+	<br>
+    <label class="checkbox-label">
+        <input type="checkbox" id="food_expense_check" onchange="toggleField('food_expense')"> Food and household supplies:
+        <input type="text" id="food_expense" name="food_expense" placeholder="Amount" style="display:none;">
+    </label>
+	<br>
+    <label class="checkbox-label">
+        <input type="checkbox" id="utilities_expense_check" onchange="toggleField('utilities_expense')"> Utilities and telephone:
+        <input type="text" id="utilities_expense" name="utilities_expense" placeholder="Amount" style="display:none;">
+    </label>
+	<br>
+    <label class="checkbox-label">
+        <input type="checkbox" id="clothing_expense_check" onchange="toggleField('clothing_expense')"> Clothing:
+        <input type="text" id="clothing_expense" name="clothing_expense" placeholder="Amount" style="display:none;">
+    </label>
+	<br>
+    <label class="checkbox-label">
+        <input type="checkbox" id="laundry_expense_check" onchange="toggleField('laundry_expense')"> Laundry and cleaning:
+        <input type="text" id="laundry_expense" name="laundry_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <br>
+	<label class="checkbox-label">
+        <input type="checkbox" id="medical_expense_check" onchange="toggleField('medical_expense')"> Medical and dental expenses:
+        <input type="text" id="medical_expense" name="medical_expense" placeholder="Amount" style="display:none;">
+    </label>
+    <br>
+	<label class="checkbox-label">
+        <input type="checkbox" id="insurance_expense_check" onchange="toggleField('insurance_expense')"> Insurance (life, health, accident, etc.):
+        <input type="text" id="insurance_expense" name="insurance_expense" placeholder="Amount" style="display:none;">
+    </label>
+	<br>
+    <label class="checkbox-label">
+        <input type="checkbox" id="school_childcare_expense_check" onchange="toggleField('school_childcare_expense')"> School, child care:
+        <input type="text" id="school_childcare_expense" name="school_childcare_expense" placeholder="Amount" style="display:none;">
+    </label>
+	<br>
+    <label class="checkbox-label">
+        <input type="checkbox" id="support_expense_check" onchange="toggleField('support_expense')"> Child, spousal support (another marriage):
+        <input type="text" id="support_expense" name="support_expense" placeholder="Amount" style="display:none;">
+    </label>
+	<br>
+    <label class="checkbox-label">
+        <input type="checkbox" id="transportation_expense_check" onchange="toggleField('transportation_expense')"> Transportation, gas, auto repair, and insurance:
+        <input type="text" id="transportation_expense" name="transportation_expense" placeholder="Amount" style="display:none;">
+    </label>
+	</div>
+	<br>
+	
+	</div>
+	</div>
+
+	
+	
+	<div id="question15" style = "display:none">
+	<center><div id="box">
+    <p><strong>Do you have any installment payments?</strong></p>
+    <select id="hasInstallments" name="hasInstallments" required onchange="toggleInstallmentFields()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br>
+    <div id="installmentNumberContainer" style="display:none;">
+	<br>
+	<p><strong>How many installment payments do you have?</strong></p>
+        <select id="numberOfInstallments" name="numberOfInstallments" onchange="displayInstallmentFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+	<br>
+    <div id="installmentFieldsContainer"></div>
+	<br><br>
+</div>
+</div>
+
+
+
+<div id="question16" style = "display:none">
+<center><div id="box">
+    <p><strong>Do you have any wages/earnings withheld by the court:</strong></p>
+	
+    <select id="hasWithheldEarnings" name="hasWithheldEarnings" required onchange="toggleWithheldEarningsField()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br><br>
+    <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount" style="display:none;">
+	<br><br>
+</div>
+</div>
+
+
+<div id="question17" style = "display:none">
+<center><div id="box">
+    <p><strong>Do you have any other monthly expenses?</strong></p>
+	
+    <select id="hasOtherExpenses" name="hasOtherExpenses" required onchange="toggleOtherExpenses()">
+        <option value="" disabled selected>Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+	<br>
+    <div id="otherExpensesContainer" style="display:none;">
+	<br>
+	
+		<p><strong>How many other monthly expenses?</strong></p>
+        <select id="numberOfOtherExpenses" name="numberOfOtherExpenses" required onchange="displayOtherExpenseFields()">
+            <option value="" disabled selected>Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+	<br>
+    <div id="otherExpenseFields"></div>
+	<br><br>
+</div>
+</div>
+
+
+<div id="question18" style = "display:none">
+                <center><div id="box">
+
+
+                <p><strong>Have you had, or currently have any pending filed actions with any court in CA?</strong></p> 
+                <select id="PendingActions" name="PendingActions" required onchange="togglePendingActions()">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <br><br>
+				
+                <div id="PendingActionsInfo" style = "display:none">
+
+                <p><strong>Have you requested the court to waive any court fees in the last six months?</strong></p>
+                <select id="WaiveWithin6Months" name="WaiveWithin6Months" required onchange="togglePreviousRequestFields()">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+				<br><br>
+                <div id="previousRequestFields" style = "display:none">
+                   
+                    <p><strong>Please enter your case number</strong></p>
+                    <input type="text" id="case_number" name="case_number" placeholder="Case Number">
+
+                    <br>
+                    <p><strong>Is your previous request reasonably available?</strong></p>
+                    <select id="PreviousAvailable" name="PreviousAvailable" required onchange="togglePreviousRequestAvailable()">
+                        <option value="" disabled selected>Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+					
+					
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+
+
+
+<div id="question19" style = "display:none">
+<center><div id="box">
+    <p><strong>You're all done!</strong></p>
+    <button class="next-button" type="button" onclick="editPDF()"> Download From </h1></button>
+	<br><br>
+</div>
+</div>
+
+
+
+
+<center><div id="box" style = "display:none">
+	
+	
+	
+    <p>Total monthly expenses: <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" placeholder="Total Amount" ></p>
+</div>
+
+
+
+<div id="navigation">
+    <button id="previous" style="display:none" class="next-button" onclick="showPrevious()">← Previous</button>
+    <button class="next-button" onclick="showNext()"> Next →</button>
+</div>
+
+        
+   
+        
+    </div>
+</div>
+
+<div class="footer">
+        © 2024 Form Wiz. All rights reserved.
+    </div>
+<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+<script>
+
+
+
+var eligible = 1;
+var skip = 0;
+var currentQuestionIndex = 1; // Start from the first question
+var start = currentQuestionIndex; // Start from the first question
+
+
+
+function checkNoneApply() {
+    var noneApply = document.getElementById('noneApplyCheckbox').checked;
+    var benefitsCheckboxes = document.querySelectorAll('#benifits input[type="checkbox"]');
+
+    if (noneApply) {
+        // If 'none apply' is checked, uncheck all other checkboxes
+        benefitsCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    } else {
+        // If 'none apply' is unchecked, this part will restore the previous state if needed
+        // For simplicity, this code currently does nothing to change the state
+        // You could implement further logic here if you want to restore previous states
+    }
+}
+
+
+
+
+
+
+
+
+
+function showNext() {
+
+
+var currentDiv = document.getElementById('question' + currentQuestionIndex);
+    var requiredInputs = currentDiv.querySelectorAll('input[required], select[required]');
+
+    var allFilled = true;
+    requiredInputs.forEach(function(input) {
+        // Check only if the input is visible
+        if (input.offsetParent !== null && (input.value === '' || input.value === null)) {
+            allFilled = false;
+        }
+    });
+
+    if (!allFilled) {
+        alert("Please answer all required questions before proceeding.");
+        return;
+    }
+	
+	
+
+//alert(currentQuestionIndex);
+
+if(eligible == 0){
+alert("If you have enough income to pay for your household’s basic needs then you are not eligible for a fee waiver");
+}
+if(eligible == 1){
+
+if (currentQuestionIndex === 2) {
+currentQuestionIndex = 3
+document.getElementById('question2').style.display = 'none';
+}
+
+
+//alert(currentQuestionIndex)
+if (currentQuestionIndex === 5) {
+currentQuestionIndex = 6
+document.getElementById('question5').style.display = 'none';
+}
+
+document.getElementById('previous').style.display = 'inline';
+
+//alert(currentQuestionIndex);
+
+
+        if (currentQuestionIndex === 8) {
+            if(skip == 1 || skip == 2){
+            document.getElementById('question8').style.display = 'none';
+            currentQuestionIndex = 18;
+            }
+        }   
+
+
+
+        if(currentQuestionIndex == 4){
+
+        var benefitsCheckboxes = document.querySelectorAll('#benifits input[type="checkbox"]:checked');
+        if (benefitsCheckboxes.length > 0) {
+            skip = 1
+			document.getElementById('question4').style.display = 'none';
+			currentQuestionIndex = 18;
+        } else{
+        skip = 0
+        }
+
+        }
+
+
+
+
+
+		//skip income question
+        if (currentQuestionIndex === 5) {
+            if(skip == 1 || skip == 2){
+            document.getElementById('question5').style.display = 'none';
+            currentQuestionIndex = 6;
+            }
+        }           
+
+
+
+           
+
+
+
+
+
+            var currentDiv = document.getElementById('question' + currentQuestionIndex);
+            var nextDiv = document.getElementById('question' + (currentQuestionIndex + 1));
+            if (nextDiv) {
+                currentDiv.style.display = 'none'; // Hide current div
+                nextDiv.style.display = 'block'; // Show next div
+                currentQuestionIndex++;
+				
+			
+                if (currentQuestionIndex === 18) {
+                    document.getElementById('question4').style.display = 'none';  
+                }
+
+                if (currentQuestionIndex === 19) {
+                document.getElementById('navigation').style.display = 'none';
+                }
+
+            }
+
+
+
+
+        }
+		}
+
+function showPrevious() {
+
+//alert(currentQuestionIndex);
+eligible = 1
+
+if (currentQuestionIndex === 4) {
+currentQuestionIndex = 3
+document.getElementById('question4').style.display = 'none';
+}
+
+
+if (currentQuestionIndex === 18 && skip == 1) {
+currentQuestionIndex = 5
+document.getElementById('question18').style.display = 'none';
+}
+
+if (currentQuestionIndex === 18 && skip == 2) {
+currentQuestionIndex = 9
+document.getElementById('question18').style.display = 'none';
+}
+
+
+
+if (currentQuestionIndex === 7) {
+currentQuestionIndex = 6
+document.getElementById('question7').style.display = 'none';
+}
+
+
+if (currentQuestionIndex === (start+1)) {
+	document.getElementById('previous').style.display = 'none';
+
+}
+				
+				
+    if (currentQuestionIndex > start) {
+        var currentDiv = document.getElementById('question' + currentQuestionIndex);
+        var prevDiv = document.getElementById('question' + (currentQuestionIndex - 1));
+        if (prevDiv) {
+            currentDiv.style.display = 'none'; // Hide current div
+            prevDiv.style.display = 'block'; // Show previous div
+            currentQuestionIndex--;
+        }
+    }
+}
+
+
+let uploadedPdfFile = null;
+
+function toggleLawyerFields() {
+    const lawyerStatus = document.getElementById('LawyerStatus').value;
+    const lawyerInfoFields = document.getElementById('lawyerInfoFields');
+    if (lawyerStatus === 'yes') {
+        lawyerInfoFields.style.display = 'block';
+    } else {
+        lawyerInfoFields.style.display = 'none';
+    }
+}
+
+
+function toggleSkipToEnd() {
+    const LowIncomeStatus = document.getElementById('LowIncomeStatus').value;
+    
+    if (LowIncomeStatus === 'yes') {
+        skip = 2;
+    } else {
+        skip = 0;
+    }
+}
+
+
+function toggleJobFields() {
+    const jobStatus = document.getElementById('JobStatus').value;
+    const jobInfoFields = document.getElementById('jobInfoFields');
+    if (jobStatus === 'yes') {
+        jobInfoFields.style.display = 'block';
+    } else {
+        jobInfoFields.style.display = 'none';
+    }
+}
+
+
+function toggleCashSavings() {
+    var select = document.getElementById('hasCashSavings');
+    var container = document.getElementById('cashSavingsContainer');
+    if (select.value === 'yes') {
+        container.style.display = 'flex'; // This replaces 'block' to work with flex in CSS
+    } else {
+        container.style.display = 'none';
+    }
+}
+
+
+
+function togglePendingActions() {
+    const PendingActions = document.getElementById('PendingActions').value;
+    const PendingActionsInfo = document.getElementById('PendingActionsInfo');
+    if (PendingActions === 'yes') {
+        PendingActionsInfo.style.display = 'block';
+    } else {
+        PendingActionsInfo.style.display = 'none';
+    }
+}
+
+function togglePreviousRequestFields() {
+    const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
+    const previousRequestFields = document.getElementById('previousRequestFields');
+    if (waiveWithin6Months === 'yes') {
+        previousRequestFields.style.display = 'block';
+    } else {
+        previousRequestFields.style.display = 'none';
+    }
+}
+
+function togglePreviousRequestAvailable() {
+    const PreviousAvailable = document.getElementById('PreviousAvailable').value;
+  
+    if (PreviousAvailable === 'yes') {
+        alert("Please ensure that your previous fee waiver is attached to this new fee waiver request")
+    } 
+}
+
+
+
+function downloadPDF() {
+    var iframe = document.getElementById('pdfFrame');
+    var url = iframe.src;
+    var downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "ModifiedDocument.pdf";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+function loadDefaultPDF() {
+    const defaultUrl = 'http://localhost:3000/form.pdf';
+    fetch(defaultUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            uploadedPdfFile = blob;
+            displayPDF(blob);
+        })
+        .catch(error => {
+            console.error('Error loading default PDF:', error);
+           // alert('Error loading default PDF: ' + error.message);
+        });
+}
+
+function displayPDF(pdfBlob) {
+    var url = URL.createObjectURL(pdfBlob);
+    document.getElementById('pdfFrame').src = url;
+    //document.getElementById('pdfPreview').style.display = 'block';
+}
+
+
+
+
+
+var formData = new FormData();
+
+
+function toggleMonthlyIncomeFields() {
+    const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
+    const monthlyIncomeFields = document.getElementById('monthlyIncomeFields');
+    
+    if (changingIncomeStatus === 'yes') {
+        monthlyIncomeFields.style.display = 'block';
+        
+    } else {
+       
+        monthlyIncomeFields.style.display = 'block';
+        
+    }
+}
+
+
+function toggleIncomeFields() {
+    const incomePayStatus = document.getElementById('IncomePayStatus').value;
+    const incomeInfoFields = document.getElementById('incomeInfoFields');
+	
+    if (incomePayStatus === 'no') {
+        incomeInfoFields.style.display = 'block';
+		formData.append('not_enough', 'Yes');
+		eligible = 1;
+    } else {
+		eligible = 0;
+		incomeInfoFields.style.display = 'none';
+	    alert("If you have enough income to pay for your household’s basic needs then you are not eligible for a fee waiver");
+        
+    }
+}
+
+
+function calculateTotalExpenses() {
+    let total = 0;
+    const expenseFields = [
+        'rent_expense', 'food_expense', 'utilities_expense', 'clothing_expense', 'laundry_expense',
+        'medical_expense', 'insurance_expense', 'school_childcare_expense', 'support_expense',
+        'transportation_expense'
+    ];
+
+    // Sum up all expenses from checkboxes if they are checked
+    expenseFields.forEach(field => {
+        if (document.getElementById(field + '_check') && document.getElementById(field + '_check').checked) {
+            total += parseFloat(document.getElementById(field).value) || 0;
+        }
+    });
+
+    // Include installment payments if any
+    const numberOfInstallments = parseInt(document.getElementById('numberOfInstallments').value || 0);
+    for (let i = 1; i <= numberOfInstallments; i++) {
+        total += parseFloat(document.getElementById(`installment_payment${i}_amount`).value) || 0;
+    }
+
+    // Include payroll deductions if any
+    const numberOfPayrollDeductions = parseInt(document.getElementById('numberOfPayrollDeductions').value || 0);
+    for (let i = 1; i <= numberOfPayrollDeductions; i++) {
+        total += parseFloat(document.getElementById(`payroll_deduction${i}`).value) || 0;
+    }
+
+    // Include withheld earnings if specified
+    const withheldEarnings = parseFloat(document.getElementById('withheld_earnings').value) || 0;
+    total += withheldEarnings;
+
+    // Include other monthly expenses if any
+    const numberOfOtherExpenses = parseInt(document.getElementById('numberOfOtherExpenses').value || 0);
+    for (let i = 1; i <= numberOfOtherExpenses; i++) {
+        total += parseFloat(document.getElementById(`other_expense${i}_amount`).value) || 0;
+    }
+
+    // Update the total monthly expenses input
+
+
+    if (skip == 0) {
+    document.getElementById('total_monthly_expenses').value = total.toFixed(2);
+    }
+
+
+}
+
+
+
+function displayIncomeFields() {
+    const number = parseInt(document.getElementById('numberOfIncomeSources').value, 10);
+    const container = document.getElementById('incomeFieldsContainer');
+    container.innerHTML = '';  // Clear existing fields
+
+    for (let i = 1; i <= number; i++) {
+        const fieldContainer = document.createElement('div');
+        fieldContainer.className = 'income-field-container';
+
+        const sourceInput = document.createElement('input');
+        sourceInput.type = 'text';
+        sourceInput.className = 'income-source';
+        sourceInput.id = 'monthly_income_source' + i;
+        sourceInput.name = 'monthly_income_source' + i;
+        sourceInput.placeholder = 'Income Source ' + i;
+
+        const amountInput = document.createElement('input');
+        amountInput.type = 'text';
+        amountInput.className = 'income-amount';
+        amountInput.id = 'monthly_income_source' + i + '_amount';
+        amountInput.name = 'monthly_income_source' + i + '_amount';
+        amountInput.placeholder = 'Amount ' + i;
+
+        fieldContainer.appendChild(sourceInput);
+        fieldContainer.appendChild(amountInput);
+
+        container.appendChild(fieldContainer);
+    }
+}
+
+
+
+
+function toggleOtherExpenses() {
+    const hasExpenses = document.getElementById('hasOtherExpenses').value;
+    const expensesContainer = document.getElementById('otherExpensesContainer');
+    const expenseFields = document.getElementById('otherExpenseFields');
+    if (hasExpenses === 'yes') {
+        expensesContainer.style.display = 'block';
+    } else {
+        expensesContainer.style.display = 'none';
+        expenseFields.innerHTML = '';  // Clear the fields
+        expenseFields.style.display = 'none';
+    }
+}
+
+
+
+function displayOtherExpenseFields() {
+    const number = parseInt(document.getElementById('numberOfOtherExpenses').value, 10);
+    const container = document.getElementById('otherExpenseFields');
+    container.innerHTML = ''; // Clear existing fields
+
+    for (let i = 1; i <= number; i++) {
+        container.appendChild(createOtherExpenseField(i));
+    }
+    container.style.display = 'block';
+}
+
+function createOtherExpenseField(index) {
+    const div = document.createElement('div');
+    div.innerHTML = `<strong></strong> <input type="text" id="other_expense${index}" name="other_expense${index}" placeholder="Description"> <input type="text" id="other_expense${index}_amount" name="other_expense${index}_amount" placeholder="Amount">`;
+    return div;
+}
+
+
+
+
+function toggleDependencyFields() {
+    const hasDependents = document.getElementById('hasDependents').value;
+    const dependencyFieldsContainer = document.getElementById('dependencyFieldsContainer');
+    const dependencyInfo = document.getElementById('dependencyInfo');
+
+    if (hasDependents === 'yes') {
+        dependencyFieldsContainer.style.display = 'block';
+    } else {
+        dependencyFieldsContainer.style.display = 'none';
+        dependencyInfo.style.display = 'none';
+        dependencyInfo.innerHTML = ''; // Clear previous fields
+    }
+}
+
+function displayDependencyFields() {
+    const number = parseInt(document.getElementById('numberOfDependents').value, 10);
+    const container = document.getElementById('dependencyInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        const fieldContainer = document.createElement('div');
+        fieldContainer.className = 'dependency-details'; // Use the new class
+
+        fieldContainer.appendChild(createDependencyInput(`dependency_name${i}`, 'Name', 'dependency-input'));
+        fieldContainer.appendChild(createDependencyInput(`dependency_age${i}`, 'Age', 'dependency-input'));
+        fieldContainer.appendChild(createDependencyInput(`dependency_relationship${i}`, 'Relationship', 'dependency-input'));
+        fieldContainer.appendChild(createDependencyInput(`dependency_income${i}`, 'Monthly Income', 'dependency-input'));
+        container.appendChild(fieldContainer);
+    }
+}
+
+function createDependencyInput(id, placeholder, className) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    input.className = className; // Apply the input class
+    return input;
+}
+
+
+
+
+
+
+function toggleInstallmentFields() {
+    const hasInstallments = document.getElementById('hasInstallments').value;
+    const numberContainer = document.getElementById('installmentNumberContainer');
+    const fieldsContainer = document.getElementById('installmentFieldsContainer');
+
+    if (hasInstallments === 'yes') {
+        numberContainer.style.display = 'block';
+        fieldsContainer.innerHTML = '';  // Clear previous entries when switching from no to yes
+    } else {
+        numberContainer.style.display = 'none';
+        fieldsContainer.style.display = 'none';
+        fieldsContainer.innerHTML = '';  // Clear previous entries
+    }
+}
+
+function displayInstallmentFields() {
+    const numberElement = document.getElementById('numberOfInstallments');
+    const number = parseInt(numberElement.value, 10);
+    const container = document.getElementById('installmentFieldsContainer');
+    container.innerHTML = ''; // Clear existing fields before adding new ones
+	container.style.display = 'block';
+
+	
+	
+    if (!isNaN(number) && number > 0) {
+        for (let i = 1; i <= number; i++) {
+	
+		const paymentDiv = document.createElement('div');
+		paymentDiv.className = 'payment-field-container';
+        paymentDiv.appendChild(document.createTextNode(``));
+        paymentDiv.appendChild(createInput(`installment_payment${i}`, 'Description', 'payment_detail'));
+        paymentDiv.appendChild(createInput(`installment_payment${i}_amount`, 'Amount', 'payment_detail'));
+        container.appendChild(paymentDiv);
+		
+	
+    }
+        container.style.display = 'block'; // Display the container
+    } else {
+        container.style.display = 'none'; // Hide the container if number is invalid or zero
+    }
+}
+
+
+
+function toggleWithheldEarningsField() {
+    var select = document.getElementById('hasWithheldEarnings');
+    var input = document.getElementById('withheld_earnings');
+    if (select.value === 'yes') {
+        input.style.display = 'inline-block';
+    } else {
+        input.style.display = 'none';
+        input.value = '';  // Clear the input when "No" is selected
+    }
+}
+
+
+
+function toggleField(fieldId) {
+    var checkbox = document.getElementById(fieldId + '_check');
+    var input = document.getElementById(fieldId);
+    if (checkbox.checked) {
+        input.style.display = 'inline-block';
+    } else {
+        input.style.display = 'none';
+        // Check if skip is not 1 before setting the value to 0
+        if (skip == 0) {
+            input.value = '0';  // Set the value to 0 if the checkbox is unchecked
+        } else {
+            input.value = '';  // Leave it blank if skip is 1
+        }
+    }
+}
+
+
+
+function createInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+
+
+function toggleBankAccountFields() {
+    const hasBankAccount = document.getElementById('hasBankAccount').value;
+    const bankAccountFieldsContainer = document.getElementById('bankAccountFieldsContainer');
+    const bankAccountInfo = document.getElementById('bankAccountInfo');
+
+    if (hasBankAccount === 'yes') {
+        bankAccountFieldsContainer.style.display = 'block';
+    } else {
+        bankAccountFieldsContainer.style.display = 'none';
+        bankAccountInfo.style.display = 'none';
+        bankAccountInfo.innerHTML = ''; // Clear previous fields
+    }
+}
+
+function displayBankAccountFields() {
+    const number = parseInt(document.getElementById('numberOfBankAccounts').value, 10);
+    const container = document.getElementById('bankAccountInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+	
+		const bankDiv = document.createElement('div');
+		bankDiv.className = 'bank-field-container';
+        bankDiv.appendChild(document.createTextNode(``));
+        bankDiv.appendChild(createInput(`bank_name${i}`, 'Bank Name', 'bank_detail'));
+        bankDiv.appendChild(createInput(`bank_amount${i}`, 'Amount', 'bank_detail'));
+        container.appendChild(bankDiv);
+		
+		
+		
+		
+		
+		
+    }
+}
+
+function createBankAccountInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+
+
+
+
+
+
+
+
+function toggleVehicleFields() {
+    const hasVehicles = document.getElementById('hasVehicles').value;
+    const vehicleFieldsContainer = document.getElementById('vehicleFieldsContainer');
+    const vehicleInfo = document.getElementById('vehicleInfo');
+    
+    if (hasVehicles === 'yes') {
+        vehicleFieldsContainer.style.display = 'block';
+        displayVehicleFields(); // Call this here to ensure fields show if previously selected
+    } else {
+        vehicleFieldsContainer.style.display = 'none';
+        vehicleInfo.innerHTML = ''; // Clear previous fields
+        vehicleInfo.style.display = 'none';
+    }
+}
+
+function displayVehicleFields() {
+    const number = parseInt(document.getElementById('numberOfVehicles').value, 10);
+    const container = document.getElementById('vehicleInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        const vehicleDiv = document.createElement('div');
+        vehicleDiv.className = 'vehicle-field-container'; // Container for each vehicle set
+
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_make_year`, 'Make / Year', 'vehicle-detail'));
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_market_value`, 'Fair Market Value', 'vehicle-detail'));
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_amount_owed`, 'Amount Owed', 'vehicle-detail'));
+        container.appendChild(vehicleDiv);
+    }
+}
+
+function createVehicleInput(id, placeholder, className) {
+    const div = document.createElement('div');
+    div.className = className;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+
+    div.appendChild(input);
+    return div;
+}
+
+
+
+
+
+function toggleRealEstateFields() {
+    const hasRealEstate = document.getElementById('hasRealEstate').value;
+    const realEstateFieldsContainer = document.getElementById('realEstateFieldsContainer');
+    const realEstateInfo = document.getElementById('realEstateInfo');
+
+    if (hasRealEstate === 'yes') {
+        realEstateFieldsContainer.style.display = 'block';
+        displayRealEstateFields(); // Ensure fields show if previously selected
+    } else {
+        realEstateFieldsContainer.style.display = 'none';
+        realEstateInfo.innerHTML = ''; // Clear previous fields
+        realEstateInfo.style.display = 'none';
+    }
+}
+
+function displayRealEstateFields() {
+    const number = parseInt(document.getElementById('numberOfProperties').value, 10);
+    const container = document.getElementById('realEstateInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        const propertyDiv = document.createElement('div');
+		propertyDiv.className = 'estate-field-container'; // Container for each vehicle set
+
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_address`, 'Address', 'estate_detail'));
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_market_value`, 'Fair Market Value', 'estate_detail'));
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_amount_owed`, 'Amount Owed', 'estate_detail'));
+        container.appendChild(propertyDiv);
+    
+    }
+}
+
+function createRealEstateInput(id, placeholder,className) {
+    const div = document.createElement('div');
+    div.className = className;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+
+    div.appendChild(input);
+    return div;
+}
+
+
+
+function togglePersonalPropertyFields() {
+    const hasPersonalProperty = document.getElementById('hasPersonalProperty').value;
+    const personalPropertyFieldsContainer = document.getElementById('personalPropertyFieldsContainer');
+    const personalPropertyInfo = document.getElementById('personalPropertyInfo');
+
+    if (hasPersonalProperty === 'yes') {
+        personalPropertyFieldsContainer.style.display = 'block';
+        displayPersonalPropertyFields(); // Ensure fields show if previously selected
+    } else {
+        personalPropertyFieldsContainer.style.display = 'none';
+        personalPropertyInfo.innerHTML = ''; // Clear previous fields
+        personalPropertyInfo.style.display = 'none';
+    }
+}
+
+function displayPersonalPropertyFields() {
+    const number = parseInt(document.getElementById('numberOfPersonalProperties').value, 10);
+    const container = document.getElementById('personalPropertyInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+        const propertyDiv = document.createElement('div');
+		propertyDiv.className = 'personal-field-container'; // Container for each vehicle set
+        propertyDiv.appendChild(document.createTextNode(``));
+        propertyDiv.appendChild(createInput(`property${i}_description`, 'Description', 'personal_detail'));
+        propertyDiv.appendChild(createInput(`property${i}_market_value`, 'Fair Market Value', 'personal_detail'));
+        propertyDiv.appendChild(createInput(`property${i}_amount_owed`, 'Amount Owed', 'personal_detail'));
+        container.appendChild(propertyDiv);
+        
+    }
+}
+
+function createInput(id, placeholder, className) {
+    const div = document.createElement('div');
+    div.className = className;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+
+    div.appendChild(input);
+    return div;
+}
+
+
+
+function togglePayrollDeductionFields() {
+    const hasDeductions = document.getElementById('hasPayrollDeductions').value;
+    const deductionsContainer = document.getElementById('payrollDeductionsContainer');
+    const deductionsInfo = document.getElementById('payrollDeductionInfo');
+
+    if (hasDeductions === 'yes') {
+        deductionsContainer.style.display = 'block';
+    } else {
+        deductionsContainer.style.display = 'none';
+        deductionsInfo.innerHTML = ''; // Clear previous fields
+        deductionsInfo.style.display = 'none';
+    }
+}
+
+function displayPayrollDeductionFields() {
+    const number = parseInt(document.getElementById('numberOfPayrollDeductions').value, 10);
+    const container = document.getElementById('payrollDeductionInfo');
+    container.innerHTML = ''; // Clear existing fields
+    container.style.display = 'block';
+
+    for (let i = 1; i <= number; i++) {
+	
+	
+		const propertyDiv = document.createElement('div');
+		propertyDiv.className = 'personal-field-container'; // Container for each vehicle set
+        propertyDiv.appendChild(document.createTextNode(``));
+        propertyDiv.appendChild(createInput(`payroll_description${i}`, 'Description', 'personal_detail'));
+        propertyDiv.appendChild(createInput(`payroll_deduction${i}`, 'Fair Market Value', 'personal_detail'));
+        container.appendChild(propertyDiv);
+      
+		
+
+    }
+}
+
+function createDeductionInput(id, placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = id;
+    input.name = id;
+    input.placeholder = placeholder;
+    return input;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//edit pdf code
+async function editPDF() {
+    
+	
+	calculateTotalExpenses();
+	
+	
+toggleField('rent_expense');
+toggleField('food_expense');
+toggleField('utilities_expense');
+toggleField('clothing_expense');
+toggleField('laundry_expense');
+toggleField('medical_expense');
+toggleField('insurance_expense');
+toggleField('school_childcare_expense');
+toggleField('support_expense');
+toggleField('transportation_expense');
+
+
+
+// Collect name and email from the form
+    const name = document.getElementById('PetitionerName1[0]').value;
+    const email = document.getElementById('email').value;
+    const lawyerStatus = document.getElementById('LawyerStatus').value;
+    const jobStatus = document.getElementById('JobStatus').value;
+    const lawyerAdvance = lawyerStatus === 'yes' ? document.getElementById('LawyerAdvance').value : null;
+    const courtType = document.getElementById('CourtType').value;
+    const lowIncomeStatus = document.getElementById('LowIncomeStatus').value;
+    const courtAction = document.getElementById('CourtAction').value;
+    const waiveWithin6Months = document.getElementById('WaiveWithin6Months').value;
+    const previousAvailable = document.getElementById('PreviousAvailable').value;
+    const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
+	const incomePayStatus = document.getElementById('IncomePayStatus').value;
+
+	
+	const numberOfIncomeSources = parseInt(document.getElementById('numberOfIncomeSources').value, 10);
+    let totalMonthlyIncome = 0;
+
+    for (let i = 1; i <= numberOfIncomeSources; i++) {
+        const incomeAmountElement = document.getElementById(`monthly_income_source${i}_amount`);
+        if (incomeAmountElement) {
+
+            
+            totalMonthlyIncome += parseFloat(incomeAmountElement.value) || 0;
+        }
+    }
+
+
+   
+    document.getElementById('monthly_income_total').value = totalMonthlyIncome.toFixed(2);
+    
+
+    let totalDependencyIncome = 0;
+    const maxDependencies = 4; // Max number of dependents you expect
+
+    for (let i = 1; i <= maxDependencies; i++) {
+        const dependencyIncome = document.getElementById(`dependency_income${i}`);
+        if (dependencyIncome) {
+            totalDependencyIncome += parseFloat(dependencyIncome.value) || 0;
+        }
+    }
+
+
+    document.getElementById('dependency_income_total').value = totalDependencyIncome.toFixed(2);
+    
+
+
+    const combinedTotal = totalMonthlyIncome + totalDependencyIncome;
+
+
+   
+    document.getElementById('total_combined_income').value = combinedTotal.toFixed(2);
+    
+	
+		
+    try {
+        const response = await fetch('/addUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email }),
+        });
+        const result = await response.text();
+        //alert(result);
+    } catch (error) {
+        console.error('Error:', error);
+       // alert('Failed to add user');
+    }
+
+    
+	
+	
+	
+	
+	formData = new FormData(); // Reset formData for fresh use each time the function is called.
+
+    if (!uploadedPdfFile) {
+        //alert('No PDF file is loaded for editing. Please upload the file again.');
+        return;
+    }
+
+    // Collect inputs from the form
+    const inputs = document.querySelectorAll('#questions input, #questions select');
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            formData.append(input.name, input.checked ? 'Yes' : 'No');
+        } else {
+            formData.append(input.name, input.value);
+        }
+    });
+	
+	
+	
+	
+        formData.append('supreme_court_checkbox', 'Yes');
+    
+	
+	
+        const lawyerName = document.getElementById('LawyerName').value;
+        const lawFirm = document.getElementById('LawFirm').value;
+        const lawyerAddress = document.getElementById('LawyerAddress').value;
+        const lawyerPhone = document.getElementById('LawyerPhone').value;
+        const lawyerBarNumber = document.getElementById('LawyerBarNumber').value;
+        const lawyerInfo = `Pro Se`;
+        formData.append('lawyer_info', lawyerInfo);
+        formData.append('lawyercheckno', 'Yes');
+        
+    
+
+    // Append the job status to the form data
+    if (jobStatus === 'yes') {
+        const employerName = document.getElementById('employer_name').value;
+        const employerAddress = document.getElementById('employer_address').value;
+        formData.append('employer_name', employerName);
+        formData.append('employer_address', employerAddress);
+    } else {
+		const job_title = 'Unemployed';
+        
+        formData.append('job', job_title);
+	}
+
+
+
+	if (lowIncomeStatus === 'yes') {
+        formData.append('low_gross_income', 'Yes');
+    } else {
+        formData.append('low_gross_income', 'No');
+    }
+
+    if (courtAction === 'waive_all') {
+        formData.append('waive_all', 'Yes');
+		
+    } else if (courtAction === 'waive_some') {
+        formData.append('waive_some', 'Yes');
+    } else if (courtAction === 'pay_later') {
+        formData.append('pay_later', 'Yes');
+    }
+	
+	
+    if (waiveWithin6Months === 'yes') {
+        formData.append('waive_within_6months', 'Yes');
+    }
+
+    if (previousAvailable === 'yes') {
+        formData.append('previous_available', 'Yes');
+    }
+
+    if (changingIncomeStatus === 'yes') {
+        formData.append('changing_income_checkbox', 'Yes');
+    }
+	
+	
+
+    // Append the PDF file to formData
+    formData.append('pdf', uploadedPdfFile);
+
+    // Debugging: Log the form data
+    console.log('FormData contents:');
+    for (var pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    // Send the formData to the server
+    fetch('/edit_pdf', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        var url = window.URL.createObjectURL(blob);
+        document.getElementById('pdfFrame').src = url;
+        //document.getElementById('pdfPreview').style.display = 'block';
+        downloadPDF();
+    })
+    .catch(error => {
+        console.error('Error updating PDF:', error);
+        //alert('Error updating PDF: ' + error.message);
+    });
+}
+
+
+
+
+function setCurrentDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('current_date').value = today;
+}
+
+
+window.onload = function() {
+    loadDefaultPDF();
+    setCurrentDate();
+};
+</script>
+<div id="pdfPreview" style="display:none;">
+    <iframe id="pdfFrame" style = "display:none"></iframe>
+</div>
+</div>
+</center>
+</body>
+</html>

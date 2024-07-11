@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Wiz - Home</title>
+    <title>Form Wiz - Forms</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -18,11 +18,9 @@
             color: #1d1d1f;
         }
         .container {
-            text-align: center;
 			width: 100%;
-            max-width: 900px;
-			height: 60%;
-			max-height: 1000px;
+            text-align: center;
+            max-width: 900px; /* Increased width */
             padding: 40px;
             border-radius: 12px;
             background-color: white;
@@ -71,6 +69,27 @@
         .nav-link:hover {
             text-decoration: underline;
         }
+        .form-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-item {
+            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 800px; /* Increased width */
+            padding: 30px; /* Increased padding */
+            border: 1px solid #d1d1d6;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -80,17 +99,25 @@
             <a href="forms.html" class="nav-link">Forms</a>
             <a href="contact.html" class="nav-link">Contact Us</a>
         </nav>
-		<br>
-        <div class="header">Welcome to Form Wiz</div>
-        <div class="description">Form Wiz is your go-to solution for quick and easy legal form completion. Simply provide your details and let us handle the rest.</div>
-        <button class="button" onclick="startNow()">Get Started</button>
+        <div class="header">Available Forms</div>
+        <div class="description">Select a form below to start the process.</div>
+        <div class="form-list">
+            <div class="form-item">
+                <div class="form-title">Fee Waiver Form</div>
+                <button class="button"  onclick="startForm()">Start Form</button>
+            </div>
+            <div class="form-item">
+                <div class="form-title">Small Courts Form</div>
+                <button class="button" onclick="startForm('small-courts')">Coming Soon</button>
+            </div>
+        </div>
     </div>
     <div class="footer">
         © 2024 Form Wiz. All rights reserved.
     </div>
     <script>
-        function startNow() {
-            window.location.href = 'forms.html';
+        function startForm(formName) {
+            window.location.href = `fee-waiver.html`;
         }
     </script>
 </body>

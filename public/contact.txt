@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Wiz - Home</title>
+    <title>Form Wiz - Contact Us</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -19,10 +19,7 @@
         }
         .container {
             text-align: center;
-			width: 100%;
-            max-width: 900px;
-			height: 60%;
-			max-height: 1000px;
+            max-width: 800px;
             padding: 40px;
             border-radius: 12px;
             background-color: white;
@@ -71,6 +68,25 @@
         .nav-link:hover {
             text-decoration: underline;
         }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #d1d1d6;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
     </style>
 </head>
 <body>
@@ -80,17 +96,26 @@
             <a href="forms.html" class="nav-link">Forms</a>
             <a href="contact.html" class="nav-link">Contact Us</a>
         </nav>
-		<br>
-        <div class="header">Welcome to Form Wiz</div>
-        <div class="description">Form Wiz is your go-to solution for quick and easy legal form completion. Simply provide your details and let us handle the rest.</div>
-        <button class="button" onclick="startNow()">Get Started</button>
+        <div class="header">Contact Us</div>
+        <div class="description">Have questions or need assistance? Send us a message below.</div>
+        <form class="contact-form" onsubmit="sendEmail(event)">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="button">Send Message</button>
+        </form>
     </div>
     <div class="footer">
         © 2024 Form Wiz. All rights reserved.
     </div>
     <script>
-        function startNow() {
-            window.location.href = 'forms.html';
+        function sendEmail(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            window.location.href = `mailto:adamchaabane1234@gmail.com?subject=Message from ${name} (${email})&body=${message}`;
         }
     </script>
 </body>
