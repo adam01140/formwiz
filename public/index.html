@@ -19,7 +19,7 @@
         font-size: 16px;
         border-radius: 40px;
         padding-left: 10px;
-        border: 1px solid #6B86E7;
+        border: 1px solid #3f77b8;
         cursor: pointer;
     }
 	
@@ -32,7 +32,7 @@
         font-size: 16px;
         border-radius: 40px;
         padding-left: 10px;
-        border: 1px solid #3F59B8;
+        border: 1px solid #3f77b8;
     }
     
     option {
@@ -575,7 +575,7 @@
                 <option value="waive_some">Waive some of the court fees</option>
                 <option value="pay_later">Let me make payments over time</option>
             </select>
-			<p>
+			<p><br>
         </div>
 		
         </div>
@@ -592,25 +592,7 @@
 
 
     <div id="question3" style = "display:none">
-        <div id="box">
-        <p><strong>Are you currently employed?</strong></p>
-        <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
-            <option value="" disabled selected>Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-        <p>
-        <div class="job-info" id="jobInfoFields">
-      <br>
-            
-			<input type="text" id="job" name="job" placeholder="Job Title">
-			<br><br>
-            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer">
-            <br><br>
-            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address">
-            <br><br>
-        </div>
-        </div>
+        
         </div>
 
 
@@ -1122,7 +1104,7 @@
 <div id="question19" style = "display:none">
 <div id="box">
     <p><strong>You're all done!</strong></p>
-    <button class="next-button" type="button" onclick="editPDF()">Download From</button>
+    <button class="next-button" type="button" onclick="editPDF()"><h1> Download From </h1></button>
 </div>
 </div>
 
@@ -1155,7 +1137,7 @@
 
 
 
-
+var eligible = 1;
 var skip = 0;
 var currentQuestionIndex = 1; // Start from the first question
 var start = currentQuestionIndex; // Start from the first question
@@ -1191,6 +1173,10 @@ function showNext() {
 
 //alert(currentQuestionIndex);
 
+if(eligible == 0){
+alert("If you have enough income to pay for your household’s basic needs then you are not eligible for a fee waiver");
+}
+if(eligible == 1){
 
 if (currentQuestionIndex === 2) {
 currentQuestionIndex = 3
@@ -1274,11 +1260,12 @@ document.getElementById('previous').style.display = 'inline';
 
 
         }
+		}
 
 function showPrevious() {
 
 //alert(currentQuestionIndex);
-
+eligible = 1
 
 if (currentQuestionIndex === 4) {
 currentQuestionIndex = 3
@@ -1459,11 +1446,12 @@ function toggleIncomeFields() {
     if (incomePayStatus === 'no') {
         incomeInfoFields.style.display = 'block';
 		formData.append('not_enough', 'Yes');
+		eligible = 1;
     } else {
-	
-	    alert("Sorry, you are not eligible");
-        window.location.reload();
-        incomeInfoFields.style.display = 'none';
+		eligible = 0;
+		incomeInfoFields.style.display = 'none';
+	    alert("If you have enough income to pay for your household’s basic needs then you are not eligible for a fee waiver");
+        
     }
 }
 
@@ -2148,9 +2136,13 @@ toggleField('transportation_expense');
     if (jobStatus === 'yes') {
         const employerName = document.getElementById('employer_name').value;
         const employerAddress = document.getElementById('employer_address').value;
-        formData.append('employeer_name', employerName);
-        formData.append('employeer_address', employerAddress);
-    }
+        formData.append('employer_name', employerName);
+        formData.append('employer_address', employerAddress);
+    } else {
+		const job_title = 'Unemployed';
+        
+        formData.append('job', job_title);
+	}
 
 
 
