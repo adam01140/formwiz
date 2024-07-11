@@ -1198,7 +1198,7 @@ document.getElementById('previous').style.display = 'inline';
         if (currentQuestionIndex === 8) {
             if(skip == 1 || skip == 2){
             document.getElementById('question8').style.display = 'none';
-            currentQuestionIndex = 17;
+            currentQuestionIndex = 18;
             }
         }   
 
@@ -1206,12 +1206,11 @@ document.getElementById('previous').style.display = 'inline';
 
         if(currentQuestionIndex == 4){
 
-
         var benefitsCheckboxes = document.querySelectorAll('#benifits input[type="checkbox"]:checked');
         if (benefitsCheckboxes.length > 0) {
             skip = 1
 			document.getElementById('question4').style.display = 'none';
-			currentQuestionIndex = 17;
+			currentQuestionIndex = 18;
         } else{
         skip = 0
         }
