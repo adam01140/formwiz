@@ -374,6 +374,15 @@
 /* Styles specific to devices with a viewport width of 600px or less (typically smartphones) */
 @media (max-width: 1000px) {
 
+
+
+select {
+        text-align-last: center; /* Align text in select for Android */
+        -moz-text-align-last: center; /* For Firefox versions */
+        text-align: center; /* For iOS and standard browsers */
+        padding-right: 30px; /* Adjust this value as needed */
+    }
+
  #questions {
     position: relative;
     border: 4px solid lightblue;
