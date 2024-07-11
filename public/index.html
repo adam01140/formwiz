@@ -122,7 +122,8 @@
 
 #navigation {
     position: absolute; /* Updated from sticky to absolute */
-    bottom: 30px; /* Adjust this value as needed to align correctly */
+     /* Adjust this value as needed to align correctly */
+	bottom: 20px;
     width: 100%; /* Ensure it spans the entire width of the #questions div */
 }
 
@@ -140,6 +141,61 @@
     }
 	
 	
+	#deductions input[type="text"] {
+    height: 15px; /* Adjust this value to decrease the height */
+    padding: 4px 10px; /* Adjust padding to better fit the smaller height */
+    font-size: 10px; /* Optional: adjust font size to match the new height */
+}
+
+
+	#deductions {
+	
+	
+        border: 4px solid lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        background-color: #ffffff;
+        width: 50%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+	
+	.cash-savings-container {
+    display: flex; /* Uses Flexbox to align children inline */
+    align-items: center; /* Align items vertically */
+    gap: 0px; /* Adds space between the select and the div */
+	width: 200px;
+}
+
+
+.cash-savings-container select, .cash-savings-container #cashSavingsContainer {
+    flex-grow: 1; /* Allows both children to grow and fill the container */
+}
+
+.cash-savings-container #cashSavingsContainer {
+    display: flex; /* Align the paragraph inside the div */
+    align-items: center; /* Center the content vertically */
+}
+
+/* Reduce bottom margin/padding of the paragraph above the select element */
+#question9 p {
+    margin-bottom: 0; /* Adjust or remove spacing */
+    padding-bottom: 0; /* Ensure no padding is adding extra space */
+}
+
+/* Ensure the container starts right after the paragraph */
+.cash-savings-container {
+    margin-top: 0; /* Adjust top margin to pull it closer to the preceding element */
+}
+
+
+
+
+
+
+
     
     #box {
         border: 4px solid lightblue;
@@ -237,8 +293,82 @@
     }
 	
 	
+	.dependency-details {
+    display: flex;
+    justify-content: center;
+    width: 60%; /* Adjust width as needed */
+    padding: 10px 0; /* Adds vertical padding */
+}
+
+.dependency-input {
+    flex: 1; /* Distributes space evenly */
+    margin-right: 10px; /* Adds space between inputs */
+}
+
+.dependency-input:last-child {
+    margin-right: 0; /* Removes margin from the last input */
+}
+
 	
 	
+	
+.vehicle-field-container {
+    display: flex; /* Aligns children (input fields) inline */
+    justify-content: center; /* Aligns children at the start of the container */
+    margin-bottom: 10px; /* Space between rows */
+}
+
+
+.vehicle-detail input {
+    margin-right: 5px; /* Reduces space to the right of each input field */
+}
+
+
+
+.estate-field-container {
+    display: flex; /* Aligns children (input fields) inline */
+    justify-content: center; /* Aligns children at the start of the container */
+    margin-bottom: 10px; /* Space between rows */
+}
+.estate_detail input {
+    margin-right: 10px; /* Reduces space to the right of each input field */
+}
+
+
+
+
+.bank-field-container {
+    display: flex; /* Aligns children (input fields) inline */
+    justify-content: center; /* Aligns children at the start of the container */
+    margin-bottom: 10px; /* Space between rows */
+}
+.bank_detail input {
+    margin-right: 10px; /* Reduces space to the right of each input field */
+}
+
+
+.personal-field-container {
+    display: flex; /* Aligns children (input fields) inline */
+    justify-content: center; /* Aligns children at the start of the container */
+    margin-bottom: 10px; /* Space between rows */
+}
+.personal_detail input {
+    margin-right: 10px; /* Reduces space to the right of each input field */
+}
+
+
+
+
+.payment-field-container {
+    display: flex; /* Aligns children (input fields) inline */
+    justify-content: center; /* Aligns children at the start of the container */
+    margin-bottom: 10px; /* Space between rows */
+}
+.payment_detail input {
+    margin-right: 10px; /* Reduces space to the right of each input field */
+}
+
+
 	
 
 /* Styles specific to devices with a viewport width of 600px or less (typically smartphones) */
@@ -277,11 +407,10 @@
 	 <div style="line-height: 0.4;">
 	 <br><br><br><br><br>
 <h1>Waive Court Fees Form</h1>
-<h2><i> Offered by <i> Form Wiz </i></h2>
+<h2><i> Offered by Form Wiz </i></h2>
 
 <br>
 
-<p>
 </div>
 
 	<div id="questions1">
@@ -620,13 +749,15 @@
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-			<br>
+			<br><br>
         </select>
-		<br>
+		<br><br>
     </div>
 	<br>
     <div id="dependencyInfo" style="display:none;">
+	<br><br>
 </div>
+<br>
 </div>
 </div>
 
@@ -656,6 +787,11 @@
 <div id="box">
 
     <p><strong>Do you have any cash savings?</strong></p>
+	
+
+	<br>
+    <div class="cash-savings-container">
+	
     <select id="hasCashSavings" name="hasCashSavings" required onchange="toggleCashSavings()">
         <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
@@ -664,20 +800,22 @@
     <div id="cashSavingsContainer" style="display:none;">
         <p>Cash Savings: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount"></p>
     </div>
+</div>
+
 
 
 
 	
-	<p><strong>Do you have a bank account?</strong></p>
+	<p><strong>Do you have a bank account?</strong></p><br>
     <select id="hasBankAccount" name="hasBankAccount" required onchange="toggleBankAccountFields()">
         <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
-	
+	<br><br>
     <div id="bankAccountFieldsContainer" style="display:none;">
         <p><strong>How many accounts?</strong></p>
-		
+		<br>
         <select id="numberOfBankAccounts" name="numberOfBankAccounts" required onchange="displayBankAccountFields()">
             <option value="" disabled selected>Select</option>
             <option value="1">1</option>
@@ -702,17 +840,22 @@
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	<br>
     <div id="vehicleFieldsContainer" style="display:none;">
+	<br>
         <p><strong>How many vehicles?</strong></p>
+		<center>
         <select id="numberOfVehicles" name="numberOfVehicles" required onchange="displayVehicleFields()">
             <option value="" disabled selected>Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
+		
     </div>
 	<br>
     <div id="vehicleInfo" style="display:none;"></div>
+	<br>
 </div>
 </div>
 
@@ -727,6 +870,7 @@
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	<br><br>
     <div id="realEstateFieldsContainer" style="display:none;">
         <p><strong>How many properties?</strong></p>
         <select id="numberOfProperties" name="numberOfProperties" required onchange="displayRealEstateFields()">
@@ -753,6 +897,7 @@
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	<br><br>
     <div id="personalPropertyFieldsContainer" style="display:none;">
         <p><strong>How many items?</strong></p>
         <select id="numberOfPersonalProperties" name="numberOfPersonalProperties" required onchange="displayPersonalPropertyFields()">
@@ -779,6 +924,7 @@
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	<br><br>
     <div id="payrollDeductionsContainer" style="display:none;">
         <p><strong>How many deductions?</strong></p>
         <select id="numberOfPayrollDeductions" name="numberOfPayrollDeductions" required onchange="displayPayrollDeductionFields()">
@@ -801,47 +947,57 @@
 <div id="box">
     <p><strong>Your Monthly Deductions and Expenses:</strong></p>
 
+<div id="deductions">
     <label class="checkbox-label">
         <input type="checkbox" id="rent_expense_check" onchange="toggleField('rent_expense')"> Rent or house payment & maintenance:
         <input type="text" id="rent_expense" name="rent_expense" placeholder="Amount" style="display:none;">
     </label>
+	<br>
     <label class="checkbox-label">
         <input type="checkbox" id="food_expense_check" onchange="toggleField('food_expense')"> Food and household supplies:
         <input type="text" id="food_expense" name="food_expense" placeholder="Amount" style="display:none;">
     </label>
+	<br>
     <label class="checkbox-label">
         <input type="checkbox" id="utilities_expense_check" onchange="toggleField('utilities_expense')"> Utilities and telephone:
         <input type="text" id="utilities_expense" name="utilities_expense" placeholder="Amount" style="display:none;">
     </label>
+	<br>
     <label class="checkbox-label">
         <input type="checkbox" id="clothing_expense_check" onchange="toggleField('clothing_expense')"> Clothing:
         <input type="text" id="clothing_expense" name="clothing_expense" placeholder="Amount" style="display:none;">
     </label>
+	<br>
     <label class="checkbox-label">
         <input type="checkbox" id="laundry_expense_check" onchange="toggleField('laundry_expense')"> Laundry and cleaning:
         <input type="text" id="laundry_expense" name="laundry_expense" placeholder="Amount" style="display:none;">
     </label>
-    <label class="checkbox-label">
+    <br>
+	<label class="checkbox-label">
         <input type="checkbox" id="medical_expense_check" onchange="toggleField('medical_expense')"> Medical and dental expenses:
         <input type="text" id="medical_expense" name="medical_expense" placeholder="Amount" style="display:none;">
     </label>
-    <label class="checkbox-label">
+    <br>
+	<label class="checkbox-label">
         <input type="checkbox" id="insurance_expense_check" onchange="toggleField('insurance_expense')"> Insurance (life, health, accident, etc.):
         <input type="text" id="insurance_expense" name="insurance_expense" placeholder="Amount" style="display:none;">
     </label>
+	<br>
     <label class="checkbox-label">
         <input type="checkbox" id="school_childcare_expense_check" onchange="toggleField('school_childcare_expense')"> School, child care:
         <input type="text" id="school_childcare_expense" name="school_childcare_expense" placeholder="Amount" style="display:none;">
     </label>
+	<br>
     <label class="checkbox-label">
         <input type="checkbox" id="support_expense_check" onchange="toggleField('support_expense')"> Child, spousal support (another marriage):
         <input type="text" id="support_expense" name="support_expense" placeholder="Amount" style="display:none;">
     </label>
+	<br>
     <label class="checkbox-label">
         <input type="checkbox" id="transportation_expense_check" onchange="toggleField('transportation_expense')"> Transportation, gas, auto repair, and insurance:
         <input type="text" id="transportation_expense" name="transportation_expense" placeholder="Amount" style="display:none;">
     </label>
-	
+	</div>
 	
 	</div>
 	</div>
@@ -856,11 +1012,12 @@
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
-	
+	<br>
     <div id="installmentNumberContainer" style="display:none;">
 	<br>
+	<p><strong>How many installment payments do you have?</strong></p>
         <select id="numberOfInstallments" name="numberOfInstallments" onchange="displayInstallmentFields()">
-            <option value="" disabled selected>Select of payments</option>
+            <option value="" disabled selected>Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -868,6 +1025,7 @@
     </div>
 	<br>
     <div id="installmentFieldsContainer"></div>
+	<br><br>
 </div>
 </div>
 
@@ -876,13 +1034,15 @@
 <div id="question16" style = "display:none">
 <div id="box">
     <p><strong>Do you have any wages/earnings withheld by the court:</strong></p>
+	
     <select id="hasWithheldEarnings" name="hasWithheldEarnings" required onchange="toggleWithheldEarningsField()">
         <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
-	<br>
+	<br><br>
     <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount" style="display:none;">
+	<br><br>
 </div>
 </div>
 
@@ -890,11 +1050,13 @@
 <div id="question17" style = "display:none">
 <div id="box">
     <p><strong>Do you have any other monthly expenses?</strong></p>
+	
     <select id="hasOtherExpenses" name="hasOtherExpenses" required onchange="toggleOtherExpenses()">
         <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
+	<br>
     <div id="otherExpensesContainer" style="display:none;">
 	<br>
 	
@@ -908,6 +1070,7 @@
     </div>
 	<br>
     <div id="otherExpenseFields"></div>
+	<br><br>
 </div>
 </div>
 
@@ -923,6 +1086,7 @@
                     <option value="no">No</option>
                 </select>
                 <br><br>
+				
                 <div id="PendingActionsInfo" style = "display:none">
 
                 <p><strong>Have you requested the court to waive any court fees in the last six months?</strong></p>
@@ -931,19 +1095,21 @@
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
+				<br><br>
                 <div id="previousRequestFields" style = "display:none">
-                    <br>
-
+                   
                     <p><strong>Please enter your case number</strong></p>
                     <input type="text" id="case_number" name="case_number" placeholder="Case Number">
 
-                    <br><br>
+                    <br>
                     <p><strong>Is your previous request reasonably available?</strong></p>
                     <select id="PreviousAvailable" name="PreviousAvailable" required onchange="togglePreviousRequestAvailable()">
                         <option value="" disabled selected>Select</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
+					
+					
                 </div>
                 </div>
                 </div>
@@ -1192,15 +1358,15 @@ function toggleJobFields() {
 
 
 function toggleCashSavings() {
-    var hasCash = document.getElementById('hasCashSavings').value;
+    var select = document.getElementById('hasCashSavings');
     var container = document.getElementById('cashSavingsContainer');
-    if (hasCash === 'yes') {
-        container.style.display = 'block';
+    if (select.value === 'yes') {
+        container.style.display = 'flex'; // This replaces 'block' to work with flex in CSS
     } else {
         container.style.display = 'none';
-        document.getElementById('cash_amount').value = ''; // Clear the input
     }
 }
+
 
 
 function togglePendingActions() {
@@ -1357,24 +1523,30 @@ function displayIncomeFields() {
     container.innerHTML = '';  // Clear existing fields
 
     for (let i = 1; i <= number; i++) {
+        const fieldContainer = document.createElement('div');
+        fieldContainer.className = 'income-field-container';
+
         const sourceInput = document.createElement('input');
         sourceInput.type = 'text';
-        sourceInput.id = 'monthly_income_source' + i;  // Ensure ID is correct
+        sourceInput.className = 'income-source';
+        sourceInput.id = 'monthly_income_source' + i;
         sourceInput.name = 'monthly_income_source' + i;
         sourceInput.placeholder = 'Income Source ' + i;
 
         const amountInput = document.createElement('input');
         amountInput.type = 'text';
-        amountInput.id = 'monthly_income_source' + i + '_amount';  // Ensure ID is correct
+        amountInput.className = 'income-amount';
+        amountInput.id = 'monthly_income_source' + i + '_amount';
         amountInput.name = 'monthly_income_source' + i + '_amount';
         amountInput.placeholder = 'Amount ' + i;
 
-        container.appendChild(document.createElement('br'));
-        container.appendChild(sourceInput);
-        container.appendChild(amountInput);
-        container.appendChild(document.createElement('br'));
+        fieldContainer.appendChild(sourceInput);
+        fieldContainer.appendChild(amountInput);
+
+        container.appendChild(fieldContainer);
     }
 }
+
 
 
 
@@ -1406,7 +1578,7 @@ function displayOtherExpenseFields() {
 
 function createOtherExpenseField(index) {
     const div = document.createElement('div');
-    div.innerHTML = `<strong></strong> <input type="text" id="other_expense${index}" name="other_expense${index}" placeholder="Expense Description"> <input type="text" id="other_expense${index}_amount" name="other_expense${index}_amount" placeholder="Amount">`;
+    div.innerHTML = `<strong></strong> <input type="text" id="other_expense${index}" name="other_expense${index}" placeholder="Description"> <input type="text" id="other_expense${index}_amount" name="other_expense${index}_amount" placeholder="Amount">`;
     return div;
 }
 
@@ -1434,23 +1606,27 @@ function displayDependencyFields() {
     container.style.display = 'block';
 
     for (let i = 1; i <= number; i++) {
-        container.appendChild(document.createTextNode(``));
-        container.appendChild(createDependencyInput(`dependency_name${i}`, 'Name'));
-        container.appendChild(createDependencyInput(`dependency_age${i}`, 'Age'));
-        container.appendChild(createDependencyInput(`dependency_relationship${i}`, 'Relationship'));
-        container.appendChild(createDependencyInput(`dependency_income${i}`, 'Monthly Income'));
-        container.appendChild(document.createElement('br'));
+        const fieldContainer = document.createElement('div');
+        fieldContainer.className = 'dependency-details'; // Use the new class
+
+        fieldContainer.appendChild(createDependencyInput(`dependency_name${i}`, 'Name', 'dependency-input'));
+        fieldContainer.appendChild(createDependencyInput(`dependency_age${i}`, 'Age', 'dependency-input'));
+        fieldContainer.appendChild(createDependencyInput(`dependency_relationship${i}`, 'Relationship', 'dependency-input'));
+        fieldContainer.appendChild(createDependencyInput(`dependency_income${i}`, 'Monthly Income', 'dependency-input'));
+        container.appendChild(fieldContainer);
     }
 }
 
-function createDependencyInput(id, placeholder) {
+function createDependencyInput(id, placeholder, className) {
     const input = document.createElement('input');
     input.type = 'text';
     input.id = id;
     input.name = id;
     input.placeholder = placeholder;
+    input.className = className; // Apply the input class
     return input;
 }
+
 
 
 
@@ -1476,13 +1652,22 @@ function displayInstallmentFields() {
     const number = parseInt(numberElement.value, 10);
     const container = document.getElementById('installmentFieldsContainer');
     container.innerHTML = ''; // Clear existing fields before adding new ones
+	container.style.display = 'block';
 
+	
+	
     if (!isNaN(number) && number > 0) {
         for (let i = 1; i <= number; i++) {
-            container.appendChild(createInput(`installment_payment${i}`, `Payment`));
-            container.appendChild(createInput(`installment_payment${i}_amount`, `Payment Amount`));
-            container.appendChild(document.createElement('br'));
-        }
+	
+		const paymentDiv = document.createElement('div');
+		paymentDiv.className = 'payment-field-container';
+        paymentDiv.appendChild(document.createTextNode(``));
+        paymentDiv.appendChild(createInput(`installment_payment${i}`, 'Description', 'payment_detail'));
+        paymentDiv.appendChild(createInput(`installment_payment${i}_amount`, 'Amount', 'payment_detail'));
+        container.appendChild(paymentDiv);
+		
+	
+    }
         container.style.display = 'block'; // Display the container
     } else {
         container.style.display = 'none'; // Hide the container if number is invalid or zero
@@ -1556,10 +1741,19 @@ function displayBankAccountFields() {
     container.style.display = 'block';
 
     for (let i = 1; i <= number; i++) {
-        container.appendChild(document.createTextNode(``));
-        container.appendChild(createBankAccountInput(`bank_name${i}`, 'Bank Name'));
-        container.appendChild(createBankAccountInput(`bank_amount${i}`, 'Amount'));
-        container.appendChild(document.createElement('br'));
+	
+		const bankDiv = document.createElement('div');
+		bankDiv.className = 'bank-field-container';
+        bankDiv.appendChild(document.createTextNode(``));
+        bankDiv.appendChild(createInput(`bank_name${i}`, 'Bank Name', 'bank_detail'));
+        bankDiv.appendChild(createInput(`bank_amount${i}`, 'Amount', 'bank_detail'));
+        container.appendChild(bankDiv);
+		
+		
+		
+		
+		
+		
     }
 }
 
@@ -1605,23 +1799,29 @@ function displayVehicleFields() {
 
     for (let i = 1; i <= number; i++) {
         const vehicleDiv = document.createElement('div');
-        vehicleDiv.appendChild(document.createTextNode(``));
-        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_make_year`, 'Make / Year'));
-        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_market_value`, 'Fair Market Value'));
-        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_amount_owed`, 'Amount Owed'));
+        vehicleDiv.className = 'vehicle-field-container'; // Container for each vehicle set
+
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_make_year`, 'Make / Year', 'vehicle-detail'));
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_market_value`, 'Fair Market Value', 'vehicle-detail'));
+        vehicleDiv.appendChild(createVehicleInput(`vehicle${i}_amount_owed`, 'Amount Owed', 'vehicle-detail'));
         container.appendChild(vehicleDiv);
-        container.appendChild(document.createElement('br'));
     }
 }
 
-function createVehicleInput(id, placeholder) {
+function createVehicleInput(id, placeholder, className) {
+    const div = document.createElement('div');
+    div.className = className;
+
     const input = document.createElement('input');
     input.type = 'text';
     input.id = id;
     input.name = id;
     input.placeholder = placeholder;
-    return input;
+
+    div.appendChild(input);
+    return div;
 }
+
 
 
 
@@ -1649,22 +1849,28 @@ function displayRealEstateFields() {
 
     for (let i = 1; i <= number; i++) {
         const propertyDiv = document.createElement('div');
-        propertyDiv.appendChild(document.createTextNode(``));
-        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_address`, 'Address'));
-        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_market_value`, 'Fair Market Value'));
-        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_amount_owed`, 'Amount Owed'));
+		propertyDiv.className = 'estate-field-container'; // Container for each vehicle set
+
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_address`, 'Address', 'estate_detail'));
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_market_value`, 'Fair Market Value', 'estate_detail'));
+        propertyDiv.appendChild(createRealEstateInput(`real_estate${i}_amount_owed`, 'Amount Owed', 'estate_detail'));
         container.appendChild(propertyDiv);
-        container.appendChild(document.createElement('br'));
+    
     }
 }
 
-function createRealEstateInput(id, placeholder) {
+function createRealEstateInput(id, placeholder,className) {
+    const div = document.createElement('div');
+    div.className = className;
+
     const input = document.createElement('input');
     input.type = 'text';
     input.id = id;
     input.name = id;
     input.placeholder = placeholder;
-    return input;
+
+    div.appendChild(input);
+    return div;
 }
 
 
@@ -1692,22 +1898,28 @@ function displayPersonalPropertyFields() {
 
     for (let i = 1; i <= number; i++) {
         const propertyDiv = document.createElement('div');
+		propertyDiv.className = 'personal-field-container'; // Container for each vehicle set
         propertyDiv.appendChild(document.createTextNode(``));
-        propertyDiv.appendChild(createInput(`property${i}_description`, 'Description'));
-        propertyDiv.appendChild(createInput(`property${i}_market_value`, 'Fair Market Value'));
-        propertyDiv.appendChild(createInput(`property${i}_amount_owed`, 'Amount Owed'));
+        propertyDiv.appendChild(createInput(`property${i}_description`, 'Description', 'personal_detail'));
+        propertyDiv.appendChild(createInput(`property${i}_market_value`, 'Fair Market Value', 'personal_detail'));
+        propertyDiv.appendChild(createInput(`property${i}_amount_owed`, 'Amount Owed', 'personal_detail'));
         container.appendChild(propertyDiv);
-        container.appendChild(document.createElement('br'));
+        
     }
 }
 
-function createInput(id, placeholder) {
+function createInput(id, placeholder, className) {
+    const div = document.createElement('div');
+    div.className = className;
+
     const input = document.createElement('input');
     input.type = 'text';
     input.id = id;
     input.name = id;
     input.placeholder = placeholder;
-    return input;
+
+    div.appendChild(input);
+    return div;
 }
 
 
@@ -1733,10 +1945,17 @@ function displayPayrollDeductionFields() {
     container.style.display = 'block';
 
     for (let i = 1; i <= number; i++) {
-        container.appendChild(document.createTextNode(``));
-        container.appendChild(createDeductionInput(`payroll_description${i}`, `Deduction Description`));
-        container.appendChild(createDeductionInput(`payroll_deduction${i}`, `Deduction Amount`));
-        container.appendChild(document.createElement('br'));
+	
+	
+		const propertyDiv = document.createElement('div');
+		propertyDiv.className = 'personal-field-container'; // Container for each vehicle set
+        propertyDiv.appendChild(document.createTextNode(``));
+        propertyDiv.appendChild(createInput(`payroll_description${i}`, 'Description', 'personal_detail'));
+        propertyDiv.appendChild(createInput(`payroll_deduction${i}`, 'Fair Market Value', 'personal_detail'));
+        container.appendChild(propertyDiv);
+      
+		
+
     }
 }
 
