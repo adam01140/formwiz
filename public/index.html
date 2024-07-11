@@ -513,18 +513,18 @@
         </form><br>
         <p><strong>What's your street address?</strong></p>
         <input type="text" id="Street" name="Street" placeholder="Street">
-        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City">
+        <input type="text" id="PetitionerCity[0]" name="PetitionerCity[0]" placeholder="City" required>
  <br><br>
-        <input type="text" id="County" name="County" placeholder="County">
+        <input type="text" id="County" name="County" placeholder="County" required>
         
-        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State">
+        <input type="text" id="PetitionerState[0]" name="PetitionerState[0]" placeholder="State" required>
       <br><br>
-        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip">
+        <input type="text" id="PetitionerZip[0]" name="PetitionerZip[0]" placeholder="Zip" required>
         <br><br>
        
 
         <p><strong>What's your phone number?</strong></p>
-        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number"><br>
+        <input type="text" id="PetitionerTel[0]" name="PetitionerTel[0]" placeholder="Phone Number" required><br>
 		<br><br>
     
             </div>
@@ -548,11 +548,11 @@
         <div class="job-info" id="jobInfoFields">
       <br>
             
-			<input type="text" id="job" name="job" placeholder="Job Title">
+			<input type="text" id="job" name="job" placeholder="Job Title" required>
 			
-            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer">
+            <input type="text" id="employer_name" name="employer_name" placeholder="Name of Employer" required>
             
-            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address">
+            <input type="text" id="employer_address" name="employer_address" placeholder="Employer's Address" required>
            <br>
         </div>
 		
@@ -575,7 +575,7 @@
                 <option value="waive_some">Waive some of the court fees</option>
                 <option value="pay_later">Let me make payments over time</option>
             </select>
-			<p><br>
+			<p>
         </div>
 		
         </div>
@@ -1171,6 +1171,24 @@ function checkNoneApply() {
 function showNext() {
 
 
+var currentDiv = document.getElementById('question' + currentQuestionIndex);
+    var requiredInputs = currentDiv.querySelectorAll('input[required], select[required]');
+
+    var allFilled = true;
+    requiredInputs.forEach(function(input) {
+        // Check only if the input is visible
+        if (input.offsetParent !== null && (input.value === '' || input.value === null)) {
+            allFilled = false;
+        }
+    });
+
+    if (!allFilled) {
+        alert("Please answer all required questions before proceeding.");
+        return;
+    }
+	
+	
+
 //alert(currentQuestionIndex);
 
 if(eligible == 0){
@@ -1426,10 +1444,10 @@ var formData = new FormData();
 function toggleMonthlyIncomeFields() {
     const changingIncomeStatus = document.getElementById('ChangingIncomeStatus').value;
     const monthlyIncomeFields = document.getElementById('monthlyIncomeFields');
-    const FeesWaived = document.getElementById('FeesWaived');
+    
     if (changingIncomeStatus === 'yes') {
         monthlyIncomeFields.style.display = 'block';
-        FeesWaived.style.display = 'none';
+        
     } else {
        
         monthlyIncomeFields.style.display = 'block';
