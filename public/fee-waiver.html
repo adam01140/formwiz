@@ -1184,6 +1184,8 @@
     <p><strong>You're all done!</strong></p>
     <button class="next-button" type="button" onclick="editPDF()"> Download From </h1></button>
 	<br><br>
+	<button class="next-button" type="button" onclick="restart()"> Review Answers </h1></button>
+	<br><br>
 </div>
 </div>
 
@@ -1247,7 +1249,12 @@ function checkNoneApply() {
 
 
 
-
+function restart() {
+currentQuestionIndex = 2
+showPrevious();
+document.getElementById('question19').style.display = 'none';
+document.getElementById('navigation').style.display = 'flex';
+}
 
 function showNext() {
 
