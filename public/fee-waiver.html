@@ -153,14 +153,7 @@
         width: 200px;
     }
 
-    .cash-savings-container select, .cash-savings-container #cashSavingsContainer {
-        flex-grow: 1; /* Allows both children to grow and fill the container */
-    }
-
-    .cash-savings-container #cashSavingsContainer {
-        display: flex; /* Align the paragraph inside the div */
-        align-items: center; /* Center the content vertically */
-    }
+   
 
     /* Reduce bottom margin/padding of the paragraph above the select element */
     #question9 p {
@@ -397,10 +390,10 @@
             color: #1d1d1f;
         }
         .container2 {
-			width: 80%;
+			width: 90%;
             text-align: center;
             margin-top: 55px;
-			min-width: 800px; /* Increased width */
+			min-width: 1200px; /* Increased width */
 			height: 95vh;
            
             border-radius: 12px;
@@ -578,12 +571,12 @@
 
 
 
-
+		
         <div id="question1" class="questionBox">
+			
 			<center>
             <center><div id="box" style="line-height: 0.4;" >
-			
-			<br><br>
+			<p style="text-align: left;"><u> Slide 1</u></p>
 			<form id="userForm">
             <p><strong>What's your full name?</strong></p>
             <input type="text" id="PetitionerName1[0]" name="PetitionerName1[0]" placeholder="Full name" required>
@@ -624,14 +617,14 @@
 
 		<div id="question2" style = "display:none">
         <center><div id="box">
-		
+		<p style="text-align: left;"><u> Slide 2</u></p>
 		<p><strong>Are you currently employed?</strong></p>
         <select id="JobStatus" name="JobStatus" required onchange="toggleJobFields()">
             <option value="" disabled selected>Select</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
-        <br><br>
+        <br><br><br>
         <div class="job-info" id="jobInfoFields">
       <br>
             
@@ -644,26 +637,7 @@
         </div>
 		
 		
-		<br>
-        <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
-        <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
-            <option value="" disabled selected>Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-		<p>
-	
-        <div class="income-info" id="incomeInfoFields">
-            <br>
-            <p><strong>What would you like the court to do?</strong></p>
-            <select id="CourtAction" name="CourtAction" required>
-                <option value="" disabled selected>Select</option>
-                <option value="waive_all">Waive all court fees and costs</option>
-                <option value="waive_some">Waive some of the court fees</option>
-                <option value="pay_later">Let me make payments over time</option>
-            </select>
-			<p>
-        </div>
+		
 		
         </div>
 		
@@ -683,17 +657,9 @@
         </div>
 
 
-
-
-
-
-
-
-		
-		
     <div id="question4" style = "display:none">
         <center><div id="box">
-        
+        <p style="text-align: left;"><u> Slide 3</u></p>
         <p><strong>Do you receive any of these benifits: </strong></p>
 		<p><strong>(Mark all that apply) </strong></p>
 		
@@ -727,6 +693,7 @@
 
     <div id="question5" style = "display:none">
         <center><div id="box">
+		<p style="text-align: left;"><u> Slide 4</u></p>
         <p><strong>Is your gross monthly household income less than the amount listed: </strong></p>
         <center>
         <img src="gross_monthly.jpg"  width="700" height="80">
@@ -744,6 +711,7 @@
 
     <div id="question6" style = "display:none">
         <center><div id="box">
+		<p style="text-align: left;"><u> Slide 5</u></p>
         <p><strong>Do you have enough income to pay for your household’s basic needs and the court fees?</strong></p>
         <select id="IncomePayStatus" name="IncomePayStatus" required onchange="toggleIncomeFields()">
             <option value="" disabled selected>Select</option>
@@ -754,19 +722,24 @@
         <div class="income-info" id="incomeInfoFields">
             <br>
             <p><strong>What would you like the court to do?</strong></p>
+			<br>
             <select id="CourtAction" name="CourtAction" required>
                 <option value="" disabled selected>Select</option>
                 <option value="waive_all">Waive all court fees and costs</option>
                 <option value="waive_some">Waive some of the court fees</option>
                 <option value="pay_later">Let me make payments over time</option>
             </select>
+			<br>
+			<br>
         </div>
         </div>
+		<br>
         </div>
      
 
 	<div id="question7" style = "display:none">
         <center><div id="box">
+		<p style="text-align: left;"><u> Slide 6</u></p>
         <p><strong>Does your income change a lot from month to month?</strong></p>
         <select id="ChangingIncomeStatus" name="ChangingIncomeStatus" required onchange="toggleMonthlyIncomeFields()">
             <option value="" disabled selected>Select</option>
@@ -779,10 +752,12 @@
     
         <div id="monthlyIncomeFields">
 		<br>
+		
     <p><strong>How many sources of income do you have?</strong></p>
     
 	<select id="numberOfIncomeSources" name="numberOfIncomeSources" required onchange="displayIncomeFields()">
         <option value="" disabled selected>Select</option>
+		<option value="1">0</option><p>
         <option value="1">1</option><p>
         <option value="2">2</option><p>
         <option value="3">3</option><p>
@@ -803,6 +778,7 @@
 
     <div id="question8" style = "display:none">
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 7</u></p>
     <p><strong>Do you have anybody else living in your home?</strong></p>
     <select id="hasDependents" name="hasDependents" required onchange="toggleDependencyFields()">
         <option value="" disabled selected>Select</option>
@@ -854,22 +830,22 @@
 
 <div id="question9" style = "display:none">
 <center><div id="box">
-
+	<p style="text-align: left;"><u> Slide 8</u></p>
     <p><strong>Do you have any cash savings?</strong></p>
 	
 
 	<br>
-    <div class="cash-savings-container">
-	
+   
     <select id="hasCashSavings" name="hasCashSavings" required onchange="toggleCashSavings()">
         <option value="" disabled selected>Select</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
     <div id="cashSavingsContainer" style="display:none;">
+	<center>
         <p>Cash Savings: <input type="text" id="cash_amount" name="cash_amount" placeholder="Amount"></p>
     </div>
-</div>
+
 
 
 
@@ -891,6 +867,7 @@
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
+		<br><br>
     </div>
 	<br>
     <div id="bankAccountInfo" style="display:none;">
@@ -904,6 +881,7 @@
 
 <div id="question10" style = "display:none">
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 9</u></p>
     <p><strong>Do you own any cars, boats, and other vehicles:</strong></p>
     <select id="hasVehicles" name="hasVehicles" required onchange="toggleVehicleFields()">
         <option value="" disabled selected>Select?</option>
@@ -934,6 +912,7 @@
 
 <div id="question11" style = "display:none">
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 10</u></p>
     <p><strong>Do you own any real estate:</strong></p>
     <select id="hasRealEstate" name="hasRealEstate" required onchange="toggleRealEstateFields()">
         <option value="" disabled selected>Select</option>
@@ -962,6 +941,7 @@
 
 <div id="question12" style = "display:none">
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 11</u></p>
     <p><strong>Do you own any other personal property?</strong></p>
     <select id="hasPersonalProperty" name="hasPersonalProperty" required onchange="togglePersonalPropertyFields()">
         <option value="" disabled selected>Select</option>
@@ -990,6 +970,7 @@
 
 <div id="question13" style = "display:none">
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 12</u></p>
     <p><strong>Do you have any payroll deductions?</strong></p>
     <select id="hasPayrollDeductions" name="hasPayrollDeductions" required onchange="togglePayrollDeductionFields()">
         <option value="" disabled selected>Select</option>
@@ -1018,6 +999,7 @@
 <div id="question14" style = "display:none">
 
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 13</u></p>
     <p><strong>Mark All Monthly Deductions and Expenses:</strong></p>
 	
 <div id="deductions">
@@ -1080,6 +1062,7 @@
 	
 	<div id="question15" style = "display:none">
 	<center><div id="box">
+	<p style="text-align: left;"><u> Slide 14</u></p>
     <p><strong>Do you have any installment payments?</strong></p>
     <select id="hasInstallments" name="hasInstallments" required onchange="toggleInstallmentFields()">
         <option value="" disabled selected>Select</option>
@@ -1107,6 +1090,7 @@
 
 <div id="question16" style = "display:none">
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 15</u></p>
     <p><strong>Do you have any wages/earnings withheld by the court:</strong></p>
 	
     <select id="hasWithheldEarnings" name="hasWithheldEarnings" required onchange="toggleWithheldEarningsField()">
@@ -1116,13 +1100,14 @@
     </select>
 	<br><br>
     <input type="text" id="withheld_earnings" name="withheld_earnings" placeholder="Amount" style="display:none;">
-	<br><br>
+	<br><br><br>
 </div>
 </div>
 
 
 <div id="question17" style = "display:none">
 <center><div id="box">
+<p style="text-align: left;"><u> Slide 16</u></p>
     <p><strong>Do you have any other monthly expenses?</strong></p>
 	
     <select id="hasOtherExpenses" name="hasOtherExpenses" required onchange="toggleOtherExpenses()">
@@ -1150,6 +1135,7 @@
 
 
 <div id="question18" style = "display:none">
+<p style="text-align: left;"><u> Slide 17</u></p>
                 <center><div id="box">
 
 
@@ -1266,6 +1252,8 @@ function checkNoneApply() {
 function showNext() {
 
 
+//required questions code commented for now
+/*
 var currentDiv = document.getElementById('question' + currentQuestionIndex);
     var requiredInputs = currentDiv.querySelectorAll('input[required], select[required]');
 
@@ -1282,7 +1270,7 @@ var currentDiv = document.getElementById('question' + currentQuestionIndex);
         return;
     }
 	
-	
+*/	
 
 //alert(currentQuestionIndex);
 
@@ -1298,10 +1286,7 @@ document.getElementById('question2').style.display = 'none';
 
 
 //alert(currentQuestionIndex)
-if (currentQuestionIndex === 5) {
-currentQuestionIndex = 6
-document.getElementById('question5').style.display = 'none';
-}
+
 
 document.getElementById('previous').style.display = 'inline';
 
@@ -1396,13 +1381,6 @@ document.getElementById('question18').style.display = 'none';
 }
 
 
-
-if (currentQuestionIndex === 7) {
-currentQuestionIndex = 6
-document.getElementById('question7').style.display = 'none';
-}
-
-
 if (currentQuestionIndex === (start+1)) {
 	document.getElementById('previous').style.display = 'none';
 
@@ -1460,7 +1438,7 @@ function toggleCashSavings() {
     var select = document.getElementById('hasCashSavings');
     var container = document.getElementById('cashSavingsContainer');
     if (select.value === 'yes') {
-        container.style.display = 'flex'; // This replaces 'block' to work with flex in CSS
+        container.style.display = 'block'; // This replaces 'block' to work with flex in CSS
     } else {
         container.style.display = 'none';
     }
