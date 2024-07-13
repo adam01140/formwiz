@@ -1,52 +1,56 @@
-require('dotenv').config();
 const express = require('express');
+const dotenv = require('dotenv');
 const admin = require('firebase-admin');
-
-
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 const { PDFDocument, StandardFonts } = require('pdf-lib');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
-const dotenv = require('dotenv');
 dotenv.config();
-
-
-
-
-
-require('dotenv').config();
-console.log('Firebase Project ID:', process.env.FIREBASE_PROJECT_ID);
-
-require('dotenv').config({ path: path.resolve(__dirname, '.env') });
-console.log('Current directory:', __dirname);
-
-
-process.env.FIREBASE_PROJECT_ID = 'test_project_id';
-console.log('Manually set Firebase Project ID:', process.env.FIREBASE_PROJECT_ID);
-
-
-
 
 const app = express();
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(cors());
 
-// Initialize Firebase Admin SDK
+require('dotenv').config();
+
 admin.initializeApp({
   credential: admin.credential.cert(require('./firebaseAdminKey.json')),
   databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
-  
 });
 
-
-
 const db = admin.firestore();
-
-// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'adamchaabane1234@gmail.com',
+        pass: process.env.EMAIL_PASSWORD // Use environment variable for security
+    }
+});
+
+app.post('/send-email', async (req, res) => {
+    const { name, email, message } = req.body;
+    const mailOptions = {
+        from: 'adamchaabane1234@gmail.com',
+        to: email, // Email recipient
+        subject: 'New Ticket Submission',
+        text: `Hello ${name},\n\nThank you for reaching out. Here is your message:\n\n${message}\n\nWe will get back to you shortly.`,
+        replyTo: 'adamchaabane1234@gmail.com'
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.send('Email sent successfully.');
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).send('Failed to send email.');
+    }
+});
 
 // Endpoint to add user
 app.post('/addUser', async (req, res) => {
@@ -194,5 +198,5 @@ app.get('/form.pdf', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
