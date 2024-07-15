@@ -5,7 +5,7 @@
 <title>Waive Court Fees Form</title>
 <style>
     p {
-        font-size: 23px; /* Change this value as needed */
+        font-size: 20px; /* Change this value as needed */
     }
 
     select {
@@ -107,8 +107,7 @@
     }
 
     #navigation {
-    position: absolute;
-    
+     
     width: 100%;
     display: flex;
     justify-content: center;
@@ -171,8 +170,9 @@
         border-color: #89CFF0;
         border-radius: 10px;
         padding-right: 20px;
-		padding-left: 20px;
+		   padding-left: 20px;
         margin: 50px;
+       margin-top: 20px;
         background-color: #ffffff;
         width: auto;
         height: auto; /* Allow the div to grow with its content */
@@ -329,36 +329,7 @@
         margin-right: 10px; /* Reduces space to the right of each input field */
     }
 
-    /* Styles specific to devices with a viewport width of 600px or less (typically smartphones) */
-    @media (max-width: 1000px) {
-        select {
-            text-align-last: center; /* Align text in select for Android */
-            -moz-text-align-last: center; /* For Firefox versions */
-            text-align: center; /* For iOS and standard browsers */
-            padding-right: 30px; /* Adjust this value as needed */
-        }
-
-        #questions {
-            position: relative;
-            border: 4px ffffff;
-            border-radius: 10px;
-            padding: 0px;
-            margin: 10px auto;
-            background-color: #ffffff;
-            width: 97%;
-            height: 83vh; /* Sets the height to 100% of the viewport height */
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-         #navigation {
-    position: absolute;
-    
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Adjust the space between buttons */
-}
+   
 
 
     }
@@ -391,30 +362,23 @@
     color: #1d1d1f;
 }
 
-.container2 {
+  .container2 {
+    margin-top: 15px; /* Consistent space from the top of the page */
+    position: relative;
     text-align: center;
-    width: 100vw;
-    height: fit-content;
-    max-width: 800px;
-    margin-top: 5vh; /* Adjusted to use vh unit */
+    width: 70vw;
+    min-height:90vh;
     border-radius: 12px;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: visible; /* Allows the container to grow with the content */
 }
-  
-  
-		
-		.container3 {
-			width: 100%;
-            text-align: center;
-            max-width: 800px; /* Increased width */
-			height: 88vh;
-            padding: 40px;
-            border-radius: 12px;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-		
+
+
+
+
+
+
 		
         .header {
             font-size: 3.5em;
@@ -486,7 +450,7 @@
 	
 <div class="container2">
 
-<div id="questions">
+
     
 	 <div style="line-height: 0.4;">
 	<br><br><br>
@@ -1193,6 +1157,14 @@
 </div>
 
 
+  
+  
+    <div id="navigation">
+    <button id="previous" style="display:none" class="next-button" onclick="showPrevious()">← Previous</button>
+    <button class="next-button" onclick="showNext()"> Next →</button>
+
+    </div>
+<br><br>
 
 
 <center><div id="box" style = "display:none">
@@ -1204,18 +1176,12 @@
 
 
 
-<div id="navigation">
-    <button id="previous" style="display:none" class="next-button" onclick="showPrevious()">← Previous</button>
-    <button class="next-button" onclick="showNext()"> Next →</button>
-
-</div>
-
         
-   
+  
         
     </div>
   <br><br>
-</div>
+
 
 <div class="footer">
         © 2024 Form Wiz. All rights reserved.
