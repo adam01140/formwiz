@@ -3,94 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Wiz - Home</title>
+    <title>FormWiz - Simplify Your Paperwork</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f5f5f7;
-            color: #1d1d1f;
         }
-        .container {
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #800F0F;
+            padding: 20px;
             text-align: center;
-			width: 80%;
-			height: 70%;
-            max-width: 1000px;
-            padding: 40px;
-            border-radius: 12px;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .header {
-            font-size: 3.5em;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-        .description {
-            font-size: 1.5em;
-            color: #6e6e73;
-            margin-bottom: 50px;
-        }
-        .button {
-            font-size: 1.2em;
-            font-weight: 600;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 8px;
-            background-color: #007aff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #005bb5;
-        }
-        .footer {
-            margin-top: 50px;
-            font-size: 1em;
-            color: #6e6e73;
+        header img {
+            width: 150px;
         }
         nav {
-            display: flex;
-            justify-content: center;
+            margin-top: 10px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #F55139;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease; /* Smooth transition for color change */
+        }
+        nav a:hover {
+            color: #800F0F; /* Change color on hover */
+        }
+        section {
+            padding: 50px;
+            text-align: center;
+            flex: 1; /* Allow the section to grow and take up space */
+        }
+        section h1 {
+            color: #800F0F;
+            font-weight: normal; /* Makes the text appear lighter */
+        }
+        section p {
             margin-bottom: 20px;
         }
-        .nav-link {
-            margin: 0 15px;
+        section .btn {
+            background-color: #F55139;
+            color: #EBE7D9;
+            padding: 15px 30px;
             text-decoration: none;
-            color: #007aff;
-            font-weight: 600;
+            font-weight: bold;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
         }
-        .nav-link:hover {
-            text-decoration: underline;
+        section .btn:hover {
+            background-color: #d1402f;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #800F0F;
+            color: #EBE7D9;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="forms.html" class="nav-link">Forms</a>
-            <a href="contact.html" class="nav-link">Contact Us</a>
-        </nav>
-		<br>
-        <div class="header">Welcome to Form Wiz</div>
-        <div class="description">Form Wiz is your go-to solution for quick and easy legal form completion. Simply provide your details and let us handle the rest.</div>
-        <button class="button" onclick="startNow()">Get Started</button>
-    </div>
-    <div class="footer">
-        © 2024 Form Wiz. All rights reserved.
-    </div>
-    <script>
-        function startNow() {
-            window.location.href = 'forms.html';
-        }
-    </script>
+
+    <header>
+        <img src="logo.png" alt="FormWiz Logo">
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="forms.html">Forms</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <section>
+        <h1>Welcome to FormWiz</h1>
+        <p>Say goodbye to tedious paperwork!<br> FormWiz makes filling out forms quick and easy by automating the busy work.</p>
+        <br>
+        <a href="forms.html" class="btn">Get Started</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 FormWiz. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>

@@ -3,136 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Wiz - Contact Us</title>
+    <title>Contact Us - FormWiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center content vertically */
-    min-height: 100vh; /* Ensure body takes at least full viewport height */
-    background-color: #f5f5f7;
-    color: #1d1d1f;
-}
-
-.container {
-    text-align: center;
-    width: 80%;
-    height: fit-content;
-    max-width: 800px;
-    padding: 40px;
-    margin-top: 5vh; /* Adjusted to use vh unit */
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-        .header {
-            font-size: 3.5em;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-        .description {
-            font-size: 1.5em;
-            color: #6e6e73;
-            margin-bottom: 50px;
-        }
-        .button {
-            font-size: 1.2em;
-            font-weight: 600;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 8px;
-            background-color: #007aff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #005bb5;
-        }
-        .footer {
-            margin-top: 50px;
-            font-size: 1em;
-            color: #6e6e73;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .nav-link {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #007aff;
-            font-weight: 600;
-        }
-        .nav-link:hover {
-            text-decoration: underline;
-        }
-        .contact-form {
+        html, body {
+            height: 100%;
+            margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
-        .contact-form input,
-        .contact-form textarea {
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #800F0F;
+            padding: 20px;
+            text-align: center;
+        }
+        header img {
+            width: 150px;
+        }
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #F55139;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease; /* Smooth transition for color change */
+        }
+        nav a:hover {
+            color: #800F0F; /* Change color on hover */
+        }
+        section {
+            padding: 50px;
+            text-align: center;
+            flex: 1; /* Allow the section to grow and take up space */
+        }
+        section h1 {
+            color: #800F0F;
+        }
+        section form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        section form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #800F0F;
+        }
+        section form input, section form textarea {
             width: 100%;
-            max-width: 600px;
-            margin-bottom: 15px;
-            padding: 15px;
-            border: 1px solid #d1d1d6;
-            border-radius: 8px;
-            font-size: 1em;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
-        .contact-form textarea {
-            height: 150px;
-            resize: none;
+        section form button {
+            background-color: #800F0F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
+        section form button:hover {
+            background-color: #a31616;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #800F0F;
+            color: #EBE7D9;
+            margin-top: 20px;
+        }
+		
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="forms.html" class="nav-link">Forms</a>
-            <a href="contact.html" class="nav-link">Contact Us</a>
-        </nav>
-        <div class="header">Contact Us</div>
-        <div class="description">Have questions or need assistance? Send us a message below.</div>
-        <form class="contact-form" onsubmit="sendEmail(event)">
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" class="button">Send Message</button>
+
+    <header>
+        <img src="logo.png" alt="FormWiz Logo">
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="forms.html">Forms</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <section>
+        <h1>Contact Us</h1>
+        <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send</button>
         </form>
-    </div>
-    <div class="footer">
-        © 2024 Form Wiz. All rights reserved.
-    </div>
-    <script>
-        async function sendEmail(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+    </section>
 
-            const response = await fetch('/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email, message })
-            });
+    <footer>
+        <p>&copy; 2024 FormWiz. All rights reserved.</p>
+    </footer>
 
-            if (response.ok) {
-                alert('Email sent successfully');
-            } else {
-                alert('Failed to send email');
-            }
-        }
-    </script>
 </body>
 </html>
